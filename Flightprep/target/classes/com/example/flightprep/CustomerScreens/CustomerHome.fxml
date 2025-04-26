@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController">
+   <children>
+      <VBox maxWidth="-Infinity" prefHeight="226.0" prefWidth="160.0" style="-fx-background-color: #15aad0;" HBox.hgrow="NEVER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: #1086a3; -fx-border-color: #000000;" text="Home">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToPrep" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Preparation" />
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="My Flight" />
+            <Button mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Calendar" />
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Galerie" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Account" />
+         </children>
+      </VBox>
+      <VBox HBox.hgrow="ALWAYS">
+         <children>
+            <ToolBar prefHeight="63.0" prefWidth="358.0" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

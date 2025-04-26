@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flightprep.controller.Customer.CustomerPrepController">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox prefWidth="180" style="-fx-background-color: #15aad0;" spacing="10" alignment="TOP_CENTER">
+            <children>
+                <Label text="FlightPrep" style="-fx-font-size: 20px; -fx-text-fill: white; -fx-padding: 20 0 10 0;" />
+                <Button text="Home" onAction="#switchToHome" styleClass="sidebar-button"/>
+                <Button text="Preparation" styleClass="sidebar-button"/>
+                <Button text="My Flight" styleClass="sidebar-button"/>
+                <Button text="Calendar" onAction="#switchToCalendar" styleClass="sidebar-button"/>
+                <Button text="Gallery" styleClass="sidebar-button"/>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Button text="Account" styleClass="sidebar-button"/>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- TOPBAR -->
+    <top>
+        <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
+            <Label text="Flight Preparation" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        </ToolBar>
+    </top>
+
+    <!-- CONTENT AREA -->
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <tabs>
+                <Tab text="Medical Check">
+                    <content>
+                        <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS">
+                            <VBox alignment="CENTER" spacing="20"
+                                  style="-fx-background-color: white;
+                                         -fx-background-radius: 15;
+                                         -fx-border-radius: 15;
+                                         -fx-padding: 40;
+                                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0.5, 0, 5);">
+                                <children>
+                                    <Label text="Medical Checklist" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                                    <VBox spacing="15" alignment="CENTER">
+                                        <children>
+                                            <CheckBox text="Fill out your Medical Data" style="-fx-font-size: 18px;" />
+                                            <CheckBox text="Make an appointment with Doctor" style="-fx-font-size: 18px;" />
+                                            <CheckBox text="Upload your medical certificate" style="-fx-font-size: 18px;" />
+                                            <CheckBox text="Confirm Medical Check" style="-fx-font-size: 18px;" />
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </VBox>
+                        </StackPane>
+                    </content>
+                </Tab>
+                <Tab text="Training">
+                    <content>
+                        <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS"/>
+                    </content>
+                </Tab>
+                <Tab text="Fitting">
+                    <content>
+                        <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+</BorderPane>
