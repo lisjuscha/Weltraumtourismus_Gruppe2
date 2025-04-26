@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.LoginController">
+   <content>
+      <SplitPane dividerPositions="0.1" prefHeight="1080.0" prefWidth="1918.0">
+         <items>
+            <ImageView fx:id="loginImageView" fitHeight="1073.0" fitWidth="1522.0" pickOnBounds="true" preserveRatio="true" />
+            <Pane prefHeight="401.0" prefWidth="165.0">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="269.0" prefHeight="270.0" prefWidth="387.0">
+                     <children>
+                        <Button layoutX="104.0" layoutY="153.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="92.0" text="Login" />
+                        <TextField id="pwInput" fx:id="user_idInput" layoutX="97.0" layoutY="26.0" prefHeight="43.0" prefWidth="213.0" promptText="UserID" />
+                        <TextField id="mailInput" fx:id="passwordInput" layoutX="96.0" layoutY="91.0" prefHeight="46.0" prefWidth="216.0" promptText="Password" />
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="errorLabel" layoutX="100.0" layoutY="217.0" prefHeight="45.0" prefWidth="210.0" text="Login Failed!" textFill="#ec0000" visible="false" />
+               </children>
+            </Pane>
+         </items>
+      </SplitPane>
+   </content>
+</ScrollPane>
