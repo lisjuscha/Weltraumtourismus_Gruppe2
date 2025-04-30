@@ -1,75 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.flightprep.controller.Customer.CustomerPrepController">
+<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerPrepController">
 
     <!-- SIDEBAR -->
     <left>
-        <VBox prefWidth="180" style="-fx-background-color: #15aad0;" spacing="10" alignment="TOP_CENTER">
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
             <children>
-                <Label text="FlightPrep" style="-fx-font-size: 20px; -fx-text-fill: white; -fx-padding: 20 0 10 0;" />
-                <Button text="Home" onAction="#switchToHome" styleClass="sidebar-button"/>
-                <Button text="Preparation" styleClass="sidebar-button"/>
-                <Button text="My Flight" styleClass="sidebar-button"/>
-                <Button text="Calendar" onAction="#switchToCalendar" styleClass="sidebar-button"/>
-                <Button text="Gallery" styleClass="sidebar-button"/>
-                <Region VBox.vgrow="ALWAYS"/>
-                <Button text="Account" styleClass="sidebar-button"/>
+                <Button onAction="#switchToHome" styleClass="sidebar-button" text="Home">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+                <Button style="-fx-background-color: #117fa2;" styleClass="sidebar-button" stylesheets="@../../../../../Flightprep/src/main/resources/com/example/flightprep/Stylesheets/tab-style.css.css" text="Preparation" />
+                <Button styleClass="sidebar-button" text="My Flight" />
+                <Button onAction="#switchToCalendar" styleClass="sidebar-button" text="Calendar" />
+                <Button styleClass="sidebar-button" text="Gallery" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Button styleClass="sidebar-button" text="Account" />
             </children>
         </VBox>
     </left>
-
-    <!-- TOPBAR -->
-    <top>
-        <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
-            <Label text="Flight Preparation" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-        </ToolBar>
-    </top>
-
-    <!-- CONTENT AREA -->
-    <center>
-        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-            <tabs>
-                <Tab text="Medical Check">
-                    <content>
-                        <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS">
-                            <VBox alignment="CENTER" spacing="20"
-                                  style="-fx-background-color: white;
-                                         -fx-background-radius: 15;
-                                         -fx-border-radius: 15;
-                                         -fx-padding: 40;
-                                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0.5, 0, 5);">
-                                <children>
-                                    <Label text="Medical Checklist" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-                                    <VBox spacing="15" alignment="CENTER">
-                                        <children>
-                                            <CheckBox text="Fill out your Medical Data" style="-fx-font-size: 18px;" />
-                                            <CheckBox text="Make an appointment with Doctor" style="-fx-font-size: 18px;" />
-                                            <CheckBox text="Upload your medical certificate" style="-fx-font-size: 18px;" />
-                                            <CheckBox text="Confirm Medical Check" style="-fx-font-size: 18px;" />
-                                        </children>
-                                    </VBox>
-                                </children>
-                            </VBox>
-                        </StackPane>
-                    </content>
-                </Tab>
-                <Tab text="Training">
-                    <content>
-                        <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS"/>
-                    </content>
-                </Tab>
-                <Tab text="Fitting">
-                    <content>
-                        <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS"/>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </center>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+              <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
+               <HBox alignment="CENTER">
+                  <children>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Flight Preparation" HBox.hgrow="ALWAYS" />
+                  </children>
+               </HBox>
+              </ToolBar>
+              <TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="85.0" tabMinHeight="30.0" tabMinWidth="85.0" VBox.vgrow="ALWAYS">
+                  <tabs>
+                      <Tab text="Medical Check">
+                          <content>
+                              <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS">
+                                  <VBox alignment="TOP_CENTER" prefHeight="349.0" prefWidth="548.0" spacing="20" style="-fx-background-color: white;                                          -fx-background-radius: 15;                                          -fx-border-radius: 15;                                          -fx-padding: 40;                                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0.5, 0, 5);">
+                                      <children>
+                                          <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Medical Checklist">
+                                    <VBox.margin>
+                                       <Insets top="50.0" />
+                                    </VBox.margin></Label>
+                                          <VBox alignment="CENTER" maxHeight="200.0" maxWidth="500.0" spacing="15">
+                                              <children>
+                                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Fill out your Medical Data" />
+                                             <Region prefHeight="200.0" prefWidth="200.0" />
+                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                                <font>
+                                                   <Font size="31.0" />
+                                                </font>
+                                             </Button>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Make an appointment with Doctor" />
+                                             <Region prefHeight="200.0" prefWidth="200.0" />
+                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                                <font>
+                                                   <Font size="31.0" />
+                                                </font>
+                                             </Button>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Upload your medical certificate" />
+                                             <Region prefHeight="200.0" prefWidth="200.0" />
+                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                                <font>
+                                                   <Font size="31.0" />
+                                                </font>
+                                             </Button>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Confirm Medical Check" />
+                                             <Region prefHeight="200.0" prefWidth="200.0" />
+                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                                <font>
+                                                   <Font size="31.0" />
+                                                </font>
+                                             </Button>
+                                          </children>
+                                       </HBox>
+                                              </children>
+                                          </VBox>
+                                      </children>
+                              <padding>
+                                 <Insets top="300.0" />
+                              </padding>
+                              <StackPane.margin>
+                                 <Insets />
+                              </StackPane.margin>
+                                  </VBox>
+                              </StackPane>
+                          </content>
+                      </Tab>
+                      <Tab text="Training">
+                          <content>
+                              <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS" />
+                          </content>
+                      </Tab>
+                      <Tab text="Fitting">
+                          <content>
+                              <StackPane style="-fx-background-color: #f0f2f5;" VBox.vgrow="ALWAYS" />
+                          </content>
+                      </Tab>
+                  </tabs>
+              </TabPane>
+         </children>
+      </VBox>
+   </center>
 
 </BorderPane>
