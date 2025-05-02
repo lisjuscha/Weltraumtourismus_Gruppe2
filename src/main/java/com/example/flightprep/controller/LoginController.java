@@ -1,12 +1,12 @@
 package com.example.flightprep.controller;
 
 import com.example.flightprep.service.UserService;
-import com.example.flightprep.users.Doctor;
-import com.example.flightprep.users.User;
+import com.example.flightprep.model.Doctor;
+import com.example.flightprep.model.User;
 import com.example.flightprep.util.SceneSwitcher;
+import com.example.flightprep.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -20,7 +20,6 @@ public class LoginController {
     private Scene scene;
     private Parent root;
 
-    private final UserService userService = new UserService();
 
     @FXML
     private ImageView loginImageView;
@@ -40,11 +39,14 @@ public class LoginController {
     @FXML
     public void login(ActionEvent event) throws IOException {
         String ressource = "";
-        String user_id = user_idInput.getText();
+        String userId = user_idInput.getText();
         String password = passwordInput.getText();
 
-        User user = userService.authenticateUser(user_id, password);
+        UserService userService = new UserService();
+        User user = userService.authenticateUser(userId, password);
+
         if (user != null) {
+            SessionManager.setCurrentUser(user);
             if (user instanceof Doctor) {
                 ressource = "/com/example/flightprep/DocScreens/DocHome.fxml";
             } else {
@@ -52,7 +54,7 @@ public class LoginController {
             }
 
             try {
-                SceneSwitcher.switchScene(ressource, event);
+                SceneSwitcher.switchScene(ressource, event, true);
             } catch (NullPointerException | IOException e) {
                 e.printStackTrace();
                 errorLabel.setText("Error loading the screen.");

@@ -24,7 +24,7 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
-                <Button style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Preparation" />
+                <Button style="-fx-background-color: #117fa2;" styleClass="sidebar-button"/>
                 <Button styleClass="sidebar-button" text="My Flight" />
                 <Button onAction="#switchToCalendar" styleClass="sidebar-button" text="Calendar" />
                 <Button styleClass="sidebar-button" text="Gallery" />
@@ -60,7 +60,7 @@
                                           <children>
                                                         <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Fill out your Medical Data" />
                                              <Region prefHeight="200.0" prefWidth="200.0" />
-                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#switchToSurvey" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
                                                 <font>
                                                    <Font size="31.0" />
                                                 </font>

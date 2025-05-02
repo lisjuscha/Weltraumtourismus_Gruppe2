@@ -11,19 +11,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CustomerHomeController {
-    @FXML
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+public class CustomerHomeController extends CustomerController {
 
-
-    @FXML
-    public void switchToCalendar(ActionEvent event) throws IOException {
-        SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerCalendarHome.fxml", event);
-    }
-    @FXML
-    public void switchToPrep(ActionEvent event) throws IOException {
-        SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPreparation.fxml", event);
-    }
 }
