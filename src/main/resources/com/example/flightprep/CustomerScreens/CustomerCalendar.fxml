@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocHomeController">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController">
    <children>
       <HBox>
          <children>
@@ -19,9 +19,9 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToPrep" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Preparation" />
+                  <Button mnemonicParsing="false" onAction="#switchToFlightPrep" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Preparation" />
                   <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="My Flight" />
-                  <Button mnemonicParsing="false" onAction="#switchToKalendar" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Calendar" />
+                  <Button mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Calendar" />
                   <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Galerie" />
                   <Region prefHeight="251.0" prefWidth="56.0" VBox.vgrow="ALWAYS" />
                   <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Account" />
