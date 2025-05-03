@@ -25,7 +25,7 @@
                   <Insets top="10.0" />
                </VBox.margin></Button>
                 <Button style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Preparation" />
-                <Button styleClass="sidebar-button" text="My Flight" />
+                <Button onAction="#switchToMyFlight" styleClass="sidebar-button" text="My Flight" />
                 <Button onAction="#switchToCalendar" styleClass="sidebar-button" text="Calendar" />
                 <Button styleClass="sidebar-button" text="Gallery" />
                 <Region VBox.vgrow="ALWAYS" />
@@ -80,20 +80,9 @@
                                        </HBox>
                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                           <children>
-                                                        <CheckBox fx:id="uploadCheckBox" minWidth="320.0" mouseTransparent="true" style="-fx-font-size: 18px;" text="Upload your medical certificate" />
+                                                        <CheckBox fx:id="uploadCheckBox" minWidth="320.0" mouseTransparent="true" onAction="#switchToUpload" style="-fx-font-size: 18px;" text="Upload your medical certificates and documents" />
                                              <Region prefHeight="200.0" prefWidth="200.0" />
-                                             <Button fx:id="uploadButton" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
-                                                <font>
-                                                   <Font size="31.0" />
-                                                </font>
-                                             </Button>
-                                          </children>
-                                       </HBox>
-                                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                          <children>
-                                                        <CheckBox minWidth="320.0" mouseTransparent="true" style="-fx-font-size: 18px;" text="Confirm Medical Check" />
-                                             <Region prefHeight="200.0" prefWidth="200.0" />
-                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                             <Button fx:id="uploadButton" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#switchToUpload" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
                                                 <font>
                                                    <Font size="31.0" />
                                                 </font>

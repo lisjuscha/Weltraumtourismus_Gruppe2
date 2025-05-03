@@ -1,5 +1,6 @@
 package com.example.flightprep.dao;
 
+import com.example.flightprep.util.DbConnection;
 import com.example.flightprep.util.SessionManager;
 
 import java.sql.Connection;
@@ -39,15 +40,7 @@ public class AppointmentDAO {
             }
         }
     }
-    private void setAppointmentStatus(){
-        String sql = "UPDATE Customer SET appointment_made = 1 WHERE user_id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, SessionManager.getCurrentUserId());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Error while updating appointment status: " + e.getMessage());
-        }
-    }
+
 
     public void bookAppointment(LocalDate date, String time) throws SQLException {
 
@@ -69,14 +62,17 @@ public class AppointmentDAO {
             stmt.setString(3, date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             stmt.setString(4, time);
             int rowsAffected = stmt.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected);
-
+            
             if (rowsAffected == 0) {
                 throw new SQLException("Termin konnte nicht gespeichert werden");
             }
-        }finally {
-            setAppointmentStatus();
+            
+            // Update appointment status
+            UserDAO userDAO = new UserDAO(connection);
+            userDAO.setAppointmentStatus();
+            
+        } catch (SQLException e) {
+            throw new SQLException("Fehler beim Buchen des Termins: " + e.getMessage());
         }
     }
 }
-

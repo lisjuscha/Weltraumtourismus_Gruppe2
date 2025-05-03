@@ -39,3 +39,14 @@
 .nav-button:hover {
     -fx-background-color: #117fa2;
 }
+
+.upload-button {
+    -fx-background-color: #15aad0;
+    -fx-text-fill: white;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+}
+
+.upload-button:hover {
+    -fx-background-color: #117fa2;
+}

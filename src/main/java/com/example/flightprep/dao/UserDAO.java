@@ -4,6 +4,7 @@ import com.example.flightprep.model.Customer;
 import com.example.flightprep.model.Doctor;
 import com.example.flightprep.model.User;
 import com.example.flightprep.util.DbConnection;
+import com.example.flightprep.util.SessionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -103,6 +104,7 @@ public class UserDAO {
             }
         }
     }
+
     public LocalDate getFlightDate(String userId) throws SQLException {
         String sql = "SELECT flight_date FROM Customer WHERE user_id = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
@@ -115,4 +117,26 @@ public class UserDAO {
         }
         return null;
     }
+
+    public void updateFileUploadStatus() {
+        String sql = "UPDATE Customer SET file_uploaded = 1 WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, SessionManager.getCurrentUserId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error while updating file upload status: " + e.getMessage());
+        }
+    }
+
+
+    public void setAppointmentStatus() {
+        String sql = "UPDATE Customer SET appointment_made = 1 WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, SessionManager.getCurrentUserId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error while updating appointment status: " + e.getMessage());
+        }
+    }
 }
+

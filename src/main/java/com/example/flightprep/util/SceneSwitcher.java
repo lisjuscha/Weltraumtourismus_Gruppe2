@@ -1,5 +1,6 @@
 package com.example.flightprep.util;
 
+import com.example.flightprep.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,18 +12,27 @@ import java.io.IOException;
 
 public class SceneSwitcher {
     public static void switchScene(String fxmlFile, ActionEvent event, boolean fullscreen) throws IOException {
-        FXMLLoader loader = new FXMLLoader(SceneSwitcher.class.getResource(fxmlFile));
-        Parent newRoot = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource(fxmlFile));
+            if (loader.getLocation() == null) {
+                throw new IOException("FXML file not found!");
+            }
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene newScene = new Scene(newRoot, stage.getWidth(), stage.getHeight());
+            // Korrigierter Stylesheet-Pfad
+            String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
+            scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
 
-        newScene.getStylesheets().add(SceneSwitcher.class
-                .getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
-
-        stage.setScene(newScene);
-        if (fullscreen) {
-            stage.setFullScreen(true);
+            stage.setTitle("Flight Preparation");
+            stage.setScene(scene);
+            stage.setFullScreen(fullscreen);  // Verwendet den Parameter
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 }

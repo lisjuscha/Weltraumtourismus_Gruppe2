@@ -2,37 +2,44 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController">
-   <children>
-      <HBox>
+<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
+            <children>
+                <Button onAction="#switchToHome" styleClass="sidebar-button" text="Home">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+                <Button onAction="#switchToFlightPrep" styleClass="sidebar-button" text="Preparation" />
+                <Button onAction="#switchToMyFlight" styleClass="sidebar-button" text="My Flight" />
+                <Button onAction="#switchToCalendar" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Calendar" />
+                <Button styleClass="sidebar-button" text="Gallery" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Button styleClass="sidebar-button" text="Account" />
+            </children>
+        </VBox>
+    </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="441.0" prefWidth="109.0" style="-fx-background-color: #15aad0;" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #1086a3; -fx-border-color: #000000;" text="Home">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToFlightPrep" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Preparation" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="My Flight" />
-                  <Button mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Calendar" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Galerie" />
-                  <Region prefHeight="251.0" prefWidth="56.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="109.0" style="-fx-background-color: #15aad0; -fx-border-color: #000000;" text="Account" />
-               </children>
-            </VBox>
-            <VBox prefHeight="461.0" prefWidth="493.0">
-               <children>
-                  <ToolBar prefHeight="63.0" prefWidth="358.0" />
-               </children>
-            </VBox>
+              <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
+               <HBox alignment="CENTER">
+                  <children>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Calendar" HBox.hgrow="ALWAYS" />
+                  </children>
+               </HBox>
+              </ToolBar>
          </children>
-      </HBox>
-   </children>
-</AnchorPane>
+      </VBox>
+   </center>
+
+</BorderPane>

@@ -10,25 +10,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DocHomeController {
+public class DocHomeController extends DocController {
     @FXML
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    @FXML
-    public void switchToHome(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DocHome.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToCalendar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DocCalendar.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
 }

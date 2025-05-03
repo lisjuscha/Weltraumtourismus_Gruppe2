@@ -87,4 +87,11 @@ public class CustomerPrepController extends CustomerController {
             System.out.println("Error switching to appointment screen: " + e.getMessage());
         }
     }
+    public void switchToUpload(ActionEvent actionEvent) {
+        try {
+            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerUpload.fxml", actionEvent, true);
+        } catch (Exception e) {
+            System.out.println("Error switching to upload screen: " + e.getMessage());
+        }
+    }
 }
