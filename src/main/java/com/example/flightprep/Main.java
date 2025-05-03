@@ -14,7 +14,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/flightprep/Login.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
+         scene.getStylesheets().add(getClass().getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
         stage.setTitle("Flight Preparation");
         stage.setScene(scene);
         stage.setFullScreen(true);
