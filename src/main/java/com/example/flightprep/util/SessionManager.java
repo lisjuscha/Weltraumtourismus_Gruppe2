@@ -3,7 +3,7 @@ package com.example.flightprep.util;
 import com.example.flightprep.model.User;
 
 public class SessionManager {
-    private static User currentUser = new User("Da", "1", "customer");
+    private static User currentUser;
 
     public static void setCurrentUser(User user) {
         SessionManager.currentUser = user;

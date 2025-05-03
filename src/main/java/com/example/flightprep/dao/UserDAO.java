@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * UserDAO is a Data Access Object that provides an interface to interact with the user database.
@@ -17,8 +19,9 @@ import java.sql.SQLException;
 public class UserDAO {
 
     private final Connection connection;
+
     // Constructor
-    public UserDAO (Connection connection) {
+    public UserDAO(Connection connection) {
         if (connection == null) {
             throw new IllegalArgumentException("Connection cannot be null");
         }
@@ -37,7 +40,7 @@ public class UserDAO {
             // Setting the username parameter in the SQL query
             stmt.setString(1, userId);
             // Executing the query and getting the result set
-            try (ResultSet rs = stmt.executeQuery()){
+            try (ResultSet rs = stmt.executeQuery()) {
                 // Checking if a result is returned
                 if (rs.next()) {
 
@@ -59,14 +62,57 @@ public class UserDAO {
         // If no user is found, return null
         return null;
     }
+
     // Method to update the form submitted status of a user
     public void updateFormSubmittedStatus(String userId, boolean status) throws SQLException {
         String sql = "UPDATE Customer SET form_submitted = ? WHERE user_id = ?";
-        try (PreparedStatement stmt = this.connection.prepareStatement(sql)){
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
             // Setting the parameters for the SQL query
             stmt.setBoolean(1, status);
             stmt.setString(2, userId);
             stmt.executeUpdate();
         }
+    }
+
+    public boolean getFormSubmittedStatus(String userId) throws SQLException {
+        String sql = "SELECT form_submitted FROM Customer WHERE user_id = ?";
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() && rs.getInt("form_submitted") == 1;
+            }
         }
+    }
+
+    public boolean getAppointmentStatus(String userId) throws SQLException {
+        String sql = "SELECT appointment_made FROM Customer WHERE user_id = ?";
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() && rs.getInt("appointment_made") == 1;
+            }
+        }
+    }
+
+    public boolean getUploadStatus(String userId) throws SQLException {
+        String sql = "SELECT file_uploaded FROM Customer WHERE user_id = ?";
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() && rs.getInt("file_uploaded") == 1;
+            }
+        }
+    }
+    public LocalDate getFlightDate(String userId) throws SQLException {
+        String sql = "SELECT flight_date FROM Customer WHERE user_id = ?";
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return LocalDate.parse(rs.getString("flight_date"), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                }
+            }
+        }
+        return null;
+    }
 }

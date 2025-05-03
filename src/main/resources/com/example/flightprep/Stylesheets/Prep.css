@@ -11,3 +11,31 @@
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-cursor: hand;
 }
+
+.time-slot {
+    -fx-min-width: 100px;
+    -fx-min-height: 40px;
+    -fx-background-color: #15aad0;
+    -fx-text-fill: white;
+}
+
+.time-slot-occupied {
+    -fx-min-width: 100px;
+    -fx-min-height: 40px;
+    -fx-background-color: #cccccc;
+    -fx-text-fill: white;
+}
+
+.time-slot:hover {
+    -fx-background-color: #117fa2;
+}
+
+.nav-button {
+    -fx-background-color: #15aad0;
+    -fx-text-fill: white;
+    -fx-padding: 5 10;
+}
+
+.nav-button:hover {
+    -fx-background-color: #117fa2;
+}

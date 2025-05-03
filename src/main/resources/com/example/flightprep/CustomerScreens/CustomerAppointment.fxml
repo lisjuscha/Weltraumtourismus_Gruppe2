@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerAppointmentController">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
+            <children>
+                <Button styleClass="sidebar-button" text="Home">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+                <Button onAction="#switchToFlightPrep" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Preparation" />
+                <Button onAction="#switchToMyFlight" styleClass="sidebar-button" text="My Flight" />
+                <Button onAction="#switchToCalendar" styleClass="sidebar-button" text="Calendar" />
+                <Button styleClass="sidebar-button" text="Gallery" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Button styleClass="sidebar-button" text="Account" />
+            </children>
+        </VBox>
+    </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+              <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
+                  <HBox alignment="CENTER">
+                      <children>
+                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Appointment" HBox.hgrow="ALWAYS" />
+                      </children>
+                  </HBox>
+              </ToolBar>
+              
+              <!-- Wochennavigation -->
+              <HBox alignment="CENTER" spacing="20" style="-fx-padding: 10;">
+                  <Button fx:id="prevWeekButton" onAction="#handlePreviousWeek" styleClass="nav-button" text="Previsous Week" />
+                  <Label fx:id="weekLabel" style="-fx-font-size: 16px;" text="Week 20 (15.05 - 21.05)" />
+                  <Button fx:id="nextWeekButton" onAction="#handleNextWeek" styleClass="nav-button" text="Next Week" />
+              </HBox>
+              
+              <!-- Wochenansicht -->
+              <GridPane fx:id="weekGrid" alignment="CENTER" hgap="10" style="-fx-padding: 20;" vgap="10">
+                  <!-- Spaltenüberschriften -->
+                  <Label style="-fx-font-weight: bold;" text="Uhrzeit" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <Label style="-fx-font-weight: bold;" text="Monday" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <Label style="-fx-font-weight: bold;" text="Tuesday" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <Label style="-fx-font-weight: bold;" text="Wednesday" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                  <Label style="-fx-font-weight: bold;" text="Thursday" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                  <Label style="-fx-font-weight: bold;" text="Friday" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                  
+                  <!-- Zeitslots -->
+                  <Label text="09:00" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                  <Label text="11:00" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                  <Label text="14:00" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                  <Label text="16:00" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+              </GridPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

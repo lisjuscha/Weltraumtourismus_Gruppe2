@@ -5,6 +5,7 @@ import com.example.flightprep.model.MedicalData;
 import com.example.flightprep.service.TransactionService;
 import com.example.flightprep.util.DbConnection;
 import com.example.flightprep.util.RadioButoonReader;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -117,14 +118,14 @@ public class CustomerSurveyController extends CustomerController{
 
         // Fehler anzeigen, wenn welche vorhanden sind
         if (errors.length() > 0) {
-            showAlert("Validation Error", errors.toString());
+            showAlert("Validation Error", errors.toString(), Alert.AlertType.ERROR);
             return false;
         }
         return true;
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);              // Title of the alert box
         alert.setHeaderText(null);          // Remove the header (optional)
         alert.setContentText(message);     // The content of the alert (the error message)
@@ -133,7 +134,7 @@ public class CustomerSurveyController extends CustomerController{
     }
 
     @FXML
-    private void submitSurvey() {
+    private void submitSurvey(ActionEvent actionEvent) {
         // First, validate the form inputs
         if (!validateForm()) {
             return; // If validation fails, don't proceed
@@ -186,12 +187,12 @@ public class CustomerSurveyController extends CustomerController{
         // Call a service or DAO method to save the survey to the database
 
         try {
-            TransactionService.submitMedicalSurvey(data);
+            TransactionService.submitMedicalSurvey(actionEvent, data);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         // Optionally, show a success message or reset the form
-        showAlert("Success", "Survey submitted successfully!");
+        showAlert("Success", "Survey submitted successfully!", Alert.AlertType.CONFIRMATION);
     }
 
 

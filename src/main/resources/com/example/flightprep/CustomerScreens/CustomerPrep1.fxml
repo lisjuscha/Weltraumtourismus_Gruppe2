@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerPrepController">
+<BorderPane prefHeight="738.0" prefWidth="939.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerPrepController">
 
     <!-- SIDEBAR -->
     <left>
@@ -58,9 +58,9 @@
                                               <children>
                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                           <children>
-                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Fill out your Medical Data" />
+                                                        <CheckBox fx:id="medicalDataCheckBox" minWidth="320.0" mouseTransparent="true" style="-fx-font-size: 18px;" text="Fill out your Medical Data" />
                                              <Region prefHeight="200.0" prefWidth="200.0" />
-                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#switchToSurvey" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                             <Button fx:id="medicalDataButton" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#switchToSurvey" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
                                                 <font>
                                                    <Font size="31.0" />
                                                 </font>
@@ -69,9 +69,9 @@
                                        </HBox>
                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                           <children>
-                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Make an appointment with Doctor" />
+                                                        <CheckBox fx:id="appointmentCheckBox" minWidth="320.0" mouseTransparent="true" style="-fx-font-size: 18px;" text="Make an appointment with Doctor" />
                                              <Region prefHeight="200.0" prefWidth="200.0" />
-                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                             <Button fx:id="appointmentButton" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#switchToAppointment" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
                                                 <font>
                                                    <Font size="31.0" />
                                                 </font>
@@ -80,9 +80,9 @@
                                        </HBox>
                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                           <children>
-                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Upload your medical certificate" />
+                                                        <CheckBox fx:id="uploadCheckBox" minWidth="320.0" mouseTransparent="true" style="-fx-font-size: 18px;" text="Upload your medical certificate" />
                                              <Region prefHeight="200.0" prefWidth="200.0" />
-                                             <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
+                                             <Button fx:id="uploadButton" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
                                                 <font>
                                                    <Font size="31.0" />
                                                 </font>
@@ -91,7 +91,7 @@
                                        </HBox>
                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                           <children>
-                                                        <CheckBox minWidth="320.0" style="-fx-font-size: 18px;" text="Confirm Medical Check" />
+                                                        <CheckBox minWidth="320.0" mouseTransparent="true" style="-fx-font-size: 18px;" text="Confirm Medical Check" />
                                              <Region prefHeight="200.0" prefWidth="200.0" />
                                              <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="➔">
                                                 <font>
