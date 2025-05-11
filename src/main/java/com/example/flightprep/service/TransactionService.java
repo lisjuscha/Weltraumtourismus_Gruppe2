@@ -39,7 +39,7 @@ public class TransactionService {
         } finally {
             DbConnection.closeConnection(conn);
             try {
-                SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml", actionEvent, true);
+                SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml", actionEvent);
 
             } catch (Exception e) {
                 System.out.println("Error switching to survey screen: " + e.getMessage());

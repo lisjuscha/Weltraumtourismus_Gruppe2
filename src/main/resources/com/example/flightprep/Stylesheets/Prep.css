@@ -15,14 +15,14 @@
 .time-slot {
     -fx-min-width: 100px;
     -fx-min-height: 40px;
-    -fx-background-color: #15aad0;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
 }
 
 .time-slot-occupied {
     -fx-min-width: 100px;
     -fx-min-height: 40px;
-    -fx-background-color: #cccccc;
+    -fx-background-color: #f44336;
     -fx-text-fill: white;
 }
 

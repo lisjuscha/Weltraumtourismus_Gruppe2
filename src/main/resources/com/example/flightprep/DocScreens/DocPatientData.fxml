@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="528.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientDataController">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
+            <children>
+                <Button onAction="#switchToHome" styleClass="sidebar-button" text="Home">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+                <Button onAction="#switchToCalendar" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Calendar" />
+                <Button styleClass="sidebar-button" text="Help" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Button styleClass="sidebar-button" text="Account" />
+            </children>
+        </VBox>
+    </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+              <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
+                  <HBox alignment="CENTER">
+                      <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Patient Survey Data" />
+                  </HBox>
+              </ToolBar>
+              
+              <TabPane prefHeight="459.0" prefWidth="726.0">
+                  <tabs>
+                      <Tab closable="false" text="Basic Information">
+                          <content>
+                              <VBox spacing="10">
+                                  <padding>
+                                      <Insets bottom="20" left="20" right="20" top="20" />
+                                  </padding>
+                                  <GridPane hgap="20" vgap="10">
+                                      <columnConstraints>
+                                          <ColumnConstraints minWidth="150" />
+                                          <ColumnConstraints minWidth="200" />
+                                      </columnConstraints>
+                                      
+                                      <Label text="Height:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="heightLabel" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Weight:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="weightLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Smoking Status:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="smokingLabel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Alcohol Consumption:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="alcoholLabel" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Physical Training:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="trainingLabel" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Disabilities:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="disabilityLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+
+                                      <Label disable="true" text="Disability Details:" visible="false" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <Label fx:id="disabilityDetailLabel" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <rowConstraints>
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              </rowConstraints>
+                                  </GridPane>
+                              </VBox>
+                          </content>
+                      </Tab>
+                      
+                      <Tab closable="false" text="Medical History">
+                          <content>
+                              <VBox spacing="10">
+                                  <padding>
+                                      <Insets bottom="20" left="20" right="20" top="20" />
+                                  </padding>
+                                  <Label style="-fx-font-weight: bold" text="Diagnosed Conditions:">
+                              <font>
+                                 <Font size="15.0" />
+                              </font></Label>
+                                  <GridPane hgap="20" vgap="10">
+                                      <columnConstraints>
+                                          <ColumnConstraints minWidth="200" />
+                                          <ColumnConstraints minWidth="50" />
+                                      </columnConstraints>
+                                      
+                                      <Label text="Heart Disease" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="heartDiseaseLabel" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="High Blood Pressure" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="bloodPressureLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Irregular Heartbeat" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="heartbeatLabel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Stroke/TIA" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="strokeLabel" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Asthma" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="asthmaLabel" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Lung Disease" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="lungDiseaseLabel" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Seizures" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="seizureLabel" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Neurological Disorders" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="neurologicalLabel" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <Label text="Heart/Lung surgeries or procedures" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Hospitilized for respitory/cardivascular issues" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hspHeartLungLabel" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hspRespiratoryCardioLabel" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label style="-fx-font-weight: bold" text="Medical procedures" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <rowConstraints>
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              </rowConstraints>
+                                  </GridPane>
+                              </VBox>
+                          </content>
+                      </Tab>
+                      
+                      <Tab closable="false" text="Additional Information">
+                          <content>
+                              <VBox spacing="10">
+                                  <padding>
+                                      <Insets bottom="20" left="20" right="20" top="20" />
+                                  </padding>
+                                  <GridPane hgap="20" vgap="10">
+                                      <columnConstraints>
+                                          <ColumnConstraints minWidth="200" />
+                                          <ColumnConstraints minWidth="200" />
+                                      </columnConstraints>
+                                      
+                                      <Label text="Current Medications:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="medicationLabel" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Allergies:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="allergiesLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Previous Surgeries:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="surgeryLabel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      
+                                      <Label text="Previous Injuries:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                                      <Label fx:id="injuryLabel" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <rowConstraints>
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                              </rowConstraints>
+                                  </GridPane>
+                              </VBox>
+                          </content>
+                      </Tab>
+                  </tabs>
+              </TabPane>
+         </children>
+      </VBox>
+   </center>
+
+</BorderPane>

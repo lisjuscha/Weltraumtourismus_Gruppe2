@@ -22,7 +22,7 @@ public class Main extends Application {
             scene.getStylesheets().add(getClass().getResource("Stylesheets/Prep.css").toExternalForm());
             stage.setTitle("Flight Preparation");
             stage.setScene(scene);
-            stage.setFullScreen(true);
+            //stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

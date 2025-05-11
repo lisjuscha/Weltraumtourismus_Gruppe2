@@ -118,19 +118,11 @@ public class CustomerSurveyController extends CustomerController{
 
         // Fehler anzeigen, wenn welche vorhanden sind
         if (errors.length() > 0) {
-            showAlert("Validation Error", errors.toString(), Alert.AlertType.ERROR);
+            Alert alert = createAlert("Validation Error",null,errors.toString(), Alert.AlertType.ERROR);
+            alert.showAndWait();
             return false;
         }
         return true;
-    }
-
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);              // Title of the alert box
-        alert.setHeaderText(null);          // Remove the header (optional)
-        alert.setContentText(message);     // The content of the alert (the error message)
-        // Show the alert and wait for the user to close it
-        alert.showAndWait();
     }
 
     @FXML
@@ -192,7 +184,8 @@ public class CustomerSurveyController extends CustomerController{
             throw new RuntimeException(e);
         }
         // Optionally, show a success message or reset the form
-        showAlert("Success", "Survey submitted successfully!", Alert.AlertType.CONFIRMATION);
+        Alert alert = createAlert("Success", null,"Survey submitted successfully!", Alert.AlertType.CONFIRMATION);
+        alert.showAndWait();
     }
 
 

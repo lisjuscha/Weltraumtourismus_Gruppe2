@@ -1,6 +1,7 @@
 package com.example.flightprep.util;
 
 import com.example.flightprep.Main;
+import com.example.flightprep.controller.Doctor.DocController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,28 +12,44 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneSwitcher {
-    public static void switchScene(String fxmlFile, ActionEvent event, boolean fullscreen) throws IOException {
+    public static void switchScene(String fxmlFile, ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(fxmlFile));
-            if (loader.getLocation() == null) {
-                throw new IOException("FXML file not found!");
-            }
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Korrigierter Stylesheet-Pfad
+            Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(newRoot);
             String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
             scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
-
-            stage.setTitle("Flight Preparation");
-            stage.setScene(scene);
-            stage.setFullScreen(fullscreen);  // Verwendet den Parameter
-            stage.show();
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
             throw e;
         }
+    }
+
+    public static void switchScene(String fxmlFile, Scene scene) throws IOException {
+        try {
+            Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
+            scene.setRoot(newRoot);
+            String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
+            scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
+
+
+    public static DocController getController(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlFile));
+            loader.load();
+            return loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

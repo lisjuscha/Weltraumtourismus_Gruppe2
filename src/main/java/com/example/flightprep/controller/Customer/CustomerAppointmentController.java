@@ -88,29 +88,25 @@ public class CustomerAppointmentController extends CustomerController {
             // Clear previous buttons
             weekGrid.getChildren().removeIf(node -> node instanceof Button);
 
+            // Slots für jeden Tag und jede Zeit erstellen
             for (int row = 1; row <= 4; row++) {
                 for (int col = 1; col <= 5; col++) {
                     final LocalDate date = currentWeekStart.plusDays(col - 1);
                     final String time;
                     switch (row) {
-                        case 1:
-                            time = "09:00";
-                            break;
-                        case 2:
-                            time = "11:00";
-                            break;
-                        case 3:
-                            time = "14:00";
-                            break;
-                        case 4:
-                            time = "16:00";
-                            break;
-                        default:
-                            time = "";
-                            break;
+                        case 1: time = "09:00"; break;
+                        case 2: time = "11:00"; break;
+                        case 3: time = "14:00"; break;
+                        case 4: time = "16:00"; break;
+                        default: time = ""; break;
                     }
 
                     Button slot = new Button();
+                    slot.setMaxWidth(Double.MAX_VALUE);
+                    slot.setMaxHeight(Double.MAX_VALUE);
+                    GridPane.setFillWidth(slot, true);
+                    GridPane.setFillHeight(slot, true);
+
                     boolean isPastDateTime = date.isBefore(today) ||
                             (date.isEqual(today) && time.compareTo(java.time.LocalTime.now()
                                     .format(DateTimeFormatter.ofPattern("HH:mm"))) < 0);
@@ -130,7 +126,7 @@ public class CustomerAppointmentController extends CustomerController {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error while initializing the dates:" + e.getMessage());
+            System.err.println("Error while loading appointments: " + e.getMessage());
         }
     }
 
@@ -156,12 +152,11 @@ public class CustomerAppointmentController extends CustomerController {
         Scene scene = source.getScene();
         Stage currentStage = (Stage) scene.getWindow();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Appointment Booking");
-        alert.setHeaderText("Do you want to book this appointment?");
-        alert.setContentText(String.format("Date: %s\nTime: %s",
-                date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
-                time));
+
+        Alert alert = createAlert("Appointment Booking",
+                "Do you want to book this appointment?",
+                String.format("Date: %s\nTime: %s", date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), time),
+                Alert.AlertType.CONFIRMATION);
 
         ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Book");
         ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Cancel");
@@ -174,28 +169,15 @@ public class CustomerAppointmentController extends CustomerController {
                     conn.commit();
                     loadAppointments();
 
-                    Alert success = new Alert(Alert.AlertType.INFORMATION);
-                    success.setTitle("Booking Success");
-                    success.setHeaderText(null);
-                    success.setContentText("Appointment booked successfully!");
-                    success.showAndWait();
+                    showSuccess("Booking Success", "Appointment booked successfully!");
 
                     // Nutze die gespeicherte Stage für den Szenenwechsel
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                            "/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml"));
-                    Parent root = loader.load();
-                    Scene newScene = new Scene(root, currentStage.getWidth(), currentStage.getHeight());
-                    newScene.getStylesheets().add(getClass().getResource(
-                            "/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
-                    currentStage.setScene(newScene);
-                    currentStage.setFullScreen(true);
+
+
+                    SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml", scene);
 
                 } catch (SQLException e) {
-                    Alert error = new Alert(Alert.AlertType.ERROR);
-                    error.setTitle("Error");
-                    error.setHeaderText(null);
-                    error.setContentText("The appointment could not be booked: " + e.getMessage());
-                    error.showAndWait();
+                    showError("Booking Error", "The appointment could not be booked: " + e.getMessage());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

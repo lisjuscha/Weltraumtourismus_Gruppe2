@@ -1,7 +1,7 @@
 package com.example.flightprep.dao;
 
-import com.example.flightprep.util.DbConnection;
 import com.example.flightprep.util.SessionManager;
+import com.example.flightprep.model.Appointment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppointmentDAO {
     private final Connection connection;
@@ -74,5 +76,33 @@ public class AppointmentDAO {
         } catch (SQLException e) {
             throw new SQLException("Fehler beim Buchen des Termins: " + e.getMessage());
         }
+    }
+    public List<Appointment> getAppointmentsByDate(LocalDate date) throws SQLException {
+        List<Appointment> appointments = new ArrayList<>();
+        String sql = "SELECT a.*, c.first_name, c.last_name " +
+                "FROM appointments a " +
+                "JOIN Customer c ON a.customer_id = c.user_id " +
+                "WHERE a.date = ? " +
+                "ORDER BY a.time";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Appointment appointment = new Appointment(
+                            rs.getInt("appointment_id"),
+                            rs.getString("customer_id"),
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
+                            rs.getString("doctor_id"),
+                            rs.getString("date"),
+                            rs.getString("time")
+                    );
+                    appointments.add(appointment);
+                }
+            }
+        }
+        return appointments;
     }
 }

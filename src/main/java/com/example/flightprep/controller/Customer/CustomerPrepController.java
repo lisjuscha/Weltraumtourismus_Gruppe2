@@ -75,21 +75,21 @@ public class CustomerPrepController extends CustomerController {
 
     public void switchToSurvey(ActionEvent actionEvent) {
         try {
-            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerSurvey.fxml", actionEvent, true);
+            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerSurvey.fxml", actionEvent);
         } catch (Exception e) {
             System.out.println("Error switching to survey screen: " + e.getMessage());
         }
     }
     public void switchToAppointment(ActionEvent actionEvent) {
         try {
-            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerAppointment.fxml", actionEvent, true);
+            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerAppointment.fxml", actionEvent);
         } catch (Exception e) {
             System.out.println("Error switching to appointment screen: " + e.getMessage());
         }
     }
     public void switchToUpload(ActionEvent actionEvent) {
         try {
-            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerUpload.fxml", actionEvent, true);
+            SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerUpload.fxml", actionEvent);
         } catch (Exception e) {
             System.out.println("Error switching to upload screen: " + e.getMessage());
         }

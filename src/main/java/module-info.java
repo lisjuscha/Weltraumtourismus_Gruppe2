@@ -17,4 +17,6 @@ module com.example.flightprep {
     opens com.example.flightprep.controller.Doctor to javafx.fxml;
     exports com.example.flightprep.controller.Customer;
     opens com.example.flightprep.controller.Customer to javafx.fxml;
+    exports com.example.flightprep.controller.Login;
+    opens com.example.flightprep.controller.Login to javafx.fxml;
 }

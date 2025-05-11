@@ -54,6 +54,10 @@ public class MedicalData {
         this.ser_injury = ser_injury;
     }
 
+    public MedicalData() {
+
+    }
+
     public String getHeight() {
         return height;
     }
@@ -94,7 +98,7 @@ public class MedicalData {
         this.trainingStatus = trainingStatus;
     }
 
-    public boolean isDisabilityStatus() {
+    public boolean getDisabilityStatus() {
         return disabilityStatus;
     }
 

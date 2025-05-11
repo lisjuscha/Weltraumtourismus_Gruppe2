@@ -10,6 +10,7 @@ public class Doctor extends User {
     protected String last_name;
     protected String email;
 
+    // DAO
     public Doctor(String user_id, String password, Connection conn) {
         super(user_id, password, "doctor");
         try(PreparedStatement stmt = conn.prepareStatement("SELECT first_name, last_name, email FROM Doctor WHERE user_id = ?");) {

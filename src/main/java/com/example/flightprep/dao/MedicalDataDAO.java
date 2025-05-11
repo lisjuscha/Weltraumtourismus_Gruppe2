@@ -31,7 +31,7 @@ public class MedicalDataDAO {
             stmt.setString(4, data.getAlcoholConsumption());
             stmt.setString(5, data.getSmokingStatus());
             stmt.setBoolean(6, data.isTrainingStatus());
-            stmt.setBoolean(7, data.isDisabilityStatus());
+            stmt.setBoolean(7, data.getDisabilityStatus());
             stmt.setString(8, data.getDisabilityDetails());
             stmt.setBoolean(9, data.isHeartDisease());
             stmt.setBoolean(10, data.isHighBloodPressure());
@@ -49,5 +49,40 @@ public class MedicalDataDAO {
             stmt.setBoolean(22, data.isSer_injury());
             stmt.executeUpdate();
         }
+    }
+    public MedicalData getDataByUserId(String userId) throws SQLException {
+        String sql = "SELECT * FROM medical_data WHERE user_id = ?";
+        MedicalData data = null;
+
+        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                data = new MedicalData();
+                data.setHeight(rs.getString("height"));
+                data.setWeight(rs.getString("weight"));
+                data.setAlcoholConsumption(rs.getString("alcohol_consumption"));
+                data.setSmokingStatus(rs.getString("smoking_status"));
+                data.setTrainingStatus(rs.getBoolean("training_status"));
+                data.setDisabilityStatus(rs.getBoolean("disability_status"));
+                data.setDisabilityDetails(rs.getString("disability_details"));
+                data.setHeartDisease(rs.getBoolean("heart_disease"));
+                data.setHighBloodPressure(rs.getBoolean("high_blood_pressure"));
+                data.setIrregularHeartbeat(rs.getBoolean("irregular_heartbeat"));
+                data.setStrokeHistory(rs.getBoolean("stroke_history"));
+                data.setAsthma(rs.getBoolean("asthma"));
+                data.setLungDisease(rs.getBoolean("lung_disease"));
+                data.setSeizureHistory(rs.getBoolean("seizure_history"));
+                data.setNeurologicalDisorder(rs.getBoolean("neurological_disorder"));
+                data.setHsp_respiratory_cardio(rs.getBoolean("hsp_respiratory_cardio"));
+                data.setHsp_heart_lung(rs.getBoolean("hsp_heart_lung"));
+                data.setPersc_med(rs.getBoolean("persc_med"));
+                data.setAllergies(rs.getBoolean("allergies"));
+                data.setSurgery(rs.getBoolean("surgery"));
+                data.setSer_injury(rs.getBoolean("ser_injury"));
+            }
+        }
+        return data;
     }
 }
