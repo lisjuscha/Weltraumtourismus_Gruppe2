@@ -49,8 +49,7 @@ public class LoginController {
         UserService userService = new UserService();
         User user = userService.authenticateUser(userId, password);
 
-
-        // Factory or Strategy
+        // Factory oder Startegy
         if (user != null) {
             SessionManager.setCurrentUser(user);
             if (user.getRole() == "doctor") {

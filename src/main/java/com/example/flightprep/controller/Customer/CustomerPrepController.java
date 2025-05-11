@@ -1,6 +1,10 @@
 package com.example.flightprep.controller.Customer;
 
 import com.example.flightprep.dao.UserDAO;
+import com.example.flightprep.database.DatabaseConnection;
+import com.example.flightprep.database.DatabaseFactory;
+import com.example.flightprep.model.Customer;
+import com.example.flightprep.service.CustomerStatusService;
 import com.example.flightprep.util.DbConnection;
 import com.example.flightprep.util.SceneSwitcher;
 import com.example.flightprep.util.SessionManager;
@@ -13,6 +17,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class CustomerPrepController extends CustomerController {
+    private final CustomerStatusService customerStatusService;
+
     @FXML
     CheckBox medicalDataCheckBox;
     @FXML
@@ -26,49 +32,41 @@ public class CustomerPrepController extends CustomerController {
     @FXML
     Button uploadButton;
 
+    public CustomerPrepController() {
+        this.customerStatusService = new CustomerStatusService();
+    }
+
     @FXML
     public void initialize() {
         try {
-            // Get the current user ID from the session & establish a database connection
             String currentUserId = SessionManager.getCurrentUserId();
-            Connection conn = DbConnection.getConnection();
-            UserDAO userDao = new UserDAO(conn);
+            Customer customer = customerStatusService.getCustomerStatus(currentUserId);
 
-            try {
-                // Check if the user has submitted the medical data form
-                boolean hasSubmittedForm = userDao.getFormSubmittedStatus(currentUserId);
-                boolean hasAppointment = userDao.getAppointmentStatus(currentUserId);
-                boolean hasUploaded = userDao.getUploadStatus(currentUserId);
-                // Set the checkbox and button state based on the form submission status
-                if (!hasSubmittedForm) {
-                    appointmentButton.setDisable(true);
-                    appointmentButton.setVisible(false);
+            if (!customer.isFormSubmitted()) {
+                appointmentButton.setDisable(true);
+                appointmentButton.setVisible(false);
+                uploadButton.setDisable(true);
+                uploadButton.setVisible(false);
+            } else {
+                medicalDataCheckBox.setSelected(true);
+                medicalDataButton.setDisable(true);
+                medicalDataButton.setVisible(false);
+                if (!customer.isAppointmentMade()) {
                     uploadButton.setDisable(true);
                     uploadButton.setVisible(false);
                 } else {
-                    medicalDataCheckBox.setSelected(true);
-                    medicalDataButton.setDisable(true);
-                    medicalDataButton.setVisible(false);
-                    if (!hasAppointment) {
+                    appointmentCheckBox.setSelected(true);
+                    appointmentButton.setDisable(true);
+                    appointmentButton.setVisible(false);
+                    if (customer.isFileUploaded()) {
+                        uploadCheckBox.setSelected(true);
                         uploadButton.setDisable(true);
                         uploadButton.setVisible(false);
-                    } else {
-                        appointmentCheckBox.setSelected(true);
-                        appointmentButton.setDisable(true);
-                        appointmentButton.setVisible(false);
-                        if (hasUploaded) {
-                            uploadCheckBox.setSelected(true);
-                            uploadButton.setDisable(true);
-                            uploadButton.setVisible(false);
-                        }
                     }
                 }
-            } finally {
-                DbConnection.closeConnection(conn);
             }
-
-        } catch (SQLException e) {
-            System.err.println("Database error: " + e.getMessage());
+        } catch (RuntimeException e) {
+            showError("Error", "Error loading customer status: " + e.getMessage());
         }
     }
 
@@ -77,21 +75,23 @@ public class CustomerPrepController extends CustomerController {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerSurvey.fxml", actionEvent);
         } catch (Exception e) {
-            System.out.println("Error switching to survey screen: " + e.getMessage());
+            showError("Error", "Error switching to survey screen: " + e.getMessage());
         }
     }
+
     public void switchToAppointment(ActionEvent actionEvent) {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerAppointment.fxml", actionEvent);
         } catch (Exception e) {
-            System.out.println("Error switching to appointment screen: " + e.getMessage());
+            showError("Error", "Error switching to survey screen: " + e.getMessage());
         }
     }
+
     public void switchToUpload(ActionEvent actionEvent) {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerUpload.fxml", actionEvent);
         } catch (Exception e) {
-            System.out.println("Error switching to upload screen: " + e.getMessage());
+            showError("Error", "Error switching to survey screen: " + e.getMessage());
         }
     }
 }

@@ -49,10 +49,10 @@ public class UserDAO {
                     String password = rs.getString("password");
 
                     if (role.equals("doctor")) {
-                        return new Doctor(userId, password, connection); // Werte aus DB holen
+                        return getDoctorByUserId(userId, password); // Werte aus DB holen
                     }
                     if (role.equals("customer")) {
-                        return new Customer(userId, password, connection); // Werte aus DB holen
+                        return getCustomerByUserId(userId, password); // Werte aus DB holen
                     }
                 }
             }
@@ -63,6 +63,49 @@ public class UserDAO {
         // If no user is found, return null
         return null;
     }
+    public Customer getCustomerByUserId(String userId, String password) throws SQLException {
+        String sql = "SELECT first_name, last_name, email, form_submitted, appointment_made, file_uploaded " +
+                "FROM Customer WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Customer(
+                            userId,
+                            password,
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
+                            rs.getString("email"),
+                            rs.getBoolean("form_submitted"),
+                            rs.getBoolean("appointment_made"),
+                            rs.getBoolean("file_uploaded")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+    public Doctor getDoctorByUserId(String userId, String password) throws SQLException {
+        String sql = "SELECT first_name, last_name, email FROM Doctor WHERE user_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Doctor(
+                            userId,
+                            password,
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
+                            rs.getString("email")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+
 
     // Method to update the form submitted status of a user
     public void updateFormSubmittedStatus(String userId, boolean status) throws SQLException {

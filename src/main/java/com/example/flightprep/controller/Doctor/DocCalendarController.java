@@ -61,14 +61,23 @@ public class DocCalendarController extends DocController implements Initializabl
                 for (Appointment appointment : dayAppointments) {
                     HBox appointmentBox = new HBox(10);
                     appointmentBox.setPadding(new Insets(5));
-                    appointmentBox.setStyle("-fx-background-color: white; -fx-border-radius: 3;");
+
+                    String boxColor;
+                    switch (appointment.getRiskGroup()) {
+                        case 1: boxColor = "#90EE90"; break; // green
+                        case 2: boxColor = "#FFD700"; break; // yellow
+                        case 3: boxColor = "#FFB6C6"; break; // red
+                        default: boxColor = "white";
+                    }
+                    appointmentBox.setStyle("-fx-background-color: " + boxColor + "; -fx-border-radius: 3;");
 
                     Label timeLabel = new Label(appointment.getTime());
                     timeLabel.setStyle("-fx-font-size: 14px;");
 
-                    Label customerLabel = new Label("Patient: " + appointment.getCustomerFirstName() +
-                            " " + appointment.getCustomerLastName());
-                    customerLabel.setStyle("-fx-font-size: 14px;");
+                    Label customerLabel = new Label(String.format("Patient: %s %s (Risk Group: %d)",
+                            appointment.getCustomerFirstName(),
+                            appointment.getCustomerLastName(),
+                            appointment.getRiskGroup()));
 
                     Button viewButton = new Button("View Survey");
                     viewButton.setStyle("-fx-font-size: 14px;");
@@ -90,12 +99,7 @@ public class DocCalendarController extends DocController implements Initializabl
 
     private void openPatientData(String customerId, ActionEvent event) {
         try {
-            // String fxmlFile = "/com/example/flightprep/DocScreens/DocPatientData.fxml";
-            // SceneSwitcher.switchScene(fxmlFile, event, true);
-            // ocController controller = SceneSwitcher.getController(fxmlFile);
-            // DocPatientDataController docPatientDataController = (DocPatientDataController) controller;
-            // docPatientDataController.loadPatientData(customerId);
-
+            // FXML-Datei laden
             String fxmlFile = "/com/example/flightprep/DocScreens/DocPatientData.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();

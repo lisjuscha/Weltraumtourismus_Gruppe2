@@ -225,4 +225,6 @@ public class MedicalData {
     public void setSer_injury(boolean ser_injury) {
         this.ser_injury = ser_injury;
     }
+
+
 }

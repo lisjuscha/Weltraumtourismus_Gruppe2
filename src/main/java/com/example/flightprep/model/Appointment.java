@@ -8,8 +8,9 @@ public class Appointment {
     private String customerLastName;
     private String date;
     private String time;
+    private int riskGroup;
 
-    public Appointment(int appointmentId, String customerId,String customerFirstName, String customerLastName, String doctorId, String date, String time) {
+    public Appointment(int appointmentId, String customerId,String customerFirstName, String customerLastName, String doctorId, String date, String time, int riskGroup) {
         this.appointmentId = appointmentId;
         this.customerId = customerId;
         this.customerFirstName = customerFirstName;
@@ -17,6 +18,7 @@ public class Appointment {
         this.doctorId = doctorId;
         this.date = date;
         this.time = time;
+        this.riskGroup = riskGroup;
     }
 
     // Getter
@@ -67,6 +69,13 @@ public class Appointment {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getRiskGroup() {
+        return riskGroup;
+    }
+    public void setRiskGroup(int riskGroup) {
+        this.riskGroup = riskGroup;
     }
 
     @Override

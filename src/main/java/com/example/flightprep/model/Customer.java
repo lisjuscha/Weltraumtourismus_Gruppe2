@@ -6,40 +6,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Customer extends User {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private int fromSubmitted;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private boolean formSubmitted;
+    private boolean appointmentMade;
+    private boolean fileUploaded;
 
-    public Customer(String user_id, String password, Connection conn) {
-        super(user_id, password, "customer");
-        try (PreparedStatement stmt = conn.prepareStatement("SELECT first_name, last_name, email FROM Customer WHERE user_id = ?")) {
-            stmt.setString(1, user_id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                this.firstName = rs.getString("first_name");
-                this.lastName = rs.getString("last_name");
-                this.email = rs.getString("email");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public Customer(String userId, String password,
+                    String firstName, String lastName, String email,
+                    boolean formSubmitted, boolean appointmentMade, boolean fileUploaded) {
+        super(userId, password, "customer");
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.formSubmitted = formSubmitted;
+        this.appointmentMade = appointmentMade;
+        this.fileUploaded = fileUploaded;
     }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public int getFromSubmitted() {
-        return this.fromSubmitted;
-    }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public String getEmail() { return email; }
+    public boolean isFormSubmitted() { return formSubmitted; }
+    public void setFormSubmitted(boolean formSubmitted) { this.formSubmitted = formSubmitted; }
+    public boolean isAppointmentMade() { return appointmentMade; }
+    public void setAppointmentMade(boolean appointmentMade) { this.appointmentMade = appointmentMade; }
+    public boolean isFileUploaded() { return fileUploaded; }
+    public void setFileUploaded(boolean fileUploaded) { this.fileUploaded = fileUploaded; }
 }
-

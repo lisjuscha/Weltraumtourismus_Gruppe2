@@ -13,6 +13,8 @@ import java.sql.SQLException;
 
 public class CustomerSurveyController extends CustomerController{
 
+    private final TransactionService transactionService;
+
     @FXML private TextField heightTextField;
     @FXML private TextField weightTextField;
     @FXML private ComboBox<String> alcoholComboBox;
@@ -35,6 +37,9 @@ public class CustomerSurveyController extends CustomerController{
     @FXML private ToggleGroup surgeryGroup;
     @FXML private ToggleGroup injuryGroup;
 
+    public CustomerSurveyController() {
+        this.transactionService = new TransactionService();
+    }
 
     public void initialize() {
         // Initialize the ComboBox with options
@@ -179,13 +184,11 @@ public class CustomerSurveyController extends CustomerController{
         // Call a service or DAO method to save the survey to the database
 
         try {
-            TransactionService.submitMedicalSurvey(actionEvent, data);
+            transactionService.submitMedicalSurvey(actionEvent, data);
+            showSuccess("Success", "Survey submitted successfully!");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            showError("Error", "Failed to submit survey: " + e.getMessage());
         }
-        // Optionally, show a success message or reset the form
-        Alert alert = createAlert("Success", null,"Survey submitted successfully!", Alert.AlertType.CONFIRMATION);
-        alert.showAndWait();
     }
 
 

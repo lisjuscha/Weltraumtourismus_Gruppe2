@@ -79,7 +79,7 @@ public class AppointmentDAO {
     }
     public List<Appointment> getAppointmentsByDate(LocalDate date) throws SQLException {
         List<Appointment> appointments = new ArrayList<>();
-        String sql = "SELECT a.*, c.first_name, c.last_name " +
+        String sql = "SELECT a.*, c.first_name, c.last_name, c.risk_group " +
                 "FROM appointments a " +
                 "JOIN Customer c ON a.customer_id = c.user_id " +
                 "WHERE a.date = ? " +
@@ -97,7 +97,8 @@ public class AppointmentDAO {
                             rs.getString("last_name"),
                             rs.getString("doctor_id"),
                             rs.getString("date"),
-                            rs.getString("time")
+                            rs.getString("time"),
+                            rs.getInt("risk_group")
                     );
                     appointments.add(appointment);
                 }
