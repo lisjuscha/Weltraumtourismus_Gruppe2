@@ -7,8 +7,8 @@ public class RiskClassifierAI {
     public static int classifyRisk(MedicalData data) {
 
         // Get height and weight from the data
-        double height = Double.parseDouble(data.getHeight()) / 100; // cm zu m
-        double weight = Double.parseDouble(data.getWeight());
+        double height = parseDouble(data.getHeight()) / 100; // cm zu m
+        double weight = parseDouble(data.getWeight());
         // BMI calculation
         double bmi = weight / (height * height);
 
@@ -16,6 +16,12 @@ public class RiskClassifierAI {
         if (bmi > 20 && bmi < 25) return 1;
         else if (bmi > 18.5 && bmi < 30) return 2;
         else return 3;
+    }
+    private static double parseDouble(String value) {
+        if (value == null || value.isEmpty()) {
+            return 0.0;
+        }
+        return Double.parseDouble(value.replace(",", "."));
     }
 }
 

@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DocPatientsController extends DocController implements Initializable {
@@ -83,6 +84,10 @@ public class DocPatientsController extends DocController implements Initializabl
 
     private void loadPatients() {
         patientsTable.getItems().clear();
-        patientsTable.getItems().addAll(customerService.getCustomerWithUploadedFiles());
+        try {
+            patientsTable.getItems().addAll(customerService.getCustomerWithUploadedFiles());
+        } catch (SQLException e) {
+            showError("Error", "Failed to load patients: " + e.getMessage());
+        }
     }
 }

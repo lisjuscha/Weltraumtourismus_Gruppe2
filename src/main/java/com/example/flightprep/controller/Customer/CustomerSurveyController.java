@@ -120,11 +120,25 @@ public class CustomerSurveyController extends CustomerController {
     private boolean validateForm() {
         StringBuilder errors = new StringBuilder();
 
+        // Height validation
         if (heightTextField.getText().isEmpty()) {
             errors.append("Basic information: Height is required.\n");
+        } else {
+            try {
+                double height = Double.parseDouble(heightTextField.getText().replace(",", "."));
+            } catch (NumberFormatException e) {
+                errors.append("Invalid height format.\nPlease enter a number with optional decimal places (e.g. 175.5)\n");
+            }
         }
+        // Weight validation
         if (weightTextField.getText().isEmpty()) {
             errors.append("Basic information: Weight is required.\n");
+        } else {
+            try {
+                double weight = Double.parseDouble(weightTextField.getText().replace(",", "."));
+            } catch (NumberFormatException e) {
+                errors.append("Invalid weight format.\nPlease enter a number with optional decimal places (e.g. 75.5)\n");
+            }
         }
         if (alcoholComboBox.getValue() == "--Select--") {
             errors.append("Basic information: Please select if you drink alcohol.\n");

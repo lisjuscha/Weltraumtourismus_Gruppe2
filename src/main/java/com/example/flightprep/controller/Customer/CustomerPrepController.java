@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
+import java.sql.SQLException;
+
 public class CustomerPrepController extends CustomerController {
     private final CustomerService customerService;
 
@@ -59,7 +61,7 @@ public class CustomerPrepController extends CustomerController {
                     }
                 }
             }
-        } catch (RuntimeException e) {
+        } catch (SQLException e) {
             showError("Error", "Error loading customer status: " + e.getMessage());
         }
     }
