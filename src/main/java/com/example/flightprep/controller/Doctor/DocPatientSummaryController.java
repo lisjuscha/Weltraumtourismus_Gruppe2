@@ -2,7 +2,9 @@ package com.example.flightprep.controller.Doctor;
 
 import com.example.flightprep.dao.MedicalDataDAO;
 import com.example.flightprep.model.MedicalData;
-import com.example.flightprep.service.DeclarationService;
+import com.example.flightprep.model.User;
+import com.example.flightprep.service.CustomerService;
+import com.example.flightprep.service.UserService;
 import com.example.flightprep.util.DbConnection;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -227,8 +229,8 @@ public class DocPatientSummaryController extends DocController {
 
         result.ifPresent(decision -> {
             try {
-                DeclarationService declarationService = new DeclarationService();
-                declarationService.saveDeclaration(currentPatientId, decision.getKey(), decision.getValue());
+                CustomerService customerService = CustomerService.getInstance();
+                customerService.saveDeclaration(currentPatientId, decision.getKey(), decision.getValue());
                 showSuccess("Success", "Your Choice has been saved successfully.");
             } catch (SQLException e) {
                 showError("Error", "Error while saving:" + e.getMessage());

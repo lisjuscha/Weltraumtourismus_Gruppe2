@@ -1,11 +1,7 @@
 package com.example.flightprep.controller.Customer;
 
-import com.example.flightprep.dao.UserDAO;
-import com.example.flightprep.database.DatabaseConnection;
-import com.example.flightprep.database.DatabaseFactory;
 import com.example.flightprep.model.Customer;
-import com.example.flightprep.service.CustomerStatusService;
-import com.example.flightprep.util.DbConnection;
+import com.example.flightprep.service.CustomerService;
 import com.example.flightprep.util.SceneSwitcher;
 import com.example.flightprep.util.SessionManager;
 import javafx.event.ActionEvent;
@@ -13,11 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 public class CustomerPrepController extends CustomerController {
-    private final CustomerStatusService customerStatusService;
+    private final CustomerService customerService;
 
     @FXML
     CheckBox medicalDataCheckBox;
@@ -33,14 +26,14 @@ public class CustomerPrepController extends CustomerController {
     Button uploadButton;
 
     public CustomerPrepController() {
-        this.customerStatusService = new CustomerStatusService();
+        this.customerService = CustomerService.getInstance();
     }
 
     @FXML
     public void initialize() {
         try {
             String currentUserId = SessionManager.getCurrentUserId();
-            Customer customer = customerStatusService.getCustomerStatus(currentUserId);
+            Customer customer = customerService.getCustomerStatus(currentUserId);
 
             if (!customer.isFormSubmitted()) {
                 appointmentButton.setDisable(true);
