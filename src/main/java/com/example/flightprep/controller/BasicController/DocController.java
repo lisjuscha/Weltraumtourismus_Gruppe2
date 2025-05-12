@@ -1,11 +1,10 @@
-package com.example.flightprep.controller.Doctor;
+package com.example.flightprep.controller.BasicController;
 
-import com.example.flightprep.controller.GenreralController;
 import com.example.flightprep.util.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public abstract class DocController extends GenreralController {
+public abstract class DocController extends GeneralController {
 
     @FXML
     public void switchToHome(ActionEvent actionEvent) {

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientsController">
+<BorderPane prefHeight="433.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientsController">
     <left>
         <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
             <Button onAction="#switchToHome" styleClass="sidebar-button">
@@ -46,8 +46,17 @@
                     <TableColumn fx:id="emailColumn" text="Email" />
                     <TableColumn fx:id="riskGroupColumn" text="Risk Group" />
                     <TableColumn fx:id="flightDateColumn" text="Flight Date" />
-                    <TableColumn fx:id="summaryColumn" text="Summary" prefWidth="150" />
+                    <TableColumn fx:id="summaryColumn" prefWidth="150" text="Summary" />
                 </columns>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <VBox.margin>
+               <Insets left="10.0" right="10.0" />
+            </VBox.margin>
+            <columnResizePolicy>
+               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
             </TableView>
         </VBox>
     </center>

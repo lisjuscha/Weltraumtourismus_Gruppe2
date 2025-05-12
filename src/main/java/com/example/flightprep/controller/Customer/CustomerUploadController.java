@@ -1,11 +1,8 @@
 package com.example.flightprep.controller.Customer;
 
-import com.example.flightprep.dao.UserDAO;
-import com.example.flightprep.database.DatabaseConnection;
-import com.example.flightprep.database.DatabaseFactory;
+import com.example.flightprep.controller.BasicController.CustomerController;
 import com.example.flightprep.service.CustomerService;
 import com.example.flightprep.service.FileUploadService;
-import com.example.flightprep.util.DbConnection;
 import com.example.flightprep.util.SceneSwitcher;
 import com.example.flightprep.util.SessionManager;
 import javafx.event.ActionEvent;
@@ -15,12 +12,6 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

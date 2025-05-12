@@ -1,5 +1,6 @@
 package com.example.flightprep.controller.Login;
 
+import com.example.flightprep.controller.BasicController.GeneralController;
 import com.example.flightprep.service.UserService;
 import com.example.flightprep.model.User;
 import com.example.flightprep.util.SceneSwitcher;
@@ -15,11 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class LoginController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
+public class LoginController extends GeneralController {
 
     @FXML
     private ImageView loginImageView;
@@ -27,8 +24,6 @@ public class LoginController {
     private TextField user_idInput;
     @FXML
     private TextField passwordInput;
-    @FXML
-    private Label errorLabel;
     @FXML
     private BorderPane borderPane;
 
@@ -52,7 +47,7 @@ public class LoginController {
         // Factory oder Startegy
         if (user != null) {
             SessionManager.setCurrentUser(user);
-            if (user.getRole() == "doctor") {
+            if ("doctor".equals(user.getRole())) {
                 ressource = "/com/example/flightprep/DocScreens/DocHome.fxml";
             } else {
                 ressource = "/com/example/flightprep/CustomerScreens/CustomerHome.fxml";
@@ -62,12 +57,10 @@ public class LoginController {
                 SceneSwitcher.switchScene(ressource, event);
             } catch (NullPointerException | IOException e) {
                 e.printStackTrace();
-                errorLabel.setText("Error loading the screen.");
-                errorLabel.setVisible(true);
+                showError("Error", "Failed to load the home screen.");
             }
         } else {
-            errorLabel.setText("Username or Password incorrect.");
-            errorLabel.setVisible(true);
+            showError("Error", "Invalid user ID or password.");
         }
     }
 }

@@ -1,19 +1,18 @@
 package com.example.flightprep.dao;
 
+import com.example.flightprep.database.DatabaseConnection;
+import com.example.flightprep.database.DatabaseFactory;
 import com.example.flightprep.model.MedicalData;
-import com.example.flightprep.util.DbConnection;
 import com.example.flightprep.util.SessionManager;
 
 import java.sql.*;
 
-public class MedicalDataDAO {
-    private final Connection connection;
 
-    public MedicalDataDAO(Connection connection) {
-        if (connection == null) {
-            throw new IllegalArgumentException("Connection cannot be null");
-        }
-        this.connection = connection;
+public class MedicalDataDAO {
+    private final DatabaseConnection databaseConnection;
+
+    public MedicalDataDAO() {
+        this.databaseConnection = DatabaseFactory.getDatabase();
     }
 
     public void save(MedicalData data) throws SQLException {
@@ -24,7 +23,9 @@ public class MedicalDataDAO {
                 "persc_med, allergies, surgery, ser_injury) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+        try (Connection connection = databaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
             stmt.setString(1, SessionManager.getCurrentUserId());
             stmt.setString(2, data.getHeight());
             stmt.setString(3, data.getWeight());
@@ -47,42 +48,54 @@ public class MedicalDataDAO {
             stmt.setBoolean(20, data.isAllergies());
             stmt.setBoolean(21, data.isSurgery());
             stmt.setBoolean(22, data.isSer_injury());
-            stmt.executeUpdate();
+
+            if (stmt.executeUpdate() == 0) {
+                throw new SQLException("Speichern der medizinischen Daten fehlgeschlagen");
+            }
+            connection.commit();
         }
     }
+
     public MedicalData getDataByUserId(String userId) throws SQLException {
         String sql = "SELECT * FROM medical_data WHERE user_id = ?";
-        MedicalData data = null;
 
-        try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+        try (Connection connection = databaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
             stmt.setString(1, userId);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                data = new MedicalData();
-                data.setHeight(rs.getString("height"));
-                data.setWeight(rs.getString("weight"));
-                data.setAlcoholConsumption(rs.getString("alcohol_consumption"));
-                data.setSmokingStatus(rs.getString("smoking_status"));
-                data.setTrainingStatus(rs.getBoolean("training_status"));
-                data.setDisabilityStatus(rs.getBoolean("disability_status"));
-                data.setDisabilityDetails(rs.getString("disability_details"));
-                data.setHeartDisease(rs.getBoolean("heart_disease"));
-                data.setHighBloodPressure(rs.getBoolean("high_blood_pressure"));
-                data.setIrregularHeartbeat(rs.getBoolean("irregular_heartbeat"));
-                data.setStrokeHistory(rs.getBoolean("stroke_history"));
-                data.setAsthma(rs.getBoolean("asthma"));
-                data.setLungDisease(rs.getBoolean("lung_disease"));
-                data.setSeizureHistory(rs.getBoolean("seizure_history"));
-                data.setNeurologicalDisorder(rs.getBoolean("neurological_disorder"));
-                data.setHsp_respiratory_cardio(rs.getBoolean("hsp_respiratory_cardio"));
-                data.setHsp_heart_lung(rs.getBoolean("hsp_heart_lung"));
-                data.setPersc_med(rs.getBoolean("persc_med"));
-                data.setAllergies(rs.getBoolean("allergies"));
-                data.setSurgery(rs.getBoolean("surgery"));
-                data.setSer_injury(rs.getBoolean("ser_injury"));
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    MedicalData data = new MedicalData();
+                    mapResultSetToMedicalData(rs, data);
+                    connection.commit();
+                    return data;
+                }
             }
         }
-        return data;
+        return null;
+    }
+
+    private void mapResultSetToMedicalData(ResultSet rs, MedicalData data) throws SQLException {
+        data.setHeight(rs.getString("height"));
+        data.setWeight(rs.getString("weight"));
+        data.setAlcoholConsumption(rs.getString("alcohol_consumption"));
+        data.setSmokingStatus(rs.getString("smoking_status"));
+        data.setTrainingStatus(rs.getBoolean("training_status"));
+        data.setDisabilityStatus(rs.getBoolean("disability_status"));
+        data.setDisabilityDetails(rs.getString("disability_details"));
+        data.setHeartDisease(rs.getBoolean("heart_disease"));
+        data.setHighBloodPressure(rs.getBoolean("high_blood_pressure"));
+        data.setIrregularHeartbeat(rs.getBoolean("irregular_heartbeat"));
+        data.setStrokeHistory(rs.getBoolean("stroke_history"));
+        data.setAsthma(rs.getBoolean("asthma"));
+        data.setLungDisease(rs.getBoolean("lung_disease"));
+        data.setSeizureHistory(rs.getBoolean("seizure_history"));
+        data.setNeurologicalDisorder(rs.getBoolean("neurological_disorder"));
+        data.setHsp_respiratory_cardio(rs.getBoolean("hsp_respiratory_cardio"));
+        data.setHsp_heart_lung(rs.getBoolean("hsp_heart_lung"));
+        data.setPersc_med(rs.getBoolean("persc_med"));
+        data.setAllergies(rs.getBoolean("allergies"));
+        data.setSurgery(rs.getBoolean("surgery"));
+        data.setSer_injury(rs.getBoolean("ser_injury"));
     }
 }

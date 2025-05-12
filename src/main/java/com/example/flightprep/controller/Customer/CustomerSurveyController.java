@@ -1,12 +1,15 @@
 package com.example.flightprep.controller.Customer;
 
+import com.example.flightprep.controller.BasicController.CustomerController;
 import com.example.flightprep.model.MedicalData;
 import com.example.flightprep.service.CustomerService;
 import com.example.flightprep.util.RadioButoonReader;
+import com.example.flightprep.util.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class CustomerSurveyController extends CustomerController {
@@ -78,6 +81,11 @@ public class CustomerSurveyController extends CustomerController {
         try {
             customerService.submitMedicalData(data);
             showSuccess("Success", "Survey submitted successfully!");
+            try {
+                SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml", actionEvent);
+            } catch (IOException e) {
+                showError("Error", "Failed to switch to preparation screen: " + e.getMessage());
+            }
         } catch (SQLException e) {
             showError("Error", "Failed to submit survey: " + e.getMessage());
         }

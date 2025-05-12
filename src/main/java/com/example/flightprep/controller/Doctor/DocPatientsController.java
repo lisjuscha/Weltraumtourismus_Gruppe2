@@ -1,7 +1,9 @@
 package com.example.flightprep.controller.Doctor;
 
+import com.example.flightprep.controller.BasicController.DocController;
 import com.example.flightprep.model.Customer;
 import com.example.flightprep.service.CustomerService;
+import com.example.flightprep.util.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -73,10 +75,7 @@ public class DocPatientsController extends DocController implements Initializabl
             DocPatientSummaryController controller = loader.getController();
             controller.loadPatientData(customerId);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
-            stage.setScene(scene);
+            SceneSwitcher.switchScene(fxmlFile, root, event);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +83,6 @@ public class DocPatientsController extends DocController implements Initializabl
 
     private void loadPatients() {
         patientsTable.getItems().clear();
-        patientsTable.getItems().addAll(customerService.getPatientsWithUploadedFiles());
+        patientsTable.getItems().addAll(customerService.getCustomerWithUploadedFiles());
     }
 }

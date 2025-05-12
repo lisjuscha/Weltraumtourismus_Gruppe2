@@ -1,5 +1,6 @@
 package com.example.flightprep.controller.Customer;
 
+import com.example.flightprep.controller.BasicController.CustomerController;
 import com.example.flightprep.model.Customer;
 import com.example.flightprep.service.CustomerService;
 import com.example.flightprep.util.SceneSwitcher;

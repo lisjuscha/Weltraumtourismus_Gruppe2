@@ -1,0 +1,70 @@
+package com.example.flightprep.controller.BasicController;
+
+
+import com.example.flightprep.model.MedicalData;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+public abstract class PatientDataDisplayController extends DocController {
+    @FXML
+    protected Label heightLabel;
+    @FXML protected Label weightLabel;
+    @FXML protected Label smokingLabel;
+    @FXML protected Label alcoholLabel;
+    @FXML protected Label trainingLabel;
+    @FXML protected Label disabilityLabel;
+    @FXML protected Label disabilityDetailsLabel;
+    @FXML protected Label heartDiseaseLabel;
+    @FXML protected Label bloodPressureLabel;
+    @FXML protected Label heartbeatLabel;
+    @FXML protected Label strokeLabel;
+    @FXML protected Label asthmaLabel;
+    @FXML protected Label lungDiseaseLabel;
+    @FXML protected Label seizureLabel;
+    @FXML protected Label neurologicalLabel;
+    @FXML protected Label hspRespiratoryCardioLabel;
+    @FXML protected Label hspHeartLungLabel;
+    @FXML protected Label medicationLabel;
+    @FXML protected Label allergiesLabel;
+    @FXML protected Label surgeryLabel;
+    @FXML protected Label injuryLabel;
+
+    protected void updateUI(MedicalData data) {
+        if (data == null) {
+            showError("Error", "Keine Patientendaten gefunden");
+            return;
+        }
+
+        // Grundlegende Informationen
+        heightLabel.setText(data.getHeight() + " cm");
+        weightLabel.setText(data.getWeight() + " kg");
+        smokingLabel.setText(data.getSmokingStatus());
+        alcoholLabel.setText(data.getAlcoholConsumption());
+        trainingLabel.setText(data.isTrainingStatus() ? "Yes" : "No");
+        disabilityLabel.setText(data.getDisabilityStatus() ? "Yes" : "No");
+
+        if (data.getDisabilityStatus()) {
+            disabilityDetailsLabel.setText(data.getDisabilityDetails());
+            disabilityDetailsLabel.setVisible(true);
+            disabilityDetailsLabel.setDisable(false);
+        }
+
+        // Medizinische Vorgeschichte
+        heartDiseaseLabel.setText(data.isHeartDisease() ? "Yes" : "No");
+        bloodPressureLabel.setText(data.isHighBloodPressure() ? "Yes" : "No");
+        heartbeatLabel.setText(data.isIrregularHeartbeat() ? "Yes" : "No");
+        strokeLabel.setText(data.isStrokeHistory() ? "Yes" : "No");
+        asthmaLabel.setText(data.isAsthma() ? "Yes" : "No");
+        lungDiseaseLabel.setText(data.isLungDisease() ? "Yes" : "No");
+        seizureLabel.setText(data.isSeizureHistory() ? "Yes" : "No");
+        neurologicalLabel.setText(data.isNeurologicalDisorder() ? "Yes" : "No");
+        hspRespiratoryCardioLabel.setText(data.isHsp_respiratory_cardio() ? "Yes" : "No");
+        hspHeartLungLabel.setText(data.isHsp_heart_lung() ? "Yes" : "No");
+
+        // Zusätzliche Informationen
+        medicationLabel.setText(data.isPersc_med() ? "Yes" : "No");
+        allergiesLabel.setText(data.isAllergies() ? "Yes" : "No");
+        surgeryLabel.setText(data.isSurgery() ? "Yes" : "No");
+        injuryLabel.setText(data.isSer_injury() ? "Yes" : "No");
+    }
+}

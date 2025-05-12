@@ -1,4 +1,4 @@
-package com.example.flightprep.service;
+package com.example.flightprep.util;
 
 import com.example.flightprep.model.MedicalData;
 

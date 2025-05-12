@@ -1,7 +1,7 @@
 package com.example.flightprep.util;
 
 import com.example.flightprep.Main;
-import com.example.flightprep.controller.Doctor.DocController;
+import com.example.flightprep.controller.BasicController.DocController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneSwitcher {
+
     public static void switchScene(String fxmlFile, ActionEvent event) throws IOException {
         try {
             Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
@@ -39,17 +40,16 @@ public class SceneSwitcher {
         }
     }
 
-
-
-
-    public static DocController getController(String fxmlFile) {
+    public static void switchScene(String fxmlFile, Parent root, ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlFile));
-            loader.load();
-            return loader.getController();
-        } catch (Exception e) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
+            stage.setScene(scene);
+        } catch (
+                Exception e) {
             e.printStackTrace();
+            throw e;
         }
-        return null;
     }
-}
+    }

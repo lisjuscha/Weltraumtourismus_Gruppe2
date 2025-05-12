@@ -1,6 +1,9 @@
 package com.example.flightprep.controller.Customer;
 
+import com.example.flightprep.controller.BasicController.CustomerController;
 import com.example.flightprep.service.AppointmentService;
+import com.example.flightprep.service.CustomerService;
+import com.example.flightprep.service.UserService;
 import com.example.flightprep.util.SceneSwitcher;
 import com.example.flightprep.util.SessionManager;
 import javafx.event.ActionEvent;
@@ -19,6 +22,7 @@ import java.util.Locale;
 
 public class CustomerAppointmentController extends CustomerController {
     private final AppointmentService appointmentService;
+    private final CustomerService customerService;
     private LocalDate currentWeekStart;
     private LocalDate flightDate;
 
@@ -31,7 +35,8 @@ public class CustomerAppointmentController extends CustomerController {
     private final WeekFields weekFields = WeekFields.of(Locale.GERMANY);
 
     public CustomerAppointmentController() {
-        this.appointmentService = new AppointmentService();
+        this.appointmentService = AppointmentService.getInstance();
+        this.customerService = CustomerService.getInstance();
     }
 
     @FXML
@@ -54,7 +59,7 @@ public class CustomerAppointmentController extends CustomerController {
         currentWeekStart = LocalDate.now().with(weekFields.dayOfWeek(), 1);
         String userId = SessionManager.getCurrentUserId();
         if (userId != null) {
-            flightDate = appointmentService.getFlightDate(userId);
+            flightDate = customerService.getFlightDate(userId);
         }
     }
 
@@ -176,7 +181,6 @@ public class CustomerAppointmentController extends CustomerController {
             if (response == ButtonType.OK) {
                 try {
                     appointmentService.bookAppointment(date, time);
-                    appointmentService.updateAppointmentStatus();
                     showSuccess("Booking Success", "Appointment booked successfully!");
                     SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml", scene);
                 } catch (SQLException e) {

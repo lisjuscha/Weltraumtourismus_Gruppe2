@@ -1,8 +1,8 @@
-package com.example.flightprep.controller;
+package com.example.flightprep.controller.BasicController;
 
 import javafx.scene.control.Alert;
 
-public abstract class GenreralController {
+public abstract class GeneralController {
 
     public Alert createAlert(String title, String header, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
