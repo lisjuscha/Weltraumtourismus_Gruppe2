@@ -21,7 +21,7 @@
                   <Insets top="10.0" />
                </VBox.margin></Button>
                 <Button onAction="#switchToCalendar" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Calendar" />
-                <Button styleClass="sidebar-button" text="Help" />
+                <Button onAction="#switchToPatients" styleClass="sidebar-button" text="Patients" />
                 <Region VBox.vgrow="ALWAYS" />
                 <Button styleClass="sidebar-button" text="Account" />
             </children>

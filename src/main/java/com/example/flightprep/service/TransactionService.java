@@ -62,7 +62,7 @@ public class TransactionService {
         String sql = "UPDATE customer SET risk_group = ? WHERE user_id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, riskGroup);
-            pstmt.setString(2, SessionManager.getCurrentUser().getId());
+            pstmt.setString(2, SessionManager.getCurrentUser().getUserId());
             pstmt.executeUpdate();
         }
     }

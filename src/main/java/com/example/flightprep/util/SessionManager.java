@@ -4,6 +4,7 @@ import com.example.flightprep.model.User;
 
 public class SessionManager {
     private static User currentUser;
+    private static String selectedPatientId;
 
     public static void setCurrentUser(User user) {
         SessionManager.currentUser = user;
@@ -14,8 +15,13 @@ public class SessionManager {
     }
 
     public static String getCurrentUserId() {
-        return currentUser.getId();
+        return currentUser.getUserId();
     }
+
+    public static void setSelectedPatientId(String patientId) {SessionManager.selectedPatientId = patientId;}
+
+    public static String getSelectedPatientId() {return selectedPatientId;}
+
     public static void clear() {
         currentUser = null;
     }

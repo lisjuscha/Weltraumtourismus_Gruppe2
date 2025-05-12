@@ -64,7 +64,7 @@ public class UserDAO {
         return null;
     }
     public Customer getCustomerByUserId(String userId, String password) throws SQLException {
-        String sql = "SELECT first_name, last_name, email, form_submitted, appointment_made, file_uploaded " +
+        String sql = "SELECT first_name, last_name, email, form_submitted, appointment_made, file_uploaded, flight_date, risk_group " +
                 "FROM Customer WHERE user_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, userId);
@@ -78,7 +78,9 @@ public class UserDAO {
                             rs.getString("email"),
                             rs.getBoolean("form_submitted"),
                             rs.getBoolean("appointment_made"),
-                            rs.getBoolean("file_uploaded")
+                            rs.getBoolean("file_uploaded"),
+                            rs.getString("flight_date"),
+                            rs.getInt("risk_group")
                     );
                 }
             }

@@ -12,7 +12,7 @@ public abstract class DocController extends GenreralController {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/DocScreens/DocHome.fxml", actionEvent);
         } catch (Exception e) {
-            System.out.println("Error switching to home screen: " + e.getMessage());
+            showError("Error" , "Error switching to home screen: " + e.getMessage());
         }
     }
     @FXML
@@ -20,7 +20,14 @@ public abstract class DocController extends GenreralController {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/DocScreens/DocCalendar.fxml", actionEvent);
         } catch (Exception e) {
-            System.out.println("Error switching to calendar: " + e.getMessage());
+            showError("Error" , "Error switching to calendar screen: " + e.getMessage());
+        }
+    }
+    public void switchToPatients(ActionEvent actionEvent) {
+        try {
+            SceneSwitcher.switchScene("/com/example/flightprep/DocScreens/DocPatients.fxml", actionEvent);
+        } catch (Exception e) {
+            showError("Error" , "Error switching to patients screen: " + e.getMessage());
         }
     }
 }

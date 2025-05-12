@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.ToolBar?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="528.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientDataController">
+<BorderPane prefHeight="528.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientSummaryController">
 
     <!-- SIDEBAR -->
     <left>
@@ -25,8 +26,8 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
-                <Button onAction="#switchToCalendar" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Calendar" />
-                <Button onAction="#switchToPatients" styleClass="sidebar-button" text="Patients" />
+                <Button onAction="#switchToCalendar" styleClass="sidebar-button" text="Calendar" />
+                <Button onAction="#switchToPatients" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Patients" />
                 <Region VBox.vgrow="ALWAYS" />
                 <Button styleClass="sidebar-button" text="Account" />
             </children>
@@ -37,7 +38,7 @@
          <children>
               <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
                   <HBox alignment="CENTER">
-                      <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Patient Survey Data" />
+                      <Label alignment="CENTER" prefHeight="35.0" prefWidth="226.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Patient Summary" />
                   </HBox>
               </ToolBar>
               
@@ -113,7 +114,7 @@
                                  <font>
                                     <Font size="15.0" />
                                  </font></Label>
-                              <Label fx:id="disabilityDetailLabel" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <Label fx:id="disabilityDetailsLabel" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -319,8 +320,38 @@
                               </VBox>
                           </content>
                       </Tab>
+                      <Tab closable="false" text="Documents">
+                          <content>
+                              <VBox spacing="10">
+                                  <padding>
+                                      <Insets bottom="20" left="20" right="20" top="20" />
+                                  </padding>
+                                  <Label style="-fx-font-size: 15;" text="Uploaded Documents:">
+                                      <VBox.margin>
+                                          <Insets bottom="10" />
+                                      </VBox.margin>
+                                  </Label>
+                                  <ListView fx:id="documentsListView" VBox.vgrow="ALWAYS" />
+                              </VBox>
+                          </content>
+                      </Tab>
                   </tabs>
               </TabPane>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                   <Button mnemonicParsing="false" onAction="#handleDeclareButton" text="Declare" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </center>

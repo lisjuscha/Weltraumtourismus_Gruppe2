@@ -12,7 +12,7 @@ public class User {
     }
 
 
-    public String getId() {
+    public String getUserId() {
         return this.userId;
     }
 
