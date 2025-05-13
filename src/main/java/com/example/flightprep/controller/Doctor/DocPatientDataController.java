@@ -26,7 +26,7 @@ public class DocPatientDataController extends PatientDataDisplayController {
             MedicalData data = customerService.getMedicalData(patientId);
             updateUI(data);
         } catch (SQLException e) {
-            showError("Error", "Fehler beim Laden der Patientendaten: " + e.getMessage());
+            showError("Error", "Error loading patient data. Try again later.");
         }
     }
 }

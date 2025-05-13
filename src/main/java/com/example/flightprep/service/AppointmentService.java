@@ -63,7 +63,7 @@ public class AppointmentService {
     public void bookAppointment(LocalDate date, String time) throws SQLException {
         synchronized (LOCK) {
             if (!isValidSlot(date, time)) {
-                throw new SQLException("Der gewählte Termin ist nicht verfügbar");
+                throw new SQLException("The selected appointment is not available");
             }
 
             String userId = SessionManager.getCurrentUserId();
@@ -186,11 +186,11 @@ public class AppointmentService {
     public String getRiskGroupColor(int riskGroup) {
         switch (riskGroup) {
             case 1:
-                return "#90EE90"; // grün
+                return "#90EE90"; // green
             case 2:
-                return "#FFD700"; // gelb
+                return "#FFD700"; // yellow
             case 3:
-                return "#FFB6C6"; // rot
+                return "#FFB6C6"; // red
             default:
                 return "white";
         }

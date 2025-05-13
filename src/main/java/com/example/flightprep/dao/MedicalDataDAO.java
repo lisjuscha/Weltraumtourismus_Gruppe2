@@ -63,8 +63,9 @@ public class MedicalDataDAO {
             stmt.setBoolean(21, data.isSurgery());
             stmt.setBoolean(22, data.isSer_injury());
 
-            if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Speichern der medizinischen Daten fehlgeschlagen");
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Saving medical data failed");
             }
             connection.commit();
         }

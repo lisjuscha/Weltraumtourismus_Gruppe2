@@ -70,7 +70,7 @@ public class CustomerDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
-                throw new SQLException("Keine Daten aktualisiert");
+                throw new SQLException("No data updated");
             }
             connection.commit();
         }
@@ -92,7 +92,7 @@ public class CustomerDAO {
             stmt.setInt(1, riskGroup);
             stmt.setString(2, userId);
             if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Risikogruppe konnte nicht aktualisiert werden");
+                throw new SQLException("Risk group could not be updated");
             }
             connection.commit();
         }
@@ -111,7 +111,7 @@ public class CustomerDAO {
 
             stmt.setString(1, userId);
             if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Kunde konnte nicht aktualisiert werden");
+                throw new SQLException("Customer could not be updated");
             }
             connection.commit();
         }
@@ -124,13 +124,13 @@ public class CustomerDAO {
      * @throws SQLException If a database access error occurs.
      */
     public void updateAppointmentStatus(String userId) throws SQLException {
-        String sql = "UPDATE customer SET appointment_made = true WHERE user_id = ?";
+        String sql = "UPDATE customer SET has_appointment = TRUE WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
-
             stmt.setString(1, userId);
-            if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Terminstatus konnte nicht aktualisiert werden");
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Appointment status could not be updated");
             }
             connection.commit();
         }

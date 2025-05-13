@@ -31,9 +31,7 @@ public class SceneSwitcher {
             scene.setRoot(newRoot);
             String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
             scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
-        } catch (
-                Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -51,9 +49,7 @@ public class SceneSwitcher {
             scene.setRoot(newRoot);
             String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
             scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
-        } catch (
-                Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -72,10 +68,8 @@ public class SceneSwitcher {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Main.class.getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
             stage.setScene(scene);
-        } catch (
-                Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
             throw e;
         }
     }
-    }
+}

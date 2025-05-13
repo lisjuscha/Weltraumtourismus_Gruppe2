@@ -3,7 +3,6 @@ package com.example.flightprep.controller.Customer;
 import com.example.flightprep.controller.BasicController.CustomerController;
 import com.example.flightprep.service.AppointmentService;
 import com.example.flightprep.service.CustomerService;
-import com.example.flightprep.service.UserService;
 import com.example.flightprep.util.SceneSwitcher;
 import com.example.flightprep.util.SessionManager;
 import javafx.event.ActionEvent;

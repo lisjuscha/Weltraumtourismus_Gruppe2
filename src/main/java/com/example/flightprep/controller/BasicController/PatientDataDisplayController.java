@@ -43,11 +43,11 @@ public abstract class PatientDataDisplayController extends DocController {
      */
     protected void updateUI(MedicalData data) {
         if (data == null) {
-            showError("Error", "Keine Patientendaten gefunden");
+            showError("Error", "No patient data found");
             return;
         }
 
-        // Grundlegende Informationen
+        // General information
         heightLabel.setText(data.getHeight() + " cm");
         weightLabel.setText(data.getWeight() + " kg");
         smokingLabel.setText(data.getSmokingStatus());
@@ -61,7 +61,7 @@ public abstract class PatientDataDisplayController extends DocController {
             disabilityDetailsLabel.setDisable(false);
         }
 
-        // Medizinische Vorgeschichte
+        // Medical history
         heartDiseaseLabel.setText(data.isHeartDisease() ? "Yes" : "No");
         bloodPressureLabel.setText(data.isHighBloodPressure() ? "Yes" : "No");
         heartbeatLabel.setText(data.isIrregularHeartbeat() ? "Yes" : "No");
@@ -73,7 +73,7 @@ public abstract class PatientDataDisplayController extends DocController {
         hspRespiratoryCardioLabel.setText(data.isHsp_respiratory_cardio() ? "Yes" : "No");
         hspHeartLungLabel.setText(data.isHsp_heart_lung() ? "Yes" : "No");
 
-        // Zusätzliche Informationen
+        // Additional information
         medicationLabel.setText(data.isPersc_med() ? "Yes" : "No");
         allergiesLabel.setText(data.isAllergies() ? "Yes" : "No");
         surgeryLabel.setText(data.isSurgery() ? "Yes" : "No");

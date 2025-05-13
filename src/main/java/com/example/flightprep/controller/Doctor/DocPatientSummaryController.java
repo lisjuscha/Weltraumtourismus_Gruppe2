@@ -59,7 +59,7 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
             MedicalData data = customerService.getMedicalData(patientId);
             updateUI(data);
         } catch (SQLException e) {
-            showError("Error", "Fehler beim Laden der Patientendaten: " + e.getMessage());
+            showError("Error", "Error loading patient data: " + e.getMessage());
         }
     }
 
@@ -141,7 +141,8 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
         dialog.setHeaderText("Please confirm the flight clearance for the patient.");
 
         ButtonType confirmButtonType = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, cancelButtonType);
 
         GridPane grid = new GridPane();
         grid.setHgap(10);
@@ -159,7 +160,7 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
         commentArea.setPromptText("Enter your comment here...");
         commentArea.setPrefRowCount(3);
 
-        grid.add(new Label("Flight clearence:"), 0, 0);
+        grid.add(new Label("Flight clearance:"), 0, 0);
         grid.add(yesButton, 1, 0);
         grid.add(noButton, 2, 0);
         grid.add(new Label("Comment:"), 0, 1);

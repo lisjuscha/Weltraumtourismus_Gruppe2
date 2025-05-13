@@ -71,8 +71,9 @@ public class AppointmentDAO {
             stmt.setString(3, date.format(formatter));
             stmt.setString(4, time);
 
-            if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Termin konnte nicht gespeichert werden");
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Appointment could not be saved");
             }
             connection.commit();
         }
@@ -124,7 +125,7 @@ public class AppointmentDAO {
                     connection.commit();
                     return doctorId;
                 }
-                throw new SQLException("Kein Arzt in der Datenbank gefunden");
+                throw new SQLException("No doctor found in the database");
             }
         }
     }
