@@ -52,7 +52,7 @@ Hinweis: Die Daten sind nur lesbar – Sie können als Arzt/Ärztin keine Änder
   
 ### Patientenakte einsehen:  
 
-<img width="650" alt="Bildschirmfoto 2025-05-13 um 17 16 09" src="https://github.com/user-attachments/assets/d3612d5e-6ad4-40cf-9e55-fff967a9365d" />  
+<img width="881" alt="Bildschirmfoto 2025-05-13 um 17 15 43" src="https://github.com/user-attachments/assets/0bc5bcc3-431d-483c-a7ea-73561a27b244" />
   
 - Klicken Sie beim gewünschten Patienten auf „View Summary“.  
 - Sie sehen zuerst die „Basic Information“ (Grunddaten).  
