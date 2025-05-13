@@ -70,7 +70,13 @@ Oder manuell:
 Code → bad\_walden\_stadtwerke → src → main → java → com.bad\_walden\_stadtwerke → Launcher
 Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 
-# 3. Präsentation
+# 3. User-Dokumentation    
+   
+Um das Programm ohne Probleme nutzen zu können, haben wir eine Dokumentation erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:
+User-Dokumentation Arzt: Documents/User-Dokumentation-Arzt.md
+User-Dokumentation Kunde: Documents/User-Dokumentation-Kunde.md
+
+# 4. Präsentation
 Die Präsentation befindet sich hier: Documents/FlightPreparation-Gruppe2.pdf
 
 Noch Fragen?
