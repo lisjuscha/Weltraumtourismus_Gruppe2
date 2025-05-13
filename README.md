@@ -7,8 +7,8 @@ Lehrbeauftragte: Andreas Heck und Patrick Gutgesell
 
 Gruppen Mitglieder: Daniel Justo Blazquez Perez, Luc Alex Hampele, Philipp Lennard Rohr, Lisa Schmidt, Joline Zeidler
 
-Modellierung
-Allgemeine Einführung in die Modellierungsdateien
+# 1. Modellierung
+1.1 Allgemeine Einführung in die Modellierungsdateien
 Um eine Software zur Verwaltung von Versorgungsdienstleistungen effektiv zu entwickeln, müssen wir zunächst die wichtigsten Prozesse und Softwareelemente modellieren.
 Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner Documents/BPMN. Eine ausführliche Erläuterung dazu finden Sie in der Datei Documents/BPMN/README.md.
 
@@ -23,14 +23,18 @@ BPMN: Documents/"placeholder"
 UI: Documents/UI
 Datenmodell: Documents/"placeholder"
 
-Programmierung
-Codeübersicht und Dateistruktur
+# 2. Programmierung
+2.1 Codeübersicht und Dateistruktur
 Der Quellcode unseres Projekts befindet sich im Verzeichnis Code/“placeholder“.
 In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten.
-Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Code-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
-Projektumfang
+Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Code-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum 
+Aufbau der Anwendung.
+
+2.2 Projektumfang
 Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftige Weltraumtourist*innen implementiert – dieser beginnt nach dem ersten Login mit einem Pop-up zur Eingabe medizinischer Daten. Der Server sowie dessen HTTP-Antworten wurden mit Mockito simuliert. Der eigentliche Login-Prozess selbst war nicht Teil unseres Projektumfangs.
 Die Implementierung umfasst ausschließlich die Client-seitige Logik, einschließlich der Benutzeroberfläche, der Controller und der Verarbeitung von ein- und ausgehenden API-Aufrufen. Die serverseitige Logik wie z. B. das Session-Handling oder die Validierung der Anfragen wird im Projekt lediglich vorgetäuscht.
+
+2.3 Programmausführung
 
 Repository öffnen und Programm ausführen
 Installieren Sie eine IDE – Wir empfehlen IntelliJ IDEA.
@@ -54,7 +58,7 @@ Oder manuell:
 Code → bad\_walden\_stadtwerke → src → main → java → com.bad\_walden\_stadtwerke → Launcher
 Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 
-Präsentation
+# 3. Präsentation
 Die Präsentation befindet sich hier:
 Documents/FlightPreparation-Gruppe2.pdf
 
