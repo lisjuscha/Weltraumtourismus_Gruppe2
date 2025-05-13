@@ -10,16 +10,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
+/**
+ * The `UserDAO` class provides data access methods for managing user-related operations
+ * in the Flight Preparation application. It interacts with the database to retrieve
+ * user information based on their role (e.g., customer or doctor).
+ */
 public class UserDAO {
     private final DatabaseConnection databaseConnection;
 
+    /**
+     * Constructs a `UserDAO` instance and initializes the database connection.
+     */
     public UserDAO() {
         this.databaseConnection = DatabaseFactory.getDatabase();
     }
 
+    /**
+     * Retrieves a user by their user ID. Depending on the user's role, it returns
+     * either a `Customer` or `Doctor` object.
+     *
+     * @param userId The ID of the user to retrieve.
+     * @return A `User` object representing the user, or `null` if not found.
+     * @throws RuntimeException If a database access error occurs.
+     */
     public User getUserByUserID(String userId) {
         String sql = "SELECT * FROM User WHERE user_id = ?";
 
@@ -47,6 +61,14 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     * Retrieves a customer by their user ID and password.
+     *
+     * @param userId   The ID of the customer to retrieve.
+     * @param password The password of the customer.
+     * @return A `Customer` object representing the customer, or `null` if not found.
+     * @throws SQLException If a database access error occurs.
+     */
     public Customer getCustomerByUserId(String userId, String password) throws SQLException {
         String sql = "SELECT first_name, last_name, email, form_submitted, appointment_made, " +
                 "file_uploaded, flight_date, risk_group FROM Customer WHERE user_id = ?";
@@ -77,6 +99,14 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     * Retrieves a doctor by their user ID and password.
+     *
+     * @param userId   The ID of the doctor to retrieve.
+     * @param password The password of the doctor.
+     * @return A `Doctor` object representing the doctor, or `null` if not found.
+     * @throws SQLException If a database access error occurs.
+     */
     public Doctor getDoctorByUserId(String userId, String password) throws SQLException {
         String sql = "SELECT first_name, last_name, email FROM Doctor WHERE user_id = ?";
 

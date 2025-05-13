@@ -12,6 +12,12 @@ import javafx.scene.control.CheckBox;
 
 import java.sql.SQLException;
 
+/**
+ * The `CustomerPrepController` class manages the preparation view for customers in the application.
+ * It provides functionality to guide customers through the necessary steps for flight preparation,
+ * such as submitting medical data, booking appointments, and uploading required files.
+ * This class extends `CustomerController`.
+ */
 public class CustomerPrepController extends CustomerController {
     private final CustomerService customerService;
 
@@ -28,10 +34,18 @@ public class CustomerPrepController extends CustomerController {
     @FXML
     Button uploadButton;
 
+    /**
+     * Constructs a new `CustomerPrepController` and initializes the `CustomerService` instance.
+     */
     public CustomerPrepController() {
         this.customerService = CustomerService.getInstance();
     }
 
+    /**
+     * Initializes the preparation view by loading the customer's current status and updating the UI
+     * to reflect the progress of the preparation steps.
+     * This method is called automatically after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         try {
@@ -67,6 +81,11 @@ public class CustomerPrepController extends CustomerController {
     }
 
 
+    /**
+     * Switches the scene to the medical survey screen.
+     *
+     * @param actionEvent The `ActionEvent` triggered by the button click.
+     */
     public void switchToSurvey(ActionEvent actionEvent) {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerSurvey.fxml", actionEvent);
@@ -75,6 +94,11 @@ public class CustomerPrepController extends CustomerController {
         }
     }
 
+    /**
+     * Switches the scene to the appointment booking screen.
+     *
+     * @param actionEvent The `ActionEvent` triggered by the button click.
+     */
     public void switchToAppointment(ActionEvent actionEvent) {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerAppointment.fxml", actionEvent);
@@ -83,6 +107,11 @@ public class CustomerPrepController extends CustomerController {
         }
     }
 
+    /**
+     * Switches the scene to the file upload screen.
+     *
+     * @param actionEvent The `ActionEvent` triggered by the button click.
+     */
     public void switchToUpload(ActionEvent actionEvent) {
         try {
             SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerUpload.fxml", actionEvent);

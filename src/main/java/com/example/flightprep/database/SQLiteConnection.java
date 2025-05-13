@@ -2,9 +2,21 @@ package com.example.flightprep.database;
 
 import java.sql.*;
 
+/**
+ * The `SQLiteConnection` class provides an implementation of the `DatabaseConnection` interface
+ * for managing connections to an SQLite database. It includes methods to establish and close
+ * database connections, as well as handle transaction rollbacks when necessary.
+ */
 public class SQLiteConnection implements DatabaseConnection {
     private static final String DB_URL = "jdbc:sqlite:data/FlightPreperation.db";
 
+    /**
+     * Establishes a connection to the SQLite database.
+     * The connection is configured to not auto-commit transactions.
+     *
+     * @return A `Connection` object representing the database connection.
+     * @throws SQLException If an error occurs while establishing the connection or loading the SQLite JDBC driver.
+     */
     @Override
     public Connection getConnection() throws SQLException {
         try {
@@ -17,6 +29,12 @@ public class SQLiteConnection implements DatabaseConnection {
         }
     }
 
+    /**
+     * Closes the provided database connection. If the connection is not in auto-commit mode,
+     * it attempts to roll back any uncommitted transactions before closing.
+     *
+     * @param connection The `Connection` object to be closed.
+     */
     @Override
     public void closeConnection(Connection connection) {
         if (connection != null) {

@@ -7,20 +7,22 @@ import com.example.flightprep.util.SceneSwitcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * The `DocPatientsController` class manages the patient list view for doctors in the application.
+ * It displays a table of patients with their details and provides functionality to view individual
+ * patient summaries. This class extends `DocController` and implements `Initializable`.
+ */
 public class DocPatientsController extends DocController implements Initializable {
     @FXML private TableView<Customer> patientsTable;
     @FXML private TableColumn<Customer, String> firstNameColumn;
@@ -32,10 +34,20 @@ public class DocPatientsController extends DocController implements Initializabl
 
     private final CustomerService customerService;
 
+    /**
+     * Constructs a new `DocPatientsController` and initializes the `CustomerService` instance.
+     */
     public DocPatientsController() {
         this.customerService = CustomerService.getInstance();
     }
 
+    /**
+     * Initializes the patient list view by setting up table columns and loading patient data.
+     * This method is called automatically after the FXML file has been loaded.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if not known.
+     * @param resourceBundle The resources used to localize the root object, or null if not specified.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -68,6 +80,12 @@ public class DocPatientsController extends DocController implements Initializabl
         loadPatients();
     }
 
+    /**
+     * Opens the summary view for a specific patient.
+     *
+     * @param customerId The ID of the customer whose summary is to be displayed.
+     * @param event The `ActionEvent` triggered by the button click.
+     */
     private void openPatientSummary(String customerId, javafx.event.ActionEvent event) {
         try {
             String fxmlFile = "/com/example/flightprep/DocScreens/DocPatientSummary.fxml";
@@ -83,6 +101,10 @@ public class DocPatientsController extends DocController implements Initializabl
         }
     }
 
+    /**
+     * Loads the list of patients from the database and populates the table view.
+     * Displays an error message if the data cannot be loaded.
+     */
     private void loadPatients() {
         patientsTable.getItems().clear();
         try {

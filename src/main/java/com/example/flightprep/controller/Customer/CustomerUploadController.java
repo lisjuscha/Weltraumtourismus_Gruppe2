@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The `CustomerUploadController` class manages the file upload view for customers in the application.
+ * It allows customers to upload required files, validate their size, and submit them for flight preparation.
+ * This class extends `CustomerController`.
+ */
 public class CustomerUploadController extends CustomerController {
 
     @FXML
@@ -24,12 +29,19 @@ public class CustomerUploadController extends CustomerController {
     private final CustomerService customerService;
     private final List<File> tempFiles;
 
+    /**
+     * Constructs a new `CustomerUploadController` and initializes the required services and temporary file list.
+     */
     public CustomerUploadController() {
         this.fileUploadService = new FileUploadService();
         this.customerService = CustomerService.getInstance();
         this.tempFiles = new ArrayList<>();
     }
 
+    /**
+     * Initializes the file upload view by creating necessary directories.
+     * Displays an error message if directory creation fails.
+     */
     @FXML
     public void initialize() {
         try {
@@ -39,6 +51,11 @@ public class CustomerUploadController extends CustomerController {
         }
     }
 
+    /**
+     * Handles the file upload process by opening a file chooser dialog.
+     * Validates the file size and saves valid files to a temporary directory.
+     * Displays an error message for invalid files.
+     */
     @FXML
     public void handleFileUpload() {
         List<File> files = showFileChooser();
@@ -60,6 +77,13 @@ public class CustomerUploadController extends CustomerController {
         }
     }
 
+    /**
+     * Handles the submission of uploaded files.
+     * Moves files from the temporary directory to the final directory and updates the upload status.
+     * Displays an error message if the submission fails.
+     *
+     * @param event The `ActionEvent` triggered by the submit button click.
+     */
     @FXML
     public void handleSubmit(ActionEvent event) {
         if (tempFiles.isEmpty()) {
@@ -78,6 +102,11 @@ public class CustomerUploadController extends CustomerController {
         }
     }
 
+    /**
+     * Opens a file chooser dialog to allow the user to select files for upload.
+     *
+     * @return A list of selected files, or `null` if no files were selected.
+     */
     private List<File> showFileChooser() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Files");
@@ -87,6 +116,12 @@ public class CustomerUploadController extends CustomerController {
         return fileChooser.showOpenMultipleDialog(fileListView.getScene().getWindow());
     }
 
+    /**
+     * Cleans up temporary files and navigates to the next scene after successful submission.
+     *
+     * @param event The `ActionEvent` triggered by the submit button click.
+     * @throws IOException If an error occurs during scene switching.
+     */
     private void cleanupAndNavigate(ActionEvent event) throws IOException {
         tempFiles.clear();
         fileListView.getItems().clear();

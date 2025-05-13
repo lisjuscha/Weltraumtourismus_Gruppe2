@@ -12,6 +12,11 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * The `CustomerSurveyController` class manages the medical survey view for customers in the application.
+ * It allows customers to input their medical data, validate the form, and submit the survey.
+ * This class extends `CustomerController`.
+ */
 public class CustomerSurveyController extends CustomerController {
     @FXML private TextField heightTextField;
     @FXML private TextField weightTextField;
@@ -37,10 +42,17 @@ public class CustomerSurveyController extends CustomerController {
 
     private final CustomerService customerService;
 
+    /**
+     * Constructs a new `CustomerSurveyController` and initializes the `CustomerService` instance.
+     */
     public CustomerSurveyController() {
         this.customerService = CustomerService.getInstance();
     }
 
+    /**
+     * Initializes the survey view by setting up combo boxes, toggle groups, and event listeners.
+     * This method is called automatically after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         alcoholComboBox.getItems().addAll(
@@ -70,6 +82,13 @@ public class CustomerSurveyController extends CustomerController {
         });
     }
 
+    /**
+     * Handles the submission of the survey form.
+     * Validates the form, collects the data, and submits it to the `CustomerService`.
+     * If successful, switches to the preparation screen.
+     *
+     * @param actionEvent The `ActionEvent` triggered by the button click.
+     */
     @FXML
     private void submitSurvey(ActionEvent actionEvent) {
         if (!validateForm()) {
@@ -91,6 +110,11 @@ public class CustomerSurveyController extends CustomerController {
         }
     }
 
+    /**
+     * Collects the data from the survey form and creates a `MedicalData` object.
+     *
+     * @return A `MedicalData` object containing the collected form data.
+     */
     private MedicalData collectFormData() {
         return new MedicalData(
                 heightTextField.getText(),
@@ -117,6 +141,12 @@ public class CustomerSurveyController extends CustomerController {
         );
     }
 
+    /**
+     * Validates the survey form to ensure all required fields are filled and properly formatted.
+     * Displays an error message if validation fails.
+     *
+     * @return `true` if the form is valid, `false` otherwise.
+     */
     private boolean validateForm() {
         StringBuilder errors = new StringBuilder();
 
