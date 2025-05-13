@@ -1,4 +1,7 @@
-# Gruppenprojekt: Weltraumtourismus - Vorbereitung des Fluges
+# Gruppenprojekt:
+
+<img width="900" alt="Bildschirmfoto 2025-05-13 um 17 19 02" src="https://github.com/user-attachments/assets/f5b897e5-b129-469d-932b-9390bf2f0f0e" />
+
 HWG Ludwigshafen IBAIT23 ATdIT 2, Projekt Gruppe 2
 
 Die Entwicklung einer Software für die Abstimmung zwischen unserer Firma und dem Touristen hinsichtlich der Planung und Vorbereitung für seinen Flug ins Weltall. 
