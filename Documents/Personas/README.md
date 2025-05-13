@@ -19,6 +19,8 @@ Dr. Lorena Wallyweis ist 82 Jahre alt, pensionierte plastische Chirurgin und leb
     
 # Arzt Persona 
 
+### Dr. Jürgen Jürgens
+  
 <img width="700" alt="Bildschirmfoto 2025-05-08 um 10 09 56" src="https://github.com/user-attachments/assets/ec378a96-63df-4f11-b9e7-1e3e63aa1af7" />
     
 Dr. Jürgen Jürgens ist 45 Jahre alt, hat ein Medizinstudium abgeschlossen und arbeitet als Arzt für Weltraumtouristen. Seine Hauptaufgabe besteht darin, die Kundinnen und Kunden gesundheitlich auf ihren Ausflug ins All vorzubereiten und mögliche Komplikationen zu vermeiden. Dazu gehört die Prüfung persönlicher Gesundheitsdaten und gegebenenfalls die Verschreibung notwendiger Medikamente oder Therapien. Dr. Jürgens arbeitet in einem typischen medizinischen Umfeld, etwa im Arztzimmer am Schreibtisch oder mit verschiedenen Geräten. Er steht in enger Zusammenarbeit mit Trainern, Raumtouristen und Anzugdesignern. Besonders frustrierend empfindet er langsame oder unübersichtliche Datenverarbeitung sowie fehlende Informationen. Er ist motiviert, weil er seinen Job behalten und die Sicherheit der Raumreisenden gewährleisten möchte.
