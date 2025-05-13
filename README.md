@@ -8,13 +8,15 @@ Lehrbeauftragte: Andreas Heck und Patrick Gutgesell
 Gruppen Mitglieder: Daniel Justo Blazquez Perez, Luc Alex Hampele, Philipp Lennard Rohr, Lisa Schmidt, Joline Zeidler
 
 # 1. Modellierung
-1.1 Allgemeine Einführung in die Modellierungsdateien
+1.1 Allgemeine Einführung in die Modellierungsdateien  
 Um eine Software zur Verwaltung von Versorgungsdienstleistungen effektiv zu entwickeln, müssen wir zunächst die wichtigsten Prozesse und Softwareelemente modellieren.
-Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner Documents/BPMN. Eine ausführliche Erläuterung dazu finden Sie in der Datei Documents/BPMN/README.md.
+Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner Documents/BPMN.   
+Eine ausführliche Erläuterung dazu finden Sie in der Datei Documents/BPMN/README.md.
 
-//idk
-Das Datenmodell, das die Struktur unserer Datenbank abbildet – einschließlich der Gesundheitsdaten der Tourist*innen und relevanter Verwaltungsinformationen – ist im Ordner data/FlightPreperation.db hinterlegt. Eine detaillierte Beschreibung finden Sie in data/FlightPreperation.db/README.md.
-Die UI-Modelle sind im Ordner Documents/UI abgelegt. Dieser ist in die drei Unterordner Tourist und Doctor unterteilt.
+//idk   
+Das Datenmodell, das die Struktur unserer Datenbank abbildet - einschließlich der Gesundheitsdaten der Tourist*innen und relevanter Verwaltungsinformationen - ist im Ordner data/FlightPreperation.db hinterlegt.   
+Eine detaillierte Beschreibung finden Sie in data/FlightPreperation.db/README.md.  
+Die verschiedenen UI-Modelle sind im Ordner Documents/UI abgelegt. Dieser ist in die zwei Unterordner Tourist und Doctor unterteilt.
 //Eine bebilderte Erläuterung der Benutzeroberfläche finden Sie in Documents/UI/README.md.
 Alle genannten Dateien und Modelle bilden die konzeptionelle Grundlage für unseren Entwicklungsprozess im Rahmen der Flugvorbereitung.
 Verzeichnis der wichtigsten Dateien
