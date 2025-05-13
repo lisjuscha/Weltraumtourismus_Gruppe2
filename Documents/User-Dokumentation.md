@@ -52,7 +52,7 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 
 ### Schritt 3: „Medications, Allergies & General Health“
 
-<img width="650" alt="Bildschirmfoto 2025-05-13 um 16 22 24" src="https://github.com/user-attachments/assets/eaba22f3-1e73-4a5e-94b9-7956436d9edb" />
+<img width="650" alt="Bildschirmfoto 2025-05-13 um 16 22 24" src="https://github.com/user-attachments/assets/61f65197-95c3-4220-a830-0eb444bf06e1" />
 
 - Wechseln Sie oben zum Reiter **„Medications, Allergies & General Health“**.
 - Beantworten Sie die **„Yes or No“-Fragen** wieder durch Klick auf den Kreis der passenden Antwort.
@@ -67,12 +67,14 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 
 <img width="650" alt="Bildschirmfoto 2025-05-13 um 16 33 50" src="https://github.com/user-attachments/assets/b94f8ae7-7a96-4021-9fff-909d240d5ef6" />
 
-<img width="793" alt="Bildschirmfoto 2025-05-13 um 16 34 28" src="https://github.com/user-attachments/assets/6ba03978-136e-4a00-bda3-340ccb8f7a5a" />
+<img width="650" alt="Bildschirmfoto 2025-05-13 um 16 34 28" src="https://github.com/user-attachments/assets/6ba03978-136e-4a00-bda3-340ccb8f7a5a" />
 
 ## 4. Arzttermin buchen
 
 ### Schritt: „Make an appointment with your doctor“
-
+   
+<img width="650" alt="Bildschirmfoto 2025-05-13 um 16 34 39" src="https://github.com/user-attachments/assets/463931b8-eb67-405e-9e6b-40c03f26c6b5" />   
+   
 - Klicken Sie in der Checklist auf den **Pfeil** neben dem zweiten Punkt.
 - Es erscheint ein **Kalender** mit verfügbaren Terminen.
 
