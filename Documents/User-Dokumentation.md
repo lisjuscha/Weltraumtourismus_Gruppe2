@@ -58,10 +58,16 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 - Beantworten Sie die **„Yes or No“-Fragen** wieder durch Klick auf den Kreis der passenden Antwort.
 
 ### Absenden der medizinischen Daten
+  
+<img width="650" alt="Bildschirmfoto 2025-05-13 um 16 33 38" src="https://github.com/user-attachments/assets/9902b97b-5a09-40a8-8d65-e383f710f36a" />
 
 - Wenn **alle drei Bereiche** vollständig und korrekt ausgefüllt sind, klicken Sie auf den **„Submit“-Button** unten auf der Seite.
 - **Fehlende Angaben** werden in einem **Popup-Fenster** angezeigt.
-- Bei vollständiger Eingabe erscheint ein **Bestätigungs-Popup**, und Sie werden zurück zur **Preparation-Seite** geleitet.
+- Bei vollständiger Eingabe erscheint ein **Bestätigungs-Popup** bei welchem sie **OK** drücken, und Sie werden zurück zur **Preparation-Seite** geleitet.
+
+<img width="650" alt="Bildschirmfoto 2025-05-13 um 16 33 50" src="https://github.com/user-attachments/assets/b94f8ae7-7a96-4021-9fff-909d240d5ef6" />
+
+<img width="793" alt="Bildschirmfoto 2025-05-13 um 16 34 28" src="https://github.com/user-attachments/assets/6ba03978-136e-4a00-bda3-340ccb8f7a5a" />
 
 ## 4. Arzttermin buchen
 
