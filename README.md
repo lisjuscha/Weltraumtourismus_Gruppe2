@@ -52,7 +52,7 @@ Starten Sie IntelliJ – Nach der Installation sehen Sie auf dem Startbildschir
 Wählen Sie „Get from VCS“ – (VCS = Version Control System)    
    
 Repository klonen – Fügen Sie folgende URL in das URL-Feld ein:   
-https://github.com/lisjuscha/Weltraumtourismus\_Gruppe2   
+https://github.com/lisjuscha/Weltraumtourismus_Gruppe2   
 Wählen Sie den gewünschten Speicherort.   
 Klicken Sie auf "Clone" – unten rechts.   
 Projekt vertrauen – Klicken Sie im erscheinenden Popup auf "Trust the Project".   
