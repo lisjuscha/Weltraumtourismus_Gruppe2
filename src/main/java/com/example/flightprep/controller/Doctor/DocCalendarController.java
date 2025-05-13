@@ -70,7 +70,7 @@ public class DocCalendarController extends DocController implements Initializabl
             updateWeekLabel();
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Fehler beim Laden der Termine: " + e.getMessage());
+            showError("Error", "Error loading appointments");
         }
     }
 
@@ -109,7 +109,7 @@ public class DocCalendarController extends DocController implements Initializabl
 
     private Button createViewButton(String customerId) {
         Button viewButton = new Button("View Survey");
-        viewButton.setStyle("-fx-font-size: 14px;");
+        viewButton.getStyleClass().add("view-details-button");
         viewButton.setOnAction(e -> openPatientData(customerId, e));
         return viewButton;
     }

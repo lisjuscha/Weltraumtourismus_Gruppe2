@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="433.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientsController">
+<BorderPane prefHeight="433.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientsController" stylesheets="@../Stylesheets/Prep.css">
     <left>
-        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" styleClass="sidebar">
             <Button onAction="#switchToHome" styleClass="sidebar-button">
                 <text>Home</text>
                 <VBox.margin>
@@ -23,7 +23,7 @@
             <Button onAction="#switchToCalendar" styleClass="sidebar-button">
                 <text>Calendar</text>
             </Button>
-            <Button onAction="#switchToPatients" style="-fx-background-color: #117fa2;" styleClass="sidebar-button">
+            <Button onAction="#switchToPatients" styleClass="sidebar-button, sidebar-button-active">
                 <text>Patients</text>
             </Button>
             <Region VBox.vgrow="ALWAYS" />

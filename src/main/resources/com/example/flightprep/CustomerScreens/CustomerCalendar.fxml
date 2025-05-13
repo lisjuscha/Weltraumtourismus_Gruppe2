@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController">
+<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController" stylesheets="@../Stylesheets/Prep.css">
 
     <!-- SIDEBAR -->
     <left>
-        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" styleClass="sidebar">
             <children>
                 <Button onAction="#switchToHome" styleClass="sidebar-button" text="Home">
                <VBox.margin>
@@ -21,7 +21,7 @@
                </VBox.margin></Button>
                 <Button onAction="#switchToFlightPrep" styleClass="sidebar-button" text="Preparation" />
                 <Button onAction="#switchToMyFlight" styleClass="sidebar-button" text="My Flight" />
-                <Button onAction="#switchToCalendar" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Calendar" />
+                <Button onAction="#switchToCalendar" styleClass="sidebar-button, sidebar-button-active" text="Calendar" />
                 <Button styleClass="sidebar-button" text="Gallery" />
                 <Region VBox.vgrow="ALWAYS" />
                 <Button styleClass="sidebar-button" text="Account" />

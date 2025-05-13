@@ -16,18 +16,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="528.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientSummaryController">
+<BorderPane prefHeight="528.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Doctor.DocPatientSummaryController" stylesheets="@../Stylesheets/Prep.css">
 
     <!-- SIDEBAR -->
     <left>
-        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" style="-fx-background-color: #15aad0;">
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="10" styleClass="sidebar">
             <children>
                 <Button onAction="#switchToHome" styleClass="sidebar-button" text="Home">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
                 <Button onAction="#switchToCalendar" styleClass="sidebar-button" text="Calendar" />
-                <Button onAction="#switchToPatients" style="-fx-background-color: #117fa2;" styleClass="sidebar-button" text="Patients" />
+                <Button onAction="#switchToPatients" styleClass="sidebar-button, sidebar-button-active" text="Patients" />
                 <Region VBox.vgrow="ALWAYS" />
                 <Button styleClass="sidebar-button" text="Account" />
             </children>
@@ -339,10 +339,7 @@
               </TabPane>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                   <Button mnemonicParsing="false" onAction="#handleDeclareButton" text="Declare" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
+                   <Button mnemonicParsing="false" onAction="#handleDeclareButton" text="Declare" HBox.hgrow="ALWAYS" styleClass="action-button-confirm">
                   </Button>
                </children>
                <opaqueInsets>

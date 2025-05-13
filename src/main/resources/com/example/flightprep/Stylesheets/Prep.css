@@ -50,3 +50,36 @@
 .upload-button:hover {
     -fx-background-color: #117fa2;
 }
+
+.sidebar {
+    -fx-background-color: #15aad0;
+}
+
+.sidebar-button-active {
+    -fx-background-color: #117fa2;
+}
+
+.action-button-confirm {
+    -fx-background-color: #4CAF50; /* Grün */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+}
+
+.action-button-confirm:hover {
+    -fx-background-color: #45a049; /* Dunkleres Grün */
+}
+
+.view-details-button {
+    -fx-background-color: #2196F3; /* Blau */
+    -fx-text-fill: white;
+    -fx-padding: 5 10;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.view-details-button:hover {
+    -fx-background-color: #1e88e5; /* Dunkleres Blau */
+}

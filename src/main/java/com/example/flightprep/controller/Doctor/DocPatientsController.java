@@ -47,6 +47,7 @@ public class DocPatientsController extends DocController implements Initializabl
         summaryColumn.setCellFactory(col -> new TableCell<Customer, Void>() {
             private final Button button = new Button("View Summary");
             {
+                button.getStyleClass().add("view-details-button");
                 button.setOnAction(event -> {
                     Customer customer = getTableView().getItems().get(getIndex());
                     openPatientSummary(customer.getUserId(), event);

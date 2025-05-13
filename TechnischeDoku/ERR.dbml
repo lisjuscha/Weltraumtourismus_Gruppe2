@@ -1,0 +1,63 @@
+Table User {
+  user_id TEXT [pk, unique]
+  password TEXT [not null]
+  role TEXT [not null]
+}
+
+Table Customer {
+  user_id TEXT [pk, ref: > User.user_id]
+  first_name TEXT [not null]
+  last_name TEXT [not null]
+  email TEXT [not null]
+  form_submitted INTEGER [not null, default: 0]
+  appointment_made INTEGER [not null, default: 0]
+  file_uploaded INTEGER [not null, default: 0]
+  flight_date TEXT [not null]
+  risk_group INTEGER
+  birth_date TEXT [not null]
+  declaration INTEGER
+  declaration_comment TEXT
+  Note: "UNIQUE(user_id, birth_date)"
+}
+
+Table Doctor {
+  user_id TEXT [pk, ref: > User.user_id]
+  first_name TEXT [not null]
+  last_name TEXT [not null]
+  email TEXT [not null]
+}
+
+Table appointments {
+  appointment_id INTEGER [pk, increment]
+  doctor_id TEXT [not null, ref: > Doctor.user_id]
+   customer_id TEXT [not null, ref: > Customer.user_id]
+  date TEXT [not null]
+  time TEXT [not null]
+  Note: "UNIQUE(date, time)"
+}
+
+Table medical_data {
+  user_id TEXT [pk, ref: > Customer.user_id]
+  height TEXT [not null]
+  weight TEXT [not null]
+  alcohol_consumption TEXT [not null]
+  smoking_status TEXT [not null]
+  training_status INTEGER [not null]
+  disability_status INTEGER [not null]
+  disability_details TEXT
+  heart_disease INTEGER [not null]
+  high_blood_pressure INTEGER [not null]
+  irregular_heartbeat INTEGER [not null]
+  stroke_history INTEGER [not null]
+  asthma INTEGER [not null]
+  lung_disease INTEGER [not null]
+  seizure_history INTEGER [not null]
+  neurological_disorder INTEGER [not null]
+  hsp_respiratory_cardio INTEGER [not null]
+  hsp_heart_lung INTEGER [not null]
+  persc_med INTEGER [not null]
+  allergies INTEGER [not null]
+  surgery INTEGER [not null]
+  ser_injury TEXT [not null]
+  risk_group INTEGER
+}
