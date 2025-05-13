@@ -5,6 +5,12 @@ import com.example.flightprep.model.MedicalData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * The `PatientDataDisplayController` class serves as a base controller for displaying patient medical data
+ * in doctor-related views. It provides functionality to update the UI with medical data and handle
+ * patient-related information.
+ * This class extends `DocController`.
+ */
 public abstract class PatientDataDisplayController extends DocController {
     @FXML
     protected Label heightLabel;
@@ -29,6 +35,12 @@ public abstract class PatientDataDisplayController extends DocController {
     @FXML protected Label surgeryLabel;
     @FXML protected Label injuryLabel;
 
+    /**
+     * Updates the UI with the provided medical data.
+     * If the data is null, an error message is displayed.
+     *
+     * @param data The `MedicalData` object containing the patient's medical information.
+     */
     protected void updateUI(MedicalData data) {
         if (data == null) {
             showError("Error", "Keine Patientendaten gefunden");

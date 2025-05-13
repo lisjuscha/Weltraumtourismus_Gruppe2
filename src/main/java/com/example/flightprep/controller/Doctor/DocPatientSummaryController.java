@@ -5,32 +5,52 @@ import com.example.flightprep.model.MedicalData;
 import com.example.flightprep.service.CustomerService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.geometry.Insets;
 import javafx.util.Pair;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The `DocPatientSummaryController` class manages the summary view for a specific patient in the application.
+ * It allows doctors to view medical data, manage patient documents, and declare flight clearance for the patient.
+ * This class extends `PatientDataDisplayController`.
+ */
 public class DocPatientSummaryController extends PatientDataDisplayController {
     private String currentPatientId;
     private final CustomerService customerService;
     @FXML private ListView<String> documentsListView;
 
+    /**
+     * Constructs a new `DocPatientSummaryController` and initializes the `CustomerService` instance.
+     */
     public DocPatientSummaryController() {
         this.customerService = CustomerService.getInstance();
     }
 
+    /**
+     * Initializes the patient summary view by loading documents and setting up event handlers.
+     * This method is called automatically after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         loadDocuments();
         setupDocumentOpening();
     }
 
+    /**
+     * Loads the medical data for the specified patient and updates the UI.
+     *
+     * @param patientId The ID of the patient whose data is to be loaded.
+     */
     public void loadPatientData(String patientId) {
         this.currentPatientId = patientId;
         try {
@@ -41,11 +61,17 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
         }
     }
 
+    /**
+     * Loads the list of documents associated with the patient and populates the `documentsListView`.
+     */
     private void loadDocuments() {
         List<String> documents = customerService.getPatientDocuments();
         documentsListView.setItems(FXCollections.observableArrayList(documents));
     }
 
+    /**
+     * Sets up the event handler for opening documents when double-clicked in the `documentsListView`.
+     */
     private void setupDocumentOpening() {
         documentsListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -57,6 +83,11 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
         });
     }
 
+    /**
+     * Opens the specified file using the default desktop application.
+     *
+     * @param file The file to be opened.
+     */
     private void openFile(File file) {
         if (!file.exists()) {
             showError("Error", "File does not exist: " + file.getPath());
@@ -74,6 +105,10 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
         }
     }
 
+    /**
+     * Handles the action of declaring flight clearance for the patient.
+     * Opens a dialog for the doctor to confirm the clearance and provide comments.
+     */
     @FXML
     private void handleDeclareButton() {
         Dialog<Pair<Boolean, String>> dialog = createDeclarationDialog();
@@ -89,6 +124,12 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
         });
     }
 
+    /**
+     * Creates a dialog for flight clearance declaration, allowing the doctor to confirm or deny clearance
+     * and provide additional comments.
+     *
+     * @return A `Dialog` object configured for flight clearance declaration.
+     */
     private Dialog<Pair<Boolean, String>> createDeclarationDialog() {
         Dialog<Pair<Boolean, String>> dialog = new Dialog<>();
         dialog.setTitle("Flight clearance");

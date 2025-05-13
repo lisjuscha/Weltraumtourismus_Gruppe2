@@ -8,13 +8,27 @@ import com.example.flightprep.util.SessionManager;
 import java.sql.*;
 
 
+/**
+ * The `MedicalDataDAO` class provides data access methods for managing medical data
+ * in the Flight Preparation application. It interacts with the database to perform
+ * CRUD operations related to medical data.
+ */
 public class MedicalDataDAO {
     private final DatabaseConnection databaseConnection;
 
+    /**
+     * Constructs a `MedicalDataDAO` instance and initializes the database connection.
+     */
     public MedicalDataDAO() {
         this.databaseConnection = DatabaseFactory.getDatabase();
     }
 
+    /**
+     * Saves or updates the medical data for a user in the database.
+     *
+     * @param data The `MedicalData` object containing the user's medical information.
+     * @throws SQLException If a database access error occurs or the data cannot be saved.
+     */
     public void save(MedicalData data) throws SQLException {
         String sql = "INSERT or REPLACE INTO medical_data (user_id, height, weight, alcohol_consumption, " +
                 "smoking_status, training_status, disability_status, disability_details, heart_disease, " +
@@ -56,6 +70,13 @@ public class MedicalDataDAO {
         }
     }
 
+    /**
+     * Retrieves the medical data for a specific user by their user ID.
+     *
+     * @param userId The ID of the user whose medical data is to be retrieved.
+     * @return A `MedicalData` object containing the user's medical information, or `null` if not found.
+     * @throws SQLException If a database access error occurs.
+     */
     public MedicalData getDataByUserId(String userId) throws SQLException {
         String sql = "SELECT * FROM medical_data WHERE user_id = ?";
 
@@ -75,6 +96,13 @@ public class MedicalDataDAO {
         return null;
     }
 
+    /**
+     * Maps a `ResultSet` to a `MedicalData` object.
+     *
+     * @param rs   The `ResultSet` containing medical data.
+     * @param data The `MedicalData` object to populate with the data from the `ResultSet`.
+     * @throws SQLException If a database access error occurs.
+     */
     private void mapResultSetToMedicalData(ResultSet rs, MedicalData data) throws SQLException {
         data.setHeight(rs.getString("height"));
         data.setWeight(rs.getString("weight"));

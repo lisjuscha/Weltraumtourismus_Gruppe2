@@ -23,6 +23,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+/**
+ * The `DocCalendarController` class manages the calendar view for doctors in the application.
+ * It allows doctors to view and manage their appointments and schedules.
+ */
 
 public class DocCalendarController extends DocController implements Initializable {
     @FXML private VBox appointmentsContainer;
@@ -37,12 +41,20 @@ public class DocCalendarController extends DocController implements Initializabl
         this.appointmentService = AppointmentService.getInstance();
     }
 
+    /**
+     * Initializes the calendar view and sets up necessary event handlers.
+     * This method is called automatically after the FXML file has been loaded.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         currentWeekStart = appointmentService.getCurrentWeekStart();
         loadAppointments();
     }
 
+    /**
+     * Loads the appointments for the currently logged-in doctor.
+     * Retrieves the data from the database and populates the calendar view.
+     */
     private void loadAppointments() {
         appointmentsContainer.getChildren().clear();
         try {
@@ -73,6 +85,7 @@ public class DocCalendarController extends DocController implements Initializabl
             System.err.println("Fehler beim Laden der Termine: " + e.getMessage());
         }
     }
+
 
     private VBox createDayContainer(LocalDate date) {
         VBox dayContainer = new VBox(10);

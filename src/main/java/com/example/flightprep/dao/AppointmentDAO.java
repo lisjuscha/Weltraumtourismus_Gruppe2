@@ -14,6 +14,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The `AppointmentDAO` class provides data access methods for managing appointments
+ * in the Flight Preparation application. It interacts with the database to perform
+ * CRUD operations related to appointments.
+ */
 public class AppointmentDAO {
     private final DatabaseConnection databaseConnection;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -22,6 +27,15 @@ public class AppointmentDAO {
         this.databaseConnection = DatabaseFactory.getDatabase();
     }
 
+
+    /**
+     * Checks if a specific time slot on a given date is already booked.
+     *
+     * @param date The date to check.
+     * @param time The time slot to check.
+     * @return `true` if the slot is booked, `false` otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean isSlotBooked(LocalDate date, String time) throws SQLException {
         String sql = "SELECT COUNT(*) FROM appointments WHERE date = ? AND time = ?";
         try (Connection connection = databaseConnection.getConnection();
@@ -37,6 +51,14 @@ public class AppointmentDAO {
         }
     }
 
+    /**
+     * Books an appointment for a customer at a specific date and time.
+     *
+     * @param customerId The ID of the customer booking the appointment.
+     * @param date       The date of the appointment.
+     * @param time       The time of the appointment.
+     * @throws SQLException If a database access error occurs or the appointment cannot be saved.
+     */
     public void bookAppointment(String customerId, LocalDate date, String time) throws SQLException {
         String sql = "INSERT INTO appointments (appointment_id, customer_id, doctor_id, date, time) " +
                 "VALUES ((SELECT COALESCE(MAX(appointment_id), 0) + 1 FROM appointments), ?, ?, ?, ?)";
@@ -56,6 +78,13 @@ public class AppointmentDAO {
         }
     }
 
+    /**
+     * Retrieves a list of appointments for a specific date.
+     *
+     * @param date The date for which to retrieve appointments.
+     * @return A list of `Appointment` objects for the specified date.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<Appointment> getAppointmentsByDate(LocalDate date) throws SQLException {
         String sql = "SELECT a.*, c.first_name, c.last_name, c.risk_group " +
                 "FROM appointments a " +
@@ -78,6 +107,12 @@ public class AppointmentDAO {
         }
     }
 
+    /**
+     * Retrieves the ID of the current doctor from the database.
+     *
+     * @return The ID of the current doctor.
+     * @throws SQLException If a database access error occurs or no doctor is found.
+     */
     private String getCurrentDoctorId() throws SQLException {
         String sql = "SELECT user_id FROM Doctor LIMIT 1";
         try (Connection connection = databaseConnection.getConnection();
@@ -94,6 +129,13 @@ public class AppointmentDAO {
         }
     }
 
+    /**
+     * Creates an `Appointment` object from a `ResultSet`.
+     *
+     * @param rs The `ResultSet` containing appointment data.
+     * @return An `Appointment` object.
+     * @throws SQLException If a database access error occurs.
+     */
     private Appointment createAppointmentFromResultSet(ResultSet rs) throws SQLException {
         return new Appointment(
                 rs.getInt("appointment_id"),

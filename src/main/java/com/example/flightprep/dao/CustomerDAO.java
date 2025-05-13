@@ -9,14 +9,27 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * The `CustomerDAO` class provides data access methods for managing customer-related
+ * operations in the Flight Preparation application. It interacts with the database
+ * to perform CRUD operations for customer data.
+ */
 public class CustomerDAO {
     private final DatabaseConnection databaseConnection;
 
+    /**
+     * Constructs a `CustomerDAO` instance and initializes the database connection.
+     */
     public CustomerDAO() {
         this.databaseConnection = DatabaseFactory.getDatabase();
     }
 
+    /**
+     * Retrieves a list of customers who have uploaded files, ordered by their flight date.
+     *
+     * @return A list of `Customer` objects with uploaded files.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<Customer> findAllWithUploadedFiles() throws SQLException {
         String sql = "SELECT u.user_id, u.password, c.first_name, c.last_name, c.email, " +
                 "c.form_submitted, c.appointment_made, c.file_uploaded, c.flight_date, c.risk_group " +
@@ -38,6 +51,14 @@ public class CustomerDAO {
         return customers;
     }
 
+    /**
+     * Updates the declaration status and comment for a specific customer.
+     *
+     * @param userId    The ID of the customer.
+     * @param isApproved The approval status of the declaration.
+     * @param comment   The comment associated with the declaration.
+     * @throws SQLException If a database access error occurs.
+     */
     public void saveDeclaration(String userId, boolean isApproved, String comment) throws SQLException {
         String sql = "UPDATE Customer SET declaration = ?, comment = ? WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
@@ -54,6 +75,14 @@ public class CustomerDAO {
         }
     }
 
+    /**
+     * Updates the risk group of a specific customer.
+     *
+     * @param userId    The ID of the customer.
+     * @param riskGroup The risk group to set.
+     * @throws SQLException If a database access error occurs.
+     */
+
     public void updateCustomerRiskGroup(String userId, int riskGroup) throws SQLException {
         String sql = "UPDATE customer SET risk_group = ? WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
@@ -68,6 +97,12 @@ public class CustomerDAO {
         }
     }
 
+    /**
+     * Updates the file upload status of a specific customer to true.
+     *
+     * @param userId The ID of the customer.
+     * @throws SQLException If a database access error occurs.
+     */
     public void updateFileUploadStatus(String userId) throws SQLException {
         String sql = "UPDATE customer SET file_uploaded = true WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
@@ -80,6 +115,13 @@ public class CustomerDAO {
             connection.commit();
         }
     }
+
+    /**
+     * Updates the appointment status of a specific customer to true.
+     *
+     * @param userId The ID of the customer.
+     * @throws SQLException If a database access error occurs.
+     */
     public void updateAppointmentStatus(String userId) throws SQLException {
         String sql = "UPDATE customer SET appointment_made = true WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
@@ -93,6 +135,13 @@ public class CustomerDAO {
         }
     }
 
+    /**
+     * Retrieves the appointment status of a specific customer.
+     *
+     * @param userId The ID of the customer.
+     * @return `true` if the appointment is made, `false` otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean getAppointmentStatus(String userId) throws SQLException {
         String sql = "SELECT appointment_made FROM customer WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
@@ -107,6 +156,13 @@ public class CustomerDAO {
         }
     }
 
+    /**
+     * Updates the form submission status of a specific customer.
+     *
+     * @param userId The ID of the customer.
+     * @param status The form submission status to set.
+     * @throws SQLException If a database access error occurs.
+     */
     public void updateFormSubmittedStatus(String userId, boolean status) throws SQLException {
         String sql = "UPDATE Customer SET form_submitted = ? WHERE user_id = ?";
 
@@ -120,6 +176,13 @@ public class CustomerDAO {
         }
     }
 
+    /**
+     * Retrieves the form submission status of a specific customer.
+     *
+     * @param userId The ID of the customer.
+     * @return `true` if the form is submitted, `false` otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean getFormSubmittedStatus(String userId) throws SQLException {
         String sql = "SELECT form_submitted FROM Customer WHERE user_id = ?";
 
@@ -135,6 +198,13 @@ public class CustomerDAO {
         }
     }
 
+    /**
+     * Retrieves the flight date of a specific customer.
+     *
+     * @param userId The ID of the customer.
+     * @return The flight date as a `LocalDate`, or `null` if not found.
+     * @throws SQLException If a database access error occurs.
+     */
     public LocalDate getFlightDate(String userId) throws SQLException {
         String sql = "SELECT flight_date FROM Customer WHERE user_id = ?";
 
@@ -156,7 +226,13 @@ public class CustomerDAO {
         return null;
     }
 
-
+    /**
+     * Maps a `ResultSet` to a `Customer` object.
+     *
+     * @param rs The `ResultSet` containing customer data.
+     * @return A `Customer` object.
+     * @throws SQLException If a database access error occurs.
+     */
     private Customer mapCustomer(ResultSet rs) throws SQLException {
         return new Customer(
                 rs.getString("user_id"),

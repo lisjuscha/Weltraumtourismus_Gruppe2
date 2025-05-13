@@ -20,6 +20,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 
+/**
+ * The `CustomerAppointmentController` class manages the appointment booking view for customers in the application.
+ * It allows customers to view available time slots, navigate through weeks, and book appointments for their flight preparation.
+ * This class extends `CustomerController`.
+ */
 public class CustomerAppointmentController extends CustomerController {
     private final AppointmentService appointmentService;
     private final CustomerService customerService;
@@ -34,11 +39,18 @@ public class CustomerAppointmentController extends CustomerController {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final WeekFields weekFields = WeekFields.of(Locale.GERMANY);
 
+    /**
+     * Constructs a new `CustomerAppointmentController` and initializes the required services.
+     */
     public CustomerAppointmentController() {
         this.appointmentService = AppointmentService.getInstance();
         this.customerService = CustomerService.getInstance();
     }
 
+    /**
+     * Initializes the appointment booking view by setting up dates, loading appointments, and updating navigation buttons.
+     * This method is called automatically after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         try {
@@ -55,6 +67,11 @@ public class CustomerAppointmentController extends CustomerController {
         }
     }
 
+    /**
+     * Initializes the current week and retrieves the flight date for the current user.
+     *
+     * @throws SQLException If an error occurs while retrieving the flight date.
+     */
     private void initializeDates() throws SQLException {
         currentWeekStart = LocalDate.now().with(weekFields.dayOfWeek(), 1);
         String userId = SessionManager.getCurrentUserId();
@@ -63,6 +80,9 @@ public class CustomerAppointmentController extends CustomerController {
         }
     }
 
+    /**
+     * Loads the available and unavailable appointment slots for the current week into the grid.
+     */
     private void loadAppointments() {
         weekGrid.getChildren().removeIf(node -> node instanceof Button);
         for (int row = 1; row <= 4; row++) {
@@ -72,6 +92,12 @@ public class CustomerAppointmentController extends CustomerController {
         }
     }
 
+    /**
+     * Creates a time slot button for a specific row and column in the grid.
+     *
+     * @param row The row index of the grid.
+     * @param col The column index of the grid.
+     */
     private void createTimeSlot(int row, int col) {
         LocalDate date = currentWeekStart.plusDays(col - 1);
         String time;
@@ -116,18 +142,33 @@ public class CustomerAppointmentController extends CustomerController {
         weekGrid.add(slot, col, row);
     }
 
+    /**
+     * Configures a time slot button as unavailable.
+     *
+     * @param slot The button representing the time slot.
+     */
     private void configureUnavailableSlot(Button slot) {
         slot.setText("Not Available");
         slot.getStyleClass().add("time-slot-occupied");
         slot.setDisable(true);
     }
 
+    /**
+     * Configures a time slot button as available and sets up its click event handler.
+     *
+     * @param slot The button representing the time slot.
+     * @param date The date of the time slot.
+     * @param time The time of the time slot.
+     */
     private void configureAvailableSlot(Button slot, LocalDate date, String time) {
         slot.setText("Available");
         slot.getStyleClass().add("time-slot");
         slot.setOnAction(e -> handleSlotClick(date, time, e));
     }
 
+    /**
+     * Updates the navigation buttons to enable or disable them based on the current week and flight date.
+     */
     private void updateNavigationButtons() {
         if (flightDate == null) {
             prevWeekButton.setDisable(true);
@@ -141,6 +182,9 @@ public class CustomerAppointmentController extends CustomerController {
         nextWeekButton.setDisable(currentWeekStart.plusWeeks(1).isAfter(maxDate));
     }
 
+    /**
+     * Updates the label displaying the current week and its date range.
+     */
     private void updateWeekLabel() {
         LocalDate weekEnd = currentWeekStart.plusDays(4);
         int weekNumber = currentWeekStart.get(weekFields.weekOfWeekBasedYear());
@@ -150,6 +194,9 @@ public class CustomerAppointmentController extends CustomerController {
                 weekEnd.format(formatter)));
     }
 
+    /**
+     * Handles the action of navigating to the previous week.
+     */
     @FXML
     private void handlePreviousWeek() {
         currentWeekStart = currentWeekStart.minusWeeks(1);
@@ -158,6 +205,9 @@ public class CustomerAppointmentController extends CustomerController {
         updateNavigationButtons();
     }
 
+    /**
+     * Handles the action of navigating to the next week.
+     */
     @FXML
     private void handleNextWeek() {
         currentWeekStart = currentWeekStart.plusWeeks(1);
@@ -166,6 +216,13 @@ public class CustomerAppointmentController extends CustomerController {
         updateNavigationButtons();
     }
 
+    /**
+     * Handles the action of booking an appointment when a time slot is clicked.
+     *
+     * @param date The date of the selected time slot.
+     * @param time The time of the selected time slot.
+     * @param event The `ActionEvent` triggered by the button click.
+     */
     private void handleSlotClick(LocalDate date, String time, ActionEvent event) {
         Scene scene = ((Node) event.getSource()).getScene();
 
