@@ -3,6 +3,7 @@ package com.example.flightprep.controller.Doctor;
 import com.example.flightprep.controller.BasicController.PatientDataDisplayController;
 import com.example.flightprep.model.MedicalData;
 import com.example.flightprep.service.CustomerService;
+import com.example.flightprep.util.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -15,6 +16,7 @@ import javafx.util.Pair;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -118,8 +120,11 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
             try {
                 customerService.saveDeclaration(currentPatientId, decision.getKey(), decision.getValue());
                 showSuccess("Success", "Your Choice has been saved successfully.");
+                SceneSwitcher.switchScene("/com/example/flightprep/DocScreens/DocPatients.fxml", documentsListView.getScene());
             } catch (SQLException e) {
-                showError("Error", "Error while saving: " + e.getMessage());
+                showError("Error", "Error while saving. Please try again ");
+            }catch (IOException e){
+                showError("Error", "Error while switching to the patients screen.");
             }
         });
     }

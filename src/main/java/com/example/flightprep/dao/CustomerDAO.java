@@ -34,7 +34,7 @@ public class CustomerDAO {
         String sql = "SELECT u.user_id, u.password, c.first_name, c.last_name, c.email, " +
                 "c.form_submitted, c.appointment_made, c.file_uploaded, c.flight_date, c.risk_group " +
                 "FROM User u " +
-                "JOIN Customer c ON u.user_id = c.user_id " +
+                "JOIN Customer c ON u.user_id = c.user_id AND c.declaration IS NULL " +
                 "WHERE c.file_uploaded = 1 " +
                 "ORDER BY c.flight_date ASC";
 
@@ -60,15 +60,16 @@ public class CustomerDAO {
      * @throws SQLException If a database access error occurs.
      */
     public void saveDeclaration(String userId, boolean isApproved, String comment) throws SQLException {
-        String sql = "UPDATE Customer SET declaration = ?, comment = ? WHERE user_id = ?";
+        String sql = "UPDATE Customer SET declaration = ?, declaration_comment = ? WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setBoolean(1, isApproved);
+            stmt.setInt(1, isApproved ? 1 : 0);
             stmt.setString(2, comment);
             stmt.setString(3, userId);
 
-            if (stmt.executeUpdate() == 0) {
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
                 throw new SQLException("Keine Daten aktualisiert");
             }
             connection.commit();

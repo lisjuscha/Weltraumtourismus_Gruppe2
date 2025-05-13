@@ -60,7 +60,7 @@ public class CustomerService {
     }
 
     /**
-     * Retrieves a list of customers who have uploaded files.
+     * Retrieves a list of customers who have uploaded files, but have not been declared yet
      *
      * @return A list of `Customer` objects with uploaded files.
      * @throws SQLException If a database access error occurs.
