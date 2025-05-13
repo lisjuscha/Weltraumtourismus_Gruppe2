@@ -72,9 +72,10 @@ Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 
 # 3. User-Dokumentation    
    
-Um das Programm ohne Probleme nutzen zu können, haben wir eine Dokumentation erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:  
+Um das Programm ohne Probleme nutzen zu können, haben wir eine ausführliche Dokumentation mit sowohl Bildern als auch Texten erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:  
+    
 User-Dokumentation Arzt: [Documents/User-Dokumentation-Arzt.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc7d398943869b6fd1280bf46186e04b863fcedb/Documents/User-Dokumentation-Arzt.md)  
-User-Dokumentation Kunde: Documents/User-Dokumentation-Kunde.md
+User-Dokumentation Kunde: [Documents/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/f22f387388eba4a3bc88c9b41b4566ca3faf3069/Documents/User-Dokumentation-Kunde.md)
 
 # 4. Präsentation
 Die Präsentation befindet sich hier: Documents/FlightPreparation-Gruppe2.pdf
