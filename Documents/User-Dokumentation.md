@@ -13,6 +13,8 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 
 ## 2. Vorbereitung starten („Preparation“)
 
+<img width="700" alt="Bildschirmfoto 2025-05-13 um 16 30 47" src="https://github.com/user-attachments/assets/54d46410-64ff-4d08-aa8f-c217d0e23986" />   
+    
 - Klicken Sie in der **linken Toolbar** auf **„Preparation“**.
 - Es öffnet sich die **Medical Checklist**.
 
@@ -96,4 +98,6 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 
 ## Abschluss
 
+<img width="750" alt="Bildschirmfoto 2025-05-13 um 16 36 16" src="https://github.com/user-attachments/assets/0146e04a-8e9c-4baa-8e73-ef09932a5509" />  
+   
 Wenn alle drei Schritte (medizinische Daten, Terminbuchung, Dokumentenupload) vollständig abgeschlossen sind, ist Ihre medizinische Vorbereitung **erfolgreich beendet**.
