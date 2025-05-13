@@ -191,4 +191,94 @@ public class CustomerAppointmentController extends CustomerController {
             }
         });
     }
+
+    // Getter methods for testing
+    protected GridPane getWeekGrid() {
+        return weekGrid;
+    }
+
+    protected AppointmentService getAppointmentService() {
+        return appointmentService;
+    }
+
+    protected Label getWeekLabel() {
+        return weekLabel;
+    }
+
+    protected Button getPrevWeekButton() {
+        return prevWeekButton;
+    }
+
+    protected Button getNextWeekButton() {
+        return nextWeekButton;
+    }
+
+    protected LocalDate getFlightDate() {
+        return flightDate;
+    }
+
+    protected LocalDate getCurrentWeekStart() {
+        return currentWeekStart;
+    }
+
+    protected void initializeDatesForTest() throws SQLException {
+        initializeDates();
+    }
+
+    protected void configureUnavailableSlotForTest(Button slot) {
+        configureUnavailableSlot(slot);
+    }
+
+    protected void configureAvailableSlotForTest(Button slot, LocalDate date, String time) {
+        configureAvailableSlot(slot, date, time);
+    }
+
+    protected Button createTimeSlotForTest(int row, int col) {
+        Button slot = new Button();
+        weekGrid.add(slot, col, row);
+
+        LocalDate date = currentWeekStart.plusDays(col - 1);
+        String time;
+        switch (row) {
+            case 1: time = "09:00"; break;
+            case 2: time = "11:00"; break;
+            case 3: time = "14:00"; break;
+            case 4: time = "16:00"; break;
+            default: time = ""; break;
+        }
+
+        slot.setMaxWidth(Double.MAX_VALUE);
+        slot.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setFillWidth(slot, true);
+        GridPane.setFillHeight(slot, true);
+
+        try {
+            if (time.isEmpty() || !appointmentService.isValidSlot(date, time)) {
+                configureUnavailableSlot(slot);
+            } else {
+                configureAvailableSlot(slot, date, time);
+            }
+        } catch (SQLException e) {
+            configureUnavailableSlot(slot);
+        }
+
+        return slot;
+    }
+
+    protected void handlePreviousWeekForTest() {
+        handlePreviousWeek();
+    }
+
+    protected void handleNextWeekForTest() {
+        handleNextWeek();
+    }
+
+    protected void handleSlotClickForTest(LocalDate date, String time, ActionEvent event) throws SQLException, IOException {
+        handleSlotClick(date, time, event);
+    }
+
+    protected void updateNavigationButtonsForTest() {
+        updateNavigationButtons();
+    }
+
 }
