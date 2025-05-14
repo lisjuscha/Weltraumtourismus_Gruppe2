@@ -18,16 +18,15 @@ Verzeichnis der wichtigsten Dateien Wir möchten Ihnen ein Verzeichnis der Datei
      
 *1.1.1 Prozesse*   
 Um eine Software zur Flugvorbereitung in den Weltraumn effektiv zu entwickeln, müssen wir zunächst die wichtigsten Prozesse und Softwareelemente modellieren.
-Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner Documents/BPMN.   
-Eine ausführliche Erläuterung dazu finden Sie in der Datei https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/686ce58a3d2e6ebcade29221d088397603dd6806/Documents/Prozessdiagramme.
+Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner [Documents/Prozessdiagramme](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Prozessdiagramme).   
+Eine ausführliche Erläuterung dazu finden Sie in der Datei [Documents/Prozessdiagramme/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Prozessdiagramme/README.md).
      
-*1.1.2 Datenmodell*  
-Das Datenmodell, das die Struktur unserer Datenbank abbildet - einschließlich der Gesundheitsdaten der Tourist*innen und relevanter Verwaltungsinformationen - ist im Ordner data/FlightPreperation.db hinterlegt.   
-Eine detaillierte Beschreibung finden Sie in data/FlightPreperation.db/README.md.  
-     
-*1.1.3 UI-Modelle*  
-Die verschiedenen UI-Modelle sind im Ordner Documents/UI abgelegt. Dieser ist nochmal in die zwei Unterordner für die verschiedenen Perspektiven der Nutzer unterteilt, den Tourist und den Arzt .
-Eine bebilderte Erläuterung der Benutzeroberfläche finden Sie in Documents/UI/README.md.  
+*1.1.2 UI-Modelle*  
+Die verschiedenen UI-Modelle sind im Ordner [Documents/UI](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI) abgelegt. Dieser ist nochmal in die zwei Unterordner für die verschiedenen Perspektiven der Nutzer unterteilt, den Tourist und den Arzt .
+Eine bebilderte Erläuterung der Benutzeroberfläche finden Sie in [Documents/UI/README.md] (https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI/README.md.)  
+*1.1.3 Personas*
+Die verschiedenen Personas, welche wir erstellt haben um besser die Kundenbedürfnisse zu erkennen,sind in diesem Ordner zu finden: [Documents/Personas](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Personas)
+Eine detaillierte Beschreibung zu jeder einzelnen Persona ist außerdem in diesem Dokument zu finden: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Personas/README.md)
      
 Im Rahmen unseres Weltraumtourismus-Projekts haben wir uns entschieden, den Medical-Check-Prozess umzusetzen. Dieser Prozess ist Teil der Flugvorbereitung und dient der Erfassung von Gesundheitsdaten potenzieller Weltraumtouristinnen. Vor dem Antritt ihres Raumflugs geben die Teilnehmerinnen relevante medizinische Informationen an, die zur Einschätzung der Flugtauglichkeit erforderlich sind. Anschließend wird automatisch ein Termin mit einer Ärztin oder einem Arzt in unserem Unternehmen vereinbart, um eine persönliche Untersuchung durchzuführen und die finale Freigabe für den Flug zu erteilen. Weitere Informationen zur Modellierung finden Sie in den oben genannten README-Dateien.
 BPMN: Documents/"placeholder"
