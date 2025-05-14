@@ -27,12 +27,12 @@ Zusätzlich hat der Kunde die Möglichkeit, seinen Trainingserfolg mit uns zu te
 
 ## Wahl des Raumanzugs
 
-Wenn der Kunde den Schritt des Designen des Raumanzug wählt, wird die unten gezeigte Seite geöffnet. Hier hat der Kunde mehrere Optionen für seinen individuellen Raumanzug. Man kann sich den Helm, den Anzug und die Schuhe frei zweischen zwei bis drei verschiedenen Designs aussuchen. Dafür klickt man jeweils auf das gewünschte Design und ein Häkchen erscheint als Hestätigung in dem Kreis neben dem Motiv.  
+Wenn der Kunde den Schritt des Designen des Raumanzug wählt, wird die unten gezeigte Seite geöffnet. Hier hat der Kunde mehrere Optionen für seinen individuellen Raumanzug. Man kann sich den Helm, den Anzug und die Schuhe frei zweischen zwei bis drei verschiedenen Designs aussuchen. Dafür klickt man jeweils auf das gewünschte Design und ein Häkchen erscheint als Hestätigung in dem Kreis neben dem Motiv. Die gewählten Optionen werden hier automatisch gespeichert.
     
 <img width="1300" alt="Bildschirmfoto 2025-05-14 um 12 04 02" src="https://github.com/user-attachments/assets/b25449cf-f223-4848-9f21-b0be090f18eb" />
 
 ## Körpermaße für den Raumanzug
 
-Um den individuell ausgewählten Raumanzug nicht nur optisch ansprechend, sondern auch passgenau und funktional zu gestalten, wählt der Kunde in der Fitting-Checkliste den Punkt „Fitting Spacesuit“ aus. Daraufhin öffnet sich eine Seite, auf der klar und verständlich dargestellt ist, welche Körpermaße benötigt werden. Diese Angaben sind essenziell für unsere Anzugsspezialisten, um den Raumanzug präzise an die individuelle Körperform anzupassen. Ziel ist es, sowohl die Sicherheit als auch den Tragekomfort des Anzugs zu gewährleisten – denn ein optimal sitzender Raumanzug ist entscheidend für die Bewegungsfreiheit und das Wohlbefinden in der Schwerelosigkeit.  
+Um den individuell ausgewählten Raumanzug nicht nur optisch ansprechend, sondern auch passgenau und funktional zu gestalten, wählt der Kunde in der Fitting-Checkliste den Punkt „Fitting Spacesuit“ aus. Daraufhin öffnet sich eine Seite, auf der klar und verständlich dargestellt ist, welche Körpermaße benötigt werden. Diese Angaben sind essenziell für unsere Anzugsspezialisten, um den Raumanzug präzise an die individuelle Körperform anzupassen. Ziel ist es, sowohl die Sicherheit als auch den Tragekomfort des Anzugs zu gewährleisten – denn ein optimal sitzender Raumanzug ist entscheidend für die Bewegungsfreiheit und das Wohlbefinden in der Schwerelosigkeit. Die Körpermaße werden hier automatisch gespeichert und sind jederzeit einsehbar.
   
 <img width="1300" alt="Bildschirmfoto 2025-05-14 um 12 33 46" src="https://github.com/user-attachments/assets/9cca9dba-fea9-4e94-935a-354c28b0cf57" />
