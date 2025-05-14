@@ -15,7 +15,7 @@ Gruppen Mitglieder: Daniel Justo Blazquez Perez, Luc Alex Hampele, Philipp Lenna
 *1.1 Allgemeine Einführung in die Modellierungsdateien*
     
 Alle genannten Dateien und Modelle bilden die konzeptionelle Grundlage für unseren Entwicklungsprozess im Rahmen der Flugvorbereitung.
-Verzeichnis der wichtigsten Dateien Wir möchten Ihnen ein Verzeichnis der Dateien zur Verfügung stellen, die die Grundlage für unsere Implementierung bilden.    
+Wir möchten Ihnen ein Verzeichnis der Dateien zur Verfügung stellen, die die Grundlage für unsere Implementierung bilden.    
      
 *1.1.1 Prozesse*   
   
@@ -42,7 +42,7 @@ Personas: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumt
 *2.1 Codeübersicht und Dateistruktur*   
    
 Der Quellcode unseres Projekts befindet sich im Verzeichnis Code/“placeholder“.  
-In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Code-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum  Aufbau der Anwendung.
+In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Code-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
 
 *2.2 Projektumfang*   
    
@@ -51,22 +51,25 @@ Die Implementierung umfasst ausschließlich die Client-seitige Logik, einschlie
 
 *2.3 Programmausführung*
 
-Repository öffnen und Programm ausführen
-Installieren Sie eine IDE – Wir empfehlen IntelliJ IDEA.  
-Download-Link: IntelliJ IDEA Download   
-Folgen Sie dem Installationsassistenten von IntelliJ – Belassen Sie die vorausgewählten Optionen.  
-Starten Sie IntelliJ – Nach der Installation sehen Sie auf dem Startbildschirm die Optionen: "New Project", "Open", "Get from VCS".  
-Wählen Sie „Get from VCS“ – (VCS = Version Control System)    
+Repository öffnen und Programm ausführen   
+   
+1. Installieren Sie eine IDE – Wir empfehlen IntelliJ IDEA.  
+2. Download-Link: [IntelliJ IDEA Download](https://www.jetbrains.com/idea/download/?section=mac)  
+3. Folgen Sie dem Installationsassistenten von IntelliJ – Belassen Sie die vorausgewählten Optionen.  
+4. Starten Sie IntelliJ – Nach der Installation sehen Sie auf dem Startbildschirm die Optionen: "New Project", "Open", "Get from VCS".  
+5. Wählen Sie „Get from VCS“ – (VCS = Version Control System)      
    
 Repository klonen – Fügen Sie folgende URL in das URL-Feld ein:   
-https://github.com/lisjuscha/Weltraumtourismus_Gruppe2   
-Wählen Sie den gewünschten Speicherort.   
-Klicken Sie auf "Clone" – unten rechts.   
-Projekt vertrauen – Klicken Sie im erscheinenden Popup auf "Trust the Project".   
+   
+1. https://github.com/lisjuscha/Weltraumtourismus_Gruppe2   
+2. Wählen Sie den gewünschten Speicherort.   
+3. Klicken Sie auf "Clone" – unten rechts.   
+4. Projekt vertrauen – Klicken Sie im erscheinenden Popup auf "Trust the Project".   
 
-//Technisch
-Maven Build Script laden – Beim Öffnen des Projekts erscheint rechts unten ein Popup: "Maven build script found". Klicken Sie auf "Load" und warten Sie, bis der Ladebalken verschwindet.  
-Projekt-JDK einrichten 
+Projekt laden  ##UNFERTIG
+  
+1. Maven Build Script laden – Beim Öffnen des Projekts erscheint rechts unten ein Popup: "Maven build script found". Klicken Sie auf "Load" und warten Sie, bis der Ladebalken verschwindet.  
+2. Projekt-JDK einrichten 
 Klicken Sie auf das Drei-Balken-Menü oben links → "Project Structure..." → Im Tab "Project" beim Feld "SDK:" auf den Pfeil klicken → "Download JDK" → Im Popup "Vendor:" aufklappen und "SAP SapMachine" auswählen → "Download" → "OK".
 Launcher-Klasse finden
 Verwenden Sie diesen Pfad: Launcher.java.
@@ -74,12 +77,17 @@ Oder manuell:
 Code → bad\_walden\_stadtwerke → src → main → java → com.bad\_walden\_stadtwerke → Launcher
 Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 
-# 3. User-Dokumentation    
-   
+# 3. Dokumentation    
+
+*3.1 User-Dokumentation*
 Um das Programm ohne Probleme nutzen zu können, haben wir eine ausführliche Dokumentation mit sowohl Bildern als auch Texten erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:  
     
 User-Dokumentation Arzt: [Documents/User-Dokumentation-Arzt.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc7d398943869b6fd1280bf46186e04b863fcedb/Documents/User-Dokumentation-Arzt.md)  
 User-Dokumentation Kunde: [Documents/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/f22f387388eba4a3bc88c9b41b4566ca3faf3069/Documents/User-Dokumentation-Kunde.md)
+
+*3.2 Technische Dokumentation*
+
+Die technische Dokumentation für das reibungslose Verständnis des Quellcodes befindet sich hier: [Documents/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/2937e8e9dc9e7f77daa6a37f8f4e3e52484dd701/TechnischeDoku/TechnischeDoku.md)
 
 # 4. Mehrwert unserer Anwendung
 
