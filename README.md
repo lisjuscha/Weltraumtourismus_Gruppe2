@@ -59,23 +59,20 @@ Repository öffnen und Programm ausführen
 4. Starten Sie IntelliJ – Nach der Installation sehen Sie auf dem Startbildschirm die Optionen: "New Project", "Open", "Get from VCS".  
 5. Wählen Sie „Get from VCS“ – (VCS = Version Control System)      
    
-Repository klonen – Fügen Sie folgende URL in das URL-Feld ein:   
-   
-1. https://github.com/lisjuscha/Weltraumtourismus_Gruppe2   
+Repository klonen 
+
+1. Fügen Sie folgende URL in das URL-Feld ein: https://github.com/lisjuscha/Weltraumtourismus_Gruppe2   
 2. Wählen Sie den gewünschten Speicherort.   
 3. Klicken Sie auf "Clone" – unten rechts.   
 4. Projekt vertrauen – Klicken Sie im erscheinenden Popup auf "Trust the Project".   
 
-## UNFERTIG ## Projekt laden  
-  
-1. Maven Build Script laden – Beim Öffnen des Projekts erscheint rechts unten ein Popup: "Maven build script found". Klicken Sie auf "Load" und warten Sie, bis der Ladebalken verschwindet.  
-2. Projekt-JDK einrichten 
-Klicken Sie auf das Drei-Balken-Menü oben links → "Project Structure..." → Im Tab "Project" beim Feld "SDK:" auf den Pfeil klicken → "Download JDK" → Im Popup "Vendor:" aufklappen und "SAP SapMachine" auswählen → "Download" → "OK".
-Launcher-Klasse finden
-Verwenden Sie diesen Pfad: Launcher.java.
-Oder manuell:
-Code → bad\_walden\_stadtwerke → src → main → java → com.bad\_walden\_stadtwerke → Launcher
-Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
+Programm starten      
+    
+1. Maven Build Script laden: Beim Öffnen des Projekts erscheint rechts unten ein Popup: "Maven build script found". Klicken Sie auf "Load" und warten Sie, bis der Ladebalken verschwindet.  
+2. Projekt-JDK einrichten: Klicken Sie auf das Drei-Balken-Menü oben links → "Project Structure..." → Im Tab "Project" beim Feld "SDK:" auf den Pfeil klicken → "Download JDK" → Im Popup "Vendor:" aufklappen und "SAP SapMachine" auswählen → "Download" → "OK".
+3. Wechseln Sie in "SAP SapMachine" auf die Java-Version Java17: command I → SapMachine installieren → SapMachine17 (langfristiger Support) als JDK → rechtsklick auf SapMachine17 → Als Standartumgebung verwenden
+4. Launcher-Klasse manuell finden: Code → Weltraumtourismus_Gruppe2 → src → main → java → com → example → flightprep → Main.java
+5. Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 
 # 3. Dokumentation    
 
