@@ -95,15 +95,45 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 - Nach dem Buchen erscheint ein Bestätigungs-Popup, das Sie mit „OK“ oder einem Klick auf das rote Kreuz schließen können.
 - Sie kehren automatisch zur Preparation-Seite zurück.
 
-## 5. Medizinische Dokumente hochladen
+# 5. Terminübersicht & Änderungen („Calendar“)
 
-### Schritt: „Upload your medical documents“    
-     
-<img width="700" alt="Bildschirmfoto 2025-05-13 um 16 35 31" src="https://github.com/user-attachments/assets/f1093e73-eeb3-4d9a-877f-6c43633b3f01" />
-    
-- Klicken Sie auf den Pfeil neben dem letzten Punkt in der Checklist.
+#### Arzttermin ändern
+
+<img width="700" alt="Bildschirmfoto 2025-05-14 um 14 03 53" src="https://github.com/user-attachments/assets/4dff2669-cfde-4132-b115-8afa935d0616" />
+
+- Nach dem Buchen des Arzttermins werden Sie automatisch zur Kalenderansicht geleitet:
+- Dort sehen Sie Ihre kommenden Termine.
+- Um den Arzttermin zu ändern, klicken Sie auf „Change Appointment“.
+- Sie gelangen zurück zur Kalenderansicht und können einen neuen grünen („Available“) Termin auswählen.
+- Die Buchung läuft wie zuvor ab.
+
+#### Flugdatum ändern:
+
+<img width="700" alt="Bildschirmfoto 2025-05-14 um 14 03 53" src="https://github.com/user-attachments/assets/8a7f535a-229a-48bb-9935-28618d04eb48" />
+
+- Klicken Sie auf „Change Flight Date“.
+- Es öffnet sich ein neues Fenster
+
+<img width="700" alt="Bildschirmfoto 2025-05-14 um 14 04 16" src="https://github.com/user-attachments/assets/32b43e0c-e706-4d6a-a2e8-f80c2f6a0994" />
+
+- Klicken Sie auf das Kalendersymbol, wählen Sie das gewünschte Datum aus.
+  
+#### Flugänderung bestätigen
+
+<img width="700" alt="Bildschirmfoto 2025-05-14 um 14 04 25" src="https://github.com/user-attachments/assets/846fd5a9-c967-432d-8e05-8e40b1402092" />
+
+- Bestätigen Sie mit „Save Changes“.
+- Ein Popup bestätigt die erfolgreiche Änderung.
+  
+# 6. Medizinische Dokumente hochladen
+
+#### Schritt 3: „Upload your medical documents“
+
+<img width="700" alt="Bildschirmfoto 2025-05-13 um 16 35 31" src="https://github.com/user-attachments/assets/f1093e73-eeb3-4d9a-877f-6c43633b3f01" /> 
+
+- Klicken Sie in der Checklist auf den Pfeil neben diesem Punkt.
 - Es öffnet sich die Seite zum Hochladen der Arztbriefe
-   
+
 #### Dokument hochladen    
    
 <img width="700" alt="Bildschirmfoto 2025-05-13 um 16 35 43" src="https://github.com/user-attachments/assets/7bf041bf-6eff-49f4-9122-a1a68ecc4433" />
@@ -114,7 +144,7 @@ Hinweis: Informationen zu Dateigröße und -format finden Sie direkt unter dem U
 
 #### Datei einreichen:   
    
-foto fehlt   
+<img width="700" alt="Bildschirmfoto 2025-05-14 um 14 05 40" src="https://github.com/user-attachments/assets/eb3a2d5f-e483-466c-ae0e-78294e76b2ea" />
    
 - Klicken Sie auf den Button „Upload files“, um das Dokument endgültig hochzuladen.
 - Bei fehlender Datei erscheint ein Hinweis-Popup.
@@ -124,5 +154,5 @@ foto fehlt
 
 <img width="700" alt="Bildschirmfoto 2025-05-13 um 16 36 16" src="https://github.com/user-attachments/assets/0146e04a-8e9c-4baa-8e73-ef09932a5509" />  
    
-Wenn alle drei Schritte (medizinische Daten, Terminbuchung, Dokumentenupload) vollständig abgeschlossen sind, ist Ihre medizinische Vorbereitung erfolgreich beendet.
+Wenn alle drei Schritte (medizinische Daten, Terminbuchung, Dokumentenupload) vollständig abgeschlossen sind und keine Termine mehr geändert werden sollen, ist Ihre medizinische Vorbereitung erfolgreich beendet.
 
