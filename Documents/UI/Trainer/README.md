@@ -1,7 +1,7 @@
 # UI Mockups Trainer
 
 ## Allgemeine Informationen
-Da wir bislang ausschließlich den Medizin-Check implementiert haben, zeigen wir in diesem Abschnitt die Mockups unseres Programms mit entsprechenden Beschreibungen zur besseren Verständlichkeit. Die Seite enthält alle UI-Elemente und Frameworks, die den jeweiligen Schritten entsprechen, die ein Trainer durchläuft. 
+Da wir bislang ausschließlich den Medizin-Check implementiert haben, zeigen wir in diesem Abschnitt die Mockups unseres Programms mit entsprechenden Beschreibungen zur besseren Verständlichkeit. Die Seite enthält UI-Elemente und Frameworks, die den jeweiligen Abschnitten Homepage, Online Meetings und Fluggenehmigung entsprechen, die ein Trainer durchläuft. Für den Kalender haben wir kein Mockup, da dieser dem Format des Arztes entspricht.
 
 ## Homepage
 
