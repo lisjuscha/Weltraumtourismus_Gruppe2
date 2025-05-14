@@ -19,6 +19,8 @@ import java.util.List;
  * CRUD operations related to appointments.
  */
 public class AppointmentDAO {
+    private static AppointmentDAO instance;
+    private static final Object LOCK = new Object();
     private final DatabaseConnection databaseConnection;
     private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
@@ -27,6 +29,17 @@ public class AppointmentDAO {
      */
     public AppointmentDAO() {
         this.databaseConnection = DatabaseFactory.getDatabase();
+    }
+
+    public static AppointmentDAO getInstance() {
+        if (instance == null) {
+            synchronized (LOCK) {
+                if (instance == null) {
+                    instance = new AppointmentDAO();
+                }
+            }
+        }
+        return instance;
     }
 
     /**

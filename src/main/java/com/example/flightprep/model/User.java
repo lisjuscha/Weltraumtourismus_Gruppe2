@@ -34,6 +34,15 @@ public class User {
     }
 
     /**
+     * Sets the user ID.
+     *
+     * @param userId The new user ID.
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
      * Gets the password of the user.
      *
      * @return The user's password.

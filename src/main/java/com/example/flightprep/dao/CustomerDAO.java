@@ -15,6 +15,8 @@ import java.util.List;
  * to perform CRUD operations for customer data.
  */
 public class CustomerDAO {
+    private static CustomerDAO instance;
+    private static final Object LOCK = new Object();
     private final DatabaseConnection databaseConnection;
     private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
@@ -23,6 +25,17 @@ public class CustomerDAO {
      */
     public CustomerDAO() {
         this.databaseConnection = DatabaseFactory.getDatabase();
+    }
+
+    public static CustomerDAO getInstance() {
+        if (instance == null) {
+            synchronized (LOCK) {
+                if (instance == null) {
+                    instance = new CustomerDAO();
+                }
+            }
+        }
+        return instance;
     }
 
     /**

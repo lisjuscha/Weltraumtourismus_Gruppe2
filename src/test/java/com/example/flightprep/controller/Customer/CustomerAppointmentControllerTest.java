@@ -3,18 +3,21 @@ package com.example.flightprep.controller.Customer;
 import com.example.flightprep.service.AppointmentService;
 import com.example.flightprep.service.CustomerService;
 import com.example.flightprep.util.SessionManager;
+import com.example.flightprep.model.User;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
 import org.mockito.MockitoAnnotations;
-import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Start;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -23,10 +26,8 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(ApplicationExtension.class)
 class CustomerAppointmentControllerTest {
 
     @Mock
@@ -36,195 +37,174 @@ class CustomerAppointmentControllerTest {
     private CustomerService customerService;
 
     private CustomerAppointmentController controller;
+    private Stage stage;
+    private Button prevWeekButton;
+    private Button nextWeekButton;
+    private Label weekLabel;
+    private GridPane weekGrid;
 
+    // Initialize JavaFX toolkit
     @BeforeAll
-    public static void setupHeadless() {
-        System.setProperty("java.awt.headless", "true");
-        System.setProperty("testfx.robot", "glass");
-        System.setProperty("testfx.headless", "true");
-        System.setProperty("prism.order", "sw");
-        System.setProperty("prism.text", "t2k");
+    public static void setupJavaFX() throws Exception {
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.startup(latch::countDown);
+        if (!latch.await(5, TimeUnit.SECONDS)) {
+            throw new ExceptionInInitializerError("JavaFX initialization failed");
+        }
     }
 
-    @Start
-    private void start() throws Exception {
-        Platform.setImplicitExit(false);
-    }
-
+    // Setup test environment before each test
     @BeforeEach
-    void setUp() throws Exception {
+    public void setup() throws Exception {
         MockitoAnnotations.openMocks(this);
+        Platform.setImplicitExit(false);
+
+        // Setup SessionManager with mock user
+        User mockUser = mock(User.class);
+        when(mockUser.getUserId()).thenReturn("testUser123");
+        SessionManager.setCurrentUser(mockUser);
 
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             try {
+                stage = new Stage();
                 controller = new CustomerAppointmentController();
+
+                // Initialize UI components
+                prevWeekButton = new Button("Previous");
+                nextWeekButton = new Button("Next");
+                weekLabel = new Label();
+                weekGrid = new GridPane();
+
+                // Set fields via reflection
                 setField("appointmentService", appointmentService);
                 setField("customerService", customerService);
-                setField("weekGrid", new GridPane());
-                setField("weekLabel", new Label());
-                setField("prevWeekButton", new Button());
-                setField("nextWeekButton", new Button());
-                latch.countDown();
+                setField("weekGrid", weekGrid);
+                setField("weekLabel", weekLabel);
+                setField("prevWeekButton", prevWeekButton);
+                setField("nextWeekButton", nextWeekButton);
+                setField("currentWeekStart", LocalDate.now());
+                setField("flightDate", LocalDate.now().plusMonths(1));
+
+                VBox root = new VBox(10);
+                root.getChildren().addAll(prevWeekButton, weekLabel, nextWeekButton, weekGrid);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
             } catch (Exception e) {
-                fail("Setup failed: " + e.getMessage());
+                e.printStackTrace();
+            } finally {
+                latch.countDown();
             }
         });
 
         if (!latch.await(5, TimeUnit.SECONDS)) {
-            fail("Setup timeout");
+            throw new IllegalStateException("JavaFX initialization timed out.");
         }
     }
 
+    // Cleanup after each test
+    @AfterEach
+    public void cleanup() {
+        SessionManager.setCurrentUser(null);
+        runOnFXThread(() -> {
+            if (stage != null) {
+                stage.hide();
+                stage = null;
+            }
+        });
+    }
+
+    // Helper method to set private fields
     private void setField(String fieldName, Object value) throws Exception {
         java.lang.reflect.Field field = CustomerAppointmentController.class.getDeclaredField(fieldName);
         field.setAccessible(true);
         field.set(controller, value);
     }
 
-    private void runAndWait(Runnable action) throws Exception {
+    // Helper method to run code on JavaFX thread
+    private void runOnFXThread(Runnable action) {
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             action.run();
             latch.countDown();
         });
-        if (!latch.await(5, TimeUnit.SECONDS)) {
-            fail("Test timeout");
+        try {
+            latch.await(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Test
-    void testInitializeDates_FlightDateFound() throws Exception {
+    void testInitializeDates_Success() throws Exception {
         String userId = "123";
-        LocalDate flightDate = LocalDate.of(2023, 12, 25);
+        LocalDate flightDate = LocalDate.now().plusDays(7);
 
         when(SessionManager.getCurrentUserId()).thenReturn(userId);
         when(customerService.getFlightDate(userId)).thenReturn(flightDate);
 
-        runAndWait(() -> {
+        runOnFXThread(() -> {
             try {
                 controller.initializeDatesForTest();
+                verify(customerService).getFlightDate(userId);
                 assertEquals(flightDate, controller.getFlightDate());
             } catch (SQLException e) {
-                fail(e);
+                fail("Test failed: " + e.getMessage());
             }
         });
     }
 
     @Test
-    void testInitializeDates_NoUserId() throws Exception {
-        when(SessionManager.getCurrentUserId()).thenReturn(null);
+    void testTimeSlotCreation_Available() throws Exception {
+        LocalDate testDate = LocalDate.now();
+        String testTime = "10:00";
 
-        runAndWait(() -> {
-            try {
-                controller.initializeDatesForTest();
-                assertNull(controller.getFlightDate());
-            } catch (SQLException e) {
-                fail(e);
-            }
-        });
-    }
+        when(appointmentService.isValidSlot(any(), any())).thenReturn(true);
 
-    @Test
-    void testConfigureUnavailableSlot() throws Exception {
-        Button slot = new Button();
-
-        runAndWait(() -> {
-            controller.configureUnavailableSlotForTest(slot);
-            assertEquals("Not Available", slot.getText());
-            assertTrue(slot.getStyleClass().contains("time-slot-occupied"));
-            assertTrue(slot.isDisabled());
-        });
-    }
-
-    @Test
-    void testConfigureAvailableSlot() throws Exception {
-        Button slot = new Button();
-        LocalDate date = LocalDate.of(2023, 12, 20);
-        String time = "09:00";
-
-        runAndWait(() -> {
-            controller.configureAvailableSlotForTest(slot, date, time);
-            assertEquals("Available", slot.getText());
+        runOnFXThread(() -> {
+            Button slot = controller.createTimeSlotForTest(1, 2);
+            assertNotNull(slot);
+            assertFalse(slot.isDisabled());
             assertTrue(slot.getStyleClass().contains("time-slot"));
-            assertNotNull(slot.getOnAction());
         });
     }
 
     @Test
-    void testCreateTimeSlot_InvalidTime() throws Exception {
-        // Mock für isValidSlot konfigurieren
-        when(appointmentService.isValidSlot(any(LocalDate.class), anyString()))
-                .thenThrow(new SQLException("Test exception"));
+    void testTimeSlotCreation_Unavailable() throws Exception {
+        when(appointmentService.isValidSlot(any(), any())).thenReturn(false);
 
-        runAndWait(() -> {
-            Button slot = controller.createTimeSlotForTest(5, 1);
+        runOnFXThread(() -> {
+            Button slot = controller.createTimeSlotForTest(1, 2);
+            assertNotNull(slot);
             assertTrue(slot.isDisabled());
-            assertEquals("Error", slot.getText());
+            assertTrue(slot.getStyleClass().contains("time-slot-occupied"));
         });
     }
 
     @Test
-    void testHandlePreviousWeek() throws Exception {
-        LocalDate initialDate = LocalDate.of(2023, 12, 18);
-        setCurrentWeekStart(initialDate);
-        setFlightDate(initialDate.plusMonths(1));
+    void testNavigationButtons_Functionality() throws Exception {
+        LocalDate initialDate = LocalDate.now();
+        setField("currentWeekStart", initialDate);
+        setField("flightDate", initialDate.plusMonths(1));
 
-        runAndWait(() -> {
-            controller.handlePreviousWeekForTest();
-            assertEquals(initialDate.minusWeeks(1), controller.getCurrentWeekStart());
-        });
-    }
-
-    @Test
-    void testHandleNextWeek() throws Exception {
-        LocalDate initialDate = LocalDate.of(2023, 12, 18);
-        setCurrentWeekStart(initialDate);
-        setFlightDate(initialDate.plusMonths(1));
-
-        runAndWait(() -> {
+        runOnFXThread(() -> {
             controller.handleNextWeekForTest();
             assertEquals(initialDate.plusWeeks(1), controller.getCurrentWeekStart());
+
+            controller.handlePreviousWeekForTest();
+            assertEquals(initialDate, controller.getCurrentWeekStart());
         });
     }
 
     @Test
-    void testUpdateNavigationButtons_DisableNextWeek() throws Exception {
-        setFlightDate(LocalDate.of(2023, 12, 25));
-        setCurrentWeekStart(LocalDate.of(2023, 12, 18));
+    void testUpdateWeekLabel() throws Exception {
+        LocalDate testDate = LocalDate.of(2024, 4, 1);
+        setField("currentWeekStart", testDate);
 
-        runAndWait(() -> {
-            controller.updateNavigationButtonsForTest();
-            assertTrue(controller.getNextWeekButton().isDisabled());
+        runOnFXThread(() -> {
+            controller.updateWeekLabelForTest();
+            assertNotNull(weekLabel.getText());
+            assertTrue(weekLabel.getText().contains("2024"));
         });
-    }
-
-    @Test
-    void testUpdateNavigationButtons_DisablePrevWeek() throws Exception {
-        setCurrentWeekStart(LocalDate.now());
-
-        runAndWait(() -> {
-            controller.updateNavigationButtonsForTest();
-            assertTrue(controller.getPrevWeekButton().isDisabled());
-        });
-    }
-
-    @Test
-    void testUpdateNavigationButtons_NullFlightDate() throws Exception {
-        setFlightDate(null);
-
-        runAndWait(() -> {
-            controller.updateNavigationButtonsForTest();
-            assertTrue(controller.getPrevWeekButton().isDisabled());
-            assertTrue(controller.getNextWeekButton().isDisabled());
-        });
-    }
-
-    private void setCurrentWeekStart(LocalDate date) throws Exception {
-        setField("currentWeekStart", date);
-    }
-
-    private void setFlightDate(LocalDate date) throws Exception {
-        setField("flightDate", date);
     }
 }

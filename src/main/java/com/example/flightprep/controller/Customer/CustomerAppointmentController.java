@@ -25,8 +25,8 @@ import java.util.Locale;
  * This class extends `CustomerController`.
  */
 public class CustomerAppointmentController extends CustomerController {
-    private final AppointmentService appointmentService;
-    private final CustomerService customerService;
+    private AppointmentService appointmentService;
+    private CustomerService customerService;
     private LocalDate currentWeekStart;
     private LocalDate flightDate;
 
@@ -335,6 +335,10 @@ public class CustomerAppointmentController extends CustomerController {
 
     protected void updateNavigationButtonsForTest() {
         updateNavigationButtons();
+    }
+
+    protected void updateWeekLabelForTest() {
+       updateWeekLabel();
     }
 
 }

@@ -29,12 +29,12 @@ public class AppointmentService {
     private final CustomerDAO customerDAO;
 
     /**
-     * Private constructor to enforce Singleton pattern.
+     * Public constructor for `AppointmentService`.
      * Initializes the `AppointmentDAO` and `CustomerDAO` instances.
      */
-    private AppointmentService() {
-        this.appointmentDAO = new AppointmentDAO();
-        this.customerDAO = new CustomerDAO();
+    public AppointmentService(AppointmentDAO appointmentDAO, CustomerDAO customerDAO) {
+        this.appointmentDAO = appointmentDAO;
+        this.customerDAO = customerDAO;
     }
 
     /**
@@ -46,7 +46,7 @@ public class AppointmentService {
         if (instance == null) {
             synchronized (LOCK) {
                 if (instance == null) {
-                    instance = new AppointmentService();
+                    instance = new AppointmentService(AppointmentDAO.getInstance(), CustomerDAO.getInstance());
                 }
             }
         }

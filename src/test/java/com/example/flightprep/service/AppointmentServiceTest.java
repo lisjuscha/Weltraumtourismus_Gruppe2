@@ -1,8 +1,11 @@
 package com.example.flightprep.service;
 
+import com.example.flightprep.BaseServiceTest;
 import com.example.flightprep.dao.AppointmentDAO;
 import com.example.flightprep.dao.CustomerDAO;
+import com.example.flightprep.model.User;
 import com.example.flightprep.util.SessionManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -14,27 +17,24 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class AppointmentServiceTest {
+class AppointmentServiceTest extends BaseServiceTest {
+    @Mock
+    private CustomerDAO customerDAO;
 
     @Mock
     private AppointmentDAO appointmentDAO;
-    @Mock
-    private CustomerDAO customerDAO;
 
     private AppointmentService appointmentService;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
-        appointmentService = AppointmentService.getInstance();
-        // Set mocked DAOs using reflection
-        java.lang.reflect.Field appointmentDAOField = AppointmentService.class.getDeclaredField("appointmentDAO");
-        appointmentDAOField.setAccessible(true);
-        appointmentDAOField.set(appointmentService, appointmentDAO);
+        appointmentService = new AppointmentService(appointmentDAO, customerDAO);
+    }
 
-        java.lang.reflect.Field customerDAOField = AppointmentService.class.getDeclaredField("customerDAO");
-        customerDAOField.setAccessible(true);
-        customerDAOField.set(appointmentService, customerDAO);
+    @AfterEach
+    public void cleanupBaseTest() {
+        SessionManager.setCurrentUser(null);
     }
 
     @Test
@@ -45,8 +45,8 @@ class AppointmentServiceTest {
         String userId = "testUser";
 
         when(SessionManager.getCurrentUserId()).thenReturn(userId);
-        when(customerDAO.getFlightDate(userId)).thenReturn(futureDate.plusDays(31));
-        when(appointmentDAO.isSlotBooked(futureDate, validTime)).thenReturn(false);
+        when(customerDAO.getFlightDate(eq(userId))).thenReturn(futureDate.plusDays(31));
+        when(appointmentDAO.isSlotBooked(eq(futureDate), eq(validTime))).thenReturn(false);
 
         assertTrue(appointmentService.isValidSlot(futureDate, validTime));
     }

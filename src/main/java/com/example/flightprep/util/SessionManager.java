@@ -17,7 +17,7 @@ public class SessionManager {
      * @param user The `User` object representing the logged-in user.
      */
     public static void setCurrentUser(User user) {
-        SessionManager.currentUser = user;
+        currentUser = user;
     }
 
     /**
@@ -35,7 +35,7 @@ public class SessionManager {
      * @return A `String` representing the user ID of the logged-in user.
      */
     public static String getCurrentUserId() {
-        return currentUser.getUserId();
+        return currentUser != null ? currentUser.getUserId() : null;
     }
 
     /**
