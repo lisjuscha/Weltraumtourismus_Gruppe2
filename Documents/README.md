@@ -1,4 +1,4 @@
-# 📄 Dokumente
+# Dokumente
 
 Alle zum Projekt gehörigen Dokumente sind hier und in den folgenden Unterordnern zu finden:
 
@@ -6,5 +6,5 @@ Alle zum Projekt gehörigen Dokumente sind hier und in den folgenden Unterordner
 - **Personas**
 - **Prozessdiagramme**
 
-Bitte navigieren Sie in die jeweiligen Ordner, um die zugehörigen Dateien einzusehen.
+Bitte navigieren Sie in die jeweiligen Ordner, um die zugehörigen Dateien mit jeweiligen Beschreibungen einzusehen.
 
