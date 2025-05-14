@@ -9,4 +9,21 @@ Das gesamte Design haben wir bewusst schlicht und übersichtlich gehalten. Wir v
 
 Auf dieser Seite landet der Kunde, sobald er den Vorbereitungsbereich (Preparation) aufruft. Hier kann er auswählen, ob er den Medical Check, das Training oder das Fitting durchführen möchte. Abhängig von dieser Auswahl werden jeweils unterschiedliche Screens angezeigt, die individuell auf den gewählten Bereich zugeschnitten sind. 
 
-<img width="1306" alt="Bildschirmfoto 2025-05-14 um 11 54 23" src="https://github.com/user-attachments/assets/57492840-ea66-492d-a4ab-35a43ba51a06" />
+<img width="1300" alt="Bildschirmfoto 2025-05-14 um 11 54 23" src="https://github.com/user-attachments/assets/57492840-ea66-492d-a4ab-35a43ba51a06" />
+
+## Absolvieren der Trainings
+
+Um sich auf die Weltraumtrainings vorzubereiten, wählt der Kunde in der Checkliste den Punkt „Online Trainings“ aus. Der erste Punkt auf der Checkliste wird bereits erfüllt, wenn die Gesundheitsdaten des Kunden bei unserem Medical Check hinterlegt wurden. Anschließend werden alle relevanten Trainingsvideos sowie individuell auf den Kunden zugeschnittene Trainingspläne angezeigt. Diese wurden speziell an die persönlichen Bedürfnisse und Voraussetzungen des Kunden angepasst.
+Der große Vorteil: Die Trainings können zeitlich flexibel und ohne feste Termine absolviert werden, sodass sich der Kunde optimal und in seinem eigenen Tempo vorbereiten kann.   
+   
+Zur besseren Orientierung befindet sich unten rechts eine Fortschrittsleiste, die in Prozent anzeigt, wie weit der Trainingsprozess bereits abgeschlossen ist.
+Zusätzlich hat der Kunde die Möglichkeit, seinen Trainingserfolg mit uns zu teilen. Über den Button „Share your training progress with us“ kann er Videos oder andere Dateien hochladen und so seinen Fortschritt dokumentieren.
+
+<img width="1156" alt="Bildschirmfoto 2025-05-14 um 12 20 52" src="https://github.com/user-attachments/assets/17618347-89ef-4ca1-b73a-ae53658aeed3" />
+
+## Wahl des Raumanzugs
+
+Wenn der Kunde den Schritt des Designen des Raumanzug wählt, wird die unten gezeigte Seite geöffnet. Hier hat der Kunde mehrere Optionen für seinen individuellen Raumanzug. Man kann sich den Helm, den Anzug und die Schuhe frei aussuchen. Dafür klickt man jeweils auf das gewünschte Design und ein Häkchen erscheint als Hestätigung in dem Kreis neben dem Motiv.  
+    
+<img width="1300" alt="Bildschirmfoto 2025-05-14 um 12 04 02" src="https://github.com/user-attachments/assets/b25449cf-f223-4848-9f21-b0be090f18eb" />
+
