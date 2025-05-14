@@ -1,4 +1,4 @@
-# UI Mockups
+# UI Mockups Arzt
 
 ## Allgemeine Informationen
 Da wir den Medizin-Check ausimplementiert haben und somit auch alle Prozesse die der Arzt durchläuft, zeigen wir in diesem Abschnitt lediglich das Mockups der Homepage mit entsprechenden Beschreibungen zur besseren Verständlichkeit.
