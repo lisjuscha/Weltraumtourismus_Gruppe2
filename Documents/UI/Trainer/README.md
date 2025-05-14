@@ -11,6 +11,9 @@ Nachdem sich der Trainer sich mit seinen Zugangsdaten im System eineloggt hat, �
 
 ## Fluggenehmigung
 
-Wenn er nun auf Flight Permit in der Toolbar klickt, gelangt er zu der Seite wo er die Genehmigungen für die Kunden ausstellen kann, in denen er sie aus Trainingssicht für Flugbereit erklärt. Diese benötigen die Kunden um ihre Checkliste zu vervollständigen.
+Wenn der Trainer in der Toolbar auf Flight Permit klickt, wird er zur entsprechenden Seite weitergeleitet, auf der er die Genehmigungen für die Kund:innen ausstellen kann.
+Dort erklärt er aus trainingsbezogener Sicht, ob eine Person als flugbereit gilt. Diese Bestätigung ist notwendig, damit die Kund:innen ihre Checkliste vollständig abschließen können. Sobald der Trainer auf den Button „Send flight permit to customer“ klickt, überprüft das System, ob alle erforderlichen Felder ausgefüllt wurden. Fehlen Angaben, erscheint eine Warnmeldung. Ist die Genehmigung erfolgreich übermittelt, erhält der Trainer ein Bestätigungspopup als Rückmeldung.
 
-<img width="900" alt="Flightpermit" src="https://github.com/user-attachments/assets/5e8bb3ac-f51b-4d35-93e4-87817a69ebf6" />
+<img width="1300" alt="Bildschirmfoto 2025-05-14 um 17 57 13" src="https://github.com/user-attachments/assets/743b3848-763f-4394-9645-65d624cf19af" />
+
+
