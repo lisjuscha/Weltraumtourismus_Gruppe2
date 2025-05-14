@@ -19,7 +19,7 @@ Verzeichnis der wichtigsten Dateien Wir möchten Ihnen ein Verzeichnis der Datei
 *1.1.1 Prozesse*   
 Um eine Software zur Flugvorbereitung in den Weltraumn effektiv zu entwickeln, müssen wir zunächst die wichtigsten Prozesse und Softwareelemente modellieren.
 Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner Documents/BPMN.   
-Eine ausführliche Erläuterung dazu finden Sie in der Datei Documents/BPMN/README.md.
+Eine ausführliche Erläuterung dazu finden Sie in der Datei https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/686ce58a3d2e6ebcade29221d088397603dd6806/Documents/Prozessdiagramme.
      
 *1.1.2 Datenmodell*  
 Das Datenmodell, das die Struktur unserer Datenbank abbildet - einschließlich der Gesundheitsdaten der Tourist*innen und relevanter Verwaltungsinformationen - ist im Ordner data/FlightPreperation.db hinterlegt.   
