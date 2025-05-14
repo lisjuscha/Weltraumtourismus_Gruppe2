@@ -3,6 +3,12 @@
 ## Allgemeine Informationen
 Da wir bislang ausschließlich den Medizin-Check implementiert haben, zeigen wir in diesem Abschnitt die Mockups unseres Programms mit entsprechenden Beschreibungen zur besseren Verständlichkeit. Die Seite enthält alle UI-Elemente und Frameworks, die den jeweiligen Schritten entsprechen, die ein Kunde durchläuft. 
 
+## Homepage
+
+Nach dem Login mit den persönlichen Nutzerdaten landet der Kunde auf der Homepage. Hier werden verschiedene Funktionen angeboten: Zum einen besteht die Möglichkeit, die eigene Reise weiter zu individualisieren. Zudem können Videos von früheren Reisen angesehen werden – ein Element, das die Vorfreude deutlich steigert und einen emotionalen Einstieg bietet. Von der Homepage aus gelangt man außerdem direkt zu den zentralen Bereichen: Medical Check, Training und Fitting. Auch Kundenbewertungen sind hier eingebunden. Sie unterstreichen nicht nur die Qualität unseres Angebots, sondern vermitteln zusätzlich ein Gefühl von Sicherheit und Vertrauen.
+
+<img width="900" alt="Homepage-Customer" src="https://github.com/user-attachments/assets/8b73076c-0902-477d-8961-ad7e6b7ce290" />
+
 ## Preparation Landing Page
 
 Auf dieser Seite landet der Kunde, sobald er den Vorbereitungsbereich (Preparation) aufruft. Hier kann er auswählen, ob er den Medical Check, das Training oder das Fitting durchführen möchte. Abhängig von dieser Auswahl werden jeweils unterschiedliche Screens angezeigt, die individuell auf den gewählten Bereich zugeschnitten sind. 
