@@ -81,11 +81,15 @@ Um das Programm ohne Probleme nutzen zu können, haben wir eine ausführliche Do
 User-Dokumentation Arzt: [Documents/User-Dokumentation-Arzt.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc7d398943869b6fd1280bf46186e04b863fcedb/Documents/User-Dokumentation-Arzt.md)  
 User-Dokumentation Kunde: [Documents/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/f22f387388eba4a3bc88c9b41b4566ca3faf3069/Documents/User-Dokumentation-Kunde.md)
 
-# hallo
+# Mehrwert unserer Anwendung
 
-*Mehrwert*
+*Mehrwert*   
 
-*Unterscheidungsmerkmale*
+Im Mittelpunkt steht ein Astronautentraining, das nicht nur spannend ist, sondern gezielt auf eine realistische Vorbereitung ausgerichtet wurde. Durch den Einsatz realistischer Simulationen entsteht eine eindrucksvolle Erfahrung, die gleichzeitig das Sicherheitsgefühl stärkt. Anstelle von Nervosität rückt ein Gefühl der Kontrolle und Vorfreude in den Vordergrund – eine wichtige Voraussetzung für jede Reise ins All. Die Struktur unseres Programms ist datenbasiert und darauf ausgelegt, möglichst effizient zu funktionieren: Der Aufwand für Teilnehmende bleibt gering, der Ressourceneinsatz bewusst minimal – bei gleichbleibend hoher Qualität.Besonderes Augenmerk legen wir auf die individuelle Anpassung: Alle Maßnahmen – vom Trainingsablauf bis zur persönlichen Betreuung – werden auf die jeweiligen Voraussetzungen und Bedürfnisse abgestimmt. Auf diese Weise entsteht ein Training, das nicht standardisiert, sondern persönlich und nachvollziehbar ist – ein Prozess, der Orientierung bietet und gleichzeitig Raum lässt für eigene Entwicklungen.
+   
+*Unterscheidungsmerkmale*    
+   
+Unsere Stärke liegt in der Verbindung mehrerer Elemente: eine eigene Infrastruktur, moderne Lernmethoden und individuell gestaltbare Erlebnisse.  Die Vorbereitung ist bewusst hybrid aufgebaut – digital und vor Ort. Der Einstieg erfolgt über medizinische Checks und interaktive Online-Trainings. Die praktische Vertiefung findet anschließend direkt in unserem eigenen Spaceport statt. Im Bereich Bildung setzen wir auf ein Konzept, das Information mit Erlebnis verbindet: Edutainment. Durch Augmented-Reality-Module, Apps und interaktive Inhalte wird Raumfahrtwissen greifbar – verständlich, spannend und immersiv. Auch in diesem Bereich spielt die Personalisierung eine zentrale Rolle: Vom maßgeschneiderten Raumanzug bis hin zu kleinen, persönlichen Details wie Lieblingsmusik oder Erinnerungsstücken – individuelle Identität wird nicht nur berücksichtigt, sondern bewusst sichtbar gemacht. Und selbst Wünsche wie eine eigene Flagge im Cockpit sind bei uns möglich.
 
 # 5. Präsentation
 Die Präsentation befindet sich hier: [Documents/Presentation](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/b5eb7e25f669e37e63cc42af3bb3bf08cdf62b3d/Documents/Presentation/Flight%20Preparation%20-%20Gruppe%202.pptx)
