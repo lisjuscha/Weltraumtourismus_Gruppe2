@@ -97,7 +97,7 @@ public class CustomerDAO {
      * @throws SQLException If a database access error occurs or the risk group is not updated.
      */
     public void updateCustomerRiskGroup(String userId, int riskGroup) throws SQLException {
-        String sql = "UPDATE Customer SET risk_group = ? WHERE user_id = ?"; 
+        String sql = "UPDATE Customer SET risk_group = ? WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -117,7 +117,7 @@ public class CustomerDAO {
      * @throws SQLException If a database access error occurs or the status is not updated.
      */
     public void updateFileUploadStatus(String userId) throws SQLException {
-        String sql = "UPDATE Customer SET file_uploaded = TRUE WHERE user_id = ?"; 
+        String sql = "UPDATE Customer SET file_uploaded = TRUE WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -136,7 +136,7 @@ public class CustomerDAO {
      * @throws SQLException If a database access error occurs or the status is not updated.
      */
     public void updateAppointmentStatus(String userId) throws SQLException {
-        String sql = "UPDATE Customer SET appointment_made = TRUE WHERE user_id = ?"; 
+        String sql = "UPDATE Customer SET appointment_made = TRUE WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, userId);
@@ -248,15 +248,18 @@ public class CustomerDAO {
      */
     public void updateFlightDate(String userId, LocalDate newFlightDate) throws SQLException {
         String sql = "UPDATE Customer SET flight_date = ? WHERE user_id = ?";
-
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setString(1, newFlightDate.format(DATE_FORMATTER));
+            if (newFlightDate != null) {
+                stmt.setString(1, newFlightDate.format(DATE_FORMATTER));
+            } else {
+                stmt.setNull(1, java.sql.Types.VARCHAR);
+            }
             stmt.setString(2, userId);
 
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows == 0) {
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
                 throw new SQLException("Flight date could not be updated for customer: " + userId);
             }
             connection.commit();
@@ -281,8 +284,8 @@ public class CustomerDAO {
                 rs.getBoolean("form_submitted"),
                 rs.getBoolean("appointment_made"),
                 rs.getBoolean("file_uploaded"),
-                rs.getString("flight_date"),
+                rs.getString("flight_date"), // This will be a formatted string "dd.MM.yyyy" or null
                 rs.getInt("risk_group")
         );
     }
-}
+} // End of class

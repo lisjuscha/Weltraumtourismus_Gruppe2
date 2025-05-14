@@ -13,6 +13,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -61,8 +62,7 @@ public class DocPatientsController extends DocController implements Initializabl
             {
                 button.getStyleClass().add("view-details-button");
                 button.setOnAction(event -> {
-                    Customer customer = getTableView().getItems().get(getIndex());
-                    openPatientSummary(customer.getUserId(), event);
+                    handleSummaryButtonAction(this, event);
                 });
             }
 
@@ -81,12 +81,31 @@ public class DocPatientsController extends DocController implements Initializabl
     }
 
     /**
+     * Handles the action for the summary button in a table cell.
+     * Retrieves the customer for the cell and opens their summary view.
+     *
+     * @param cell The table cell where the action originated.
+     * @param event The action event.
+     */
+    void handleSummaryButtonAction(TableCell<Customer, Void> cell, ActionEvent event) {
+        if (cell != null && cell.getTableView() != null && cell.getTableView().getItems() != null) {
+            Customer customer = cell.getTableView().getItems().get(cell.getIndex());
+            if (customer != null) {
+                openPatientSummary(customer.getUserId(), event);
+            }
+        } else {
+            // Handle cases where cell, tableview or items might be null, perhaps log or show an error
+            System.err.println("Could not retrieve customer from cell context for summary action.");
+        }
+    }
+
+    /**
      * Opens the summary view for a specific patient.
      *
-     * @param customerId The ID of the customer whose summary is to be displayed.
+     * @param customerId The ID of the customer whose summary is to be opened.
      * @param event The `ActionEvent` triggered by the button click.
      */
-    private void openPatientSummary(String customerId, javafx.event.ActionEvent event) {
+    private void openPatientSummary(String customerId, ActionEvent event) {
         try {
             String fxmlFile = "/com/example/flightprep/DocScreens/DocPatientSummary.fxml";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));

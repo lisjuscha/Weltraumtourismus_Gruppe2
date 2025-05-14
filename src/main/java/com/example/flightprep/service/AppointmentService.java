@@ -90,6 +90,10 @@ public class AppointmentService {
         String userId = SessionManager.getCurrentUserId();
         LocalDate flightDate = customerDAO.getFlightDate(userId);
 
+        if (flightDate == null) {
+            return false;
+        }
+
         boolean isPastDateTime = date.isBefore(today) ||
                 (date.isEqual(today) && slotTime.isBefore(currentTime));
         boolean isAfterMaxDate = date.isAfter(flightDate.minusDays(30));
@@ -187,7 +191,7 @@ public class AppointmentService {
      * @throws SQLException If a database access error occurs.
      */
     public Appointment getAppointmentByCustomerId(String customerId) throws SQLException {
-        synchronized (LOCK) { 
+        synchronized (LOCK) {
             return appointmentDAO.getAppointmentByCustomerId(customerId);
         }
     }

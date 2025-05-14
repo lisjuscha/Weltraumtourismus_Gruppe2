@@ -51,6 +51,40 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+        <!-- javafx-base und javafx-graphics werden normalerweise transitiv durch javafx-controls geholt.
+             Entferne die expliziten plattformspezifischen javafx-graphics Deklarationen für den Test-Scope,
+             da diese Konflikte verursachen könnten. -->
+        <!--
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        -->
+        <!-- Entfernt, da konfliktreich und wahrscheinlich nicht korrekt konfiguriert
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>mac</classifier>
+            <scope>test</scope>
+        </dependency>
+        -->
+        <!-- Auskommentiert wegen Versionskonflikt (21.0.1 vs 17.0.15) und um Komplexität zu reduzieren
+         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>21.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        -->
 
         <!-- JUnit -->
         <dependency>
@@ -84,6 +118,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>5.2.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -136,7 +176,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <argLine>@{argLine} --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.reflect=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.beans=ALL-UNNAMED --add-modules javafx.controls,javafx.graphics,javafx.fxml</argLine>
+                    <argLine>@{argLine} --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.reflect=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.beans=ALL-UNNAMED --add-modules javafx.controls,javafx.graphics,javafx.fxml --add-opens javafx.controls/javafx.scene.control=com.example.flightprep</argLine>
                 </configuration>
             </plugin>
             <plugin>

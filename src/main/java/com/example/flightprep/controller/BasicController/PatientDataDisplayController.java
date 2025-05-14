@@ -41,7 +41,7 @@ public abstract class PatientDataDisplayController extends DocController {
      *
      * @param data The `MedicalData` object containing the patient's medical information.
      */
-    protected void updateUI(MedicalData data) {
+    public void updateUI(MedicalData data) {
         if (data == null) {
             showError("Error", "No patient data found");
             return;

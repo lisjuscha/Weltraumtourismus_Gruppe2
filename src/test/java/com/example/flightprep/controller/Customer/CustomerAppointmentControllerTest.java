@@ -1,5 +1,6 @@
 package com.example.flightprep.controller.Customer;
 
+import com.example.flightprep.controller.Doctor.DocCalendarControllerTest;
 import com.example.flightprep.service.AppointmentService;
 import com.example.flightprep.service.CustomerService;
 import com.example.flightprep.util.SessionManager;
@@ -46,10 +47,20 @@ class CustomerAppointmentControllerTest {
     // Initialize JavaFX toolkit
     @BeforeAll
     public static void setupJavaFX() throws Exception {
-        CountDownLatch latch = new CountDownLatch(1);
-        Platform.startup(latch::countDown);
-        if (!latch.await(5, TimeUnit.SECONDS)) {
-            throw new ExceptionInInitializerError("JavaFX initialization failed");
+        if (!DocCalendarControllerTest.fxInitialized) {
+            CountDownLatch latch = new CountDownLatch(1);
+            try {
+                Platform.startup(() -> {
+                    latch.countDown();
+                    DocCalendarControllerTest.fxInitialized = true;
+                });
+                if (!latch.await(5, TimeUnit.SECONDS)) {
+                    throw new ExceptionInInitializerError("JavaFX Platform.startup() timed out in CustomerAppointmentControllerTest.");
+                }
+            } catch (IllegalStateException e) {
+                System.out.println("JavaFX Platform was already initialized (detected in CustomerAppointmentControllerTest).");
+                DocCalendarControllerTest.fxInitialized = true;
+            }
         }
     }
 

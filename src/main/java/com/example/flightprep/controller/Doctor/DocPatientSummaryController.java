@@ -28,13 +28,24 @@ import java.util.Optional;
  */
 public class DocPatientSummaryController extends PatientDataDisplayController {
     private String currentPatientId;
-    private final CustomerService customerService;
+    private CustomerService customerService;
     @FXML private ListView<String> documentsListView;
 
     /**
-     * Constructs a new `DocPatientSummaryController` and initializes the `CustomerService` instance.
+     * Constructs a new `DocPatientSummaryController` with a given CustomerService.
+     * This constructor is primarily for testing purposes to allow injection of a mock service.
+     *
+     * @param customerService The CustomerService instance to use.
+     */
+    public DocPatientSummaryController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    /**
+     * Default constructor for FXML. Initializes the `CustomerService` instance using getInstance().
      */
     public DocPatientSummaryController() {
+        // This will be used by FXML loader. Tests should use the constructor that injects the mock.
         this.customerService = CustomerService.getInstance();
     }
 
@@ -90,7 +101,7 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
      *
      * @param file The file to be opened.
      */
-    private void openFile(File file) {
+    /*private*/ void openFile(File file) {
         if (!file.exists()) {
             showError("Error", "File does not exist: " + file.getPath());
             return;
@@ -135,7 +146,7 @@ public class DocPatientSummaryController extends PatientDataDisplayController {
      *
      * @return A `Dialog` object configured for flight clearance declaration.
      */
-    private Dialog<Pair<Boolean, String>> createDeclarationDialog() {
+    /*package-private*/ Dialog<Pair<Boolean, String>> createDeclarationDialog() {
         Dialog<Pair<Boolean, String>> dialog = new Dialog<>();
         dialog.setTitle("Flight clearance");
         dialog.setHeaderText("Please confirm the flight clearance for the patient.");
