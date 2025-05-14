@@ -102,7 +102,7 @@ Unsere Stärke liegt in der Verbindung mehrerer Elemente: eine eigene Infrastruk
 # 5. Präsentation
 Die Präsentation befindet sich hier: [Documents/Presentation](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/b5eb7e25f669e37e63cc42af3bb3bf08cdf62b3d/Documents/Presentation/Flight%20Preparation%20-%20Gruppe%202.pptx)
 
-Noch Fragen?
+# Noch Fragen?
 Bitte kontaktieren Sie uns bei weiteren Fragen direkt:
 DanielJusto.BlazquezPerez@studmail.hwg-lu.de
 LucAlex.Hampele@studmail.hwg-lu.de
