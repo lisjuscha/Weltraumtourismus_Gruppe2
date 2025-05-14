@@ -1,6 +1,6 @@
 # Gruppenprojekt:
 
-<img width="900" alt="Bildschirmfoto 2025-05-13 um 17 19 02" src="https://github.com/user-attachments/assets/f5b897e5-b129-469d-932b-9390bf2f0f0e" />
+![image](https://github.com/user-attachments/assets/21a6c44c-2092-4c24-8d7c-811c3bbbff62)
 
 HWG Ludwigshafen IBAIT23 ATdIT 2, Projekt Gruppe 2
 
