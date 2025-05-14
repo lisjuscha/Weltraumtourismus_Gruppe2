@@ -79,7 +79,7 @@ Programm starten
 *3.1 User-Dokumentation*
 Um das Programm ohne Probleme nutzen zu können, haben wir eine ausführliche Dokumentation mit sowohl Bildern als auch Texten erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:  
     
-User-Dokumentation Arzt: [Documents/Dokumentationen/User-Dokumentation-Arzt.md]((https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Arzt.md))
+User-Dokumentation Arzt: [Documents/Dokumentationen/User-Dokumentation-Arzt.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Arzt.md)      
 User-Dokumentation Kunde: [Documents/Dokumentationen/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Kunde.md)  
   
 *3.2 Technische Dokumentation*
