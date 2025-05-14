@@ -42,7 +42,7 @@ Personas: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumt
 *2.1 Codeübersicht und Dateistruktur*   
    
 Der Quellcode unseres Projekts befindet sich im Verzeichnis Code/“placeholder“.  
-In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Code-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
+In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Dokumente-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
 
 *2.2 Projektumfang*   
    
@@ -66,7 +66,7 @@ Repository klonen – Fügen Sie folgende URL in das URL-Feld ein:
 3. Klicken Sie auf "Clone" – unten rechts.   
 4. Projekt vertrauen – Klicken Sie im erscheinenden Popup auf "Trust the Project".   
 
-Projekt laden  ##UNFERTIG
+## UNFERTIG ## Projekt laden  
   
 1. Maven Build Script laden – Beim Öffnen des Projekts erscheint rechts unten ein Popup: "Maven build script found". Klicken Sie auf "Load" und warten Sie, bis der Ladebalken verschwindet.  
 2. Projekt-JDK einrichten 
@@ -82,8 +82,8 @@ Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 *3.1 User-Dokumentation*
 Um das Programm ohne Probleme nutzen zu können, haben wir eine ausführliche Dokumentation mit sowohl Bildern als auch Texten erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:  
     
-User-Dokumentation Arzt: [Documents/User-Dokumentation-Arzt.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc7d398943869b6fd1280bf46186e04b863fcedb/Documents/User-Dokumentation-Arzt.md)  
-User-Dokumentation Kunde: [Documents/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/f22f387388eba4a3bc88c9b41b4566ca3faf3069/Documents/User-Dokumentation-Kunde.md)
+User-Dokumentation Arzt: [Documents/Dokumentationen/User-Dokumentation-Arzt.md]((https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Arzt.md))  
+User-Dokumentation Kunde: [Documents/Dokumentationen/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Kunde.md))
 
 *3.2 Technische Dokumentation*
 
