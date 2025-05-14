@@ -37,6 +37,10 @@ public class DocCalendarController extends DocController implements Initializabl
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final AppointmentService appointmentService ;
 
+    /**
+     * Constructs a new `DocCalendarController` instance.
+     * Initializes the `AppointmentService` for managing appointment data.
+     */
     public DocCalendarController() {
         this.appointmentService = AppointmentService.getInstance();
     }

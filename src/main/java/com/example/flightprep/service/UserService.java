@@ -13,9 +13,8 @@ public class UserService {
     private static final Object LOCK = new Object();
 
     /**
-     * The `UserService` class provides business logic for managing user-related operations
-     * in the Flight Preparation application. It handles tasks such as user authentication
-     * by verifying credentials against the database.
+     * Constructs a new `UserService` instance.
+     * Initializes the `UserDAO` for accessing user data from the database.
      */
     public UserService() {
         this.userDAO = new UserDAO();

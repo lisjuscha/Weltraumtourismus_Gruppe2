@@ -238,7 +238,7 @@ public class CustomerAppointmentController extends CustomerController {
                 try {
                     appointmentService.bookAppointment(date, time);
                     showSuccess("Booking Success", "Appointment booked successfully!");
-                    SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerPrep1.fxml", scene);
+                    SceneSwitcher.switchScene("/com/example/flightprep/CustomerScreens/CustomerCalendar.fxml", scene);
                 } catch (SQLException e) {
                     showError("Booking Error", "Failed to book appointment: " + e.getMessage());
                 } catch (IOException e) {

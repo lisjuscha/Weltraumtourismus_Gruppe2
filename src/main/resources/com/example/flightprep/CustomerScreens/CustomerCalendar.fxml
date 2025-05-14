@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerHomeController" stylesheets="@../Stylesheets/Prep.css">
+<BorderPane prefHeight="433.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flightprep.controller.Customer.CustomerCalendarController" stylesheets="@../Stylesheets/Prep.css">
 
     <!-- SIDEBAR -->
     <left>
@@ -29,7 +29,10 @@
         </VBox>
     </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="10" right="20" bottom="10" left="20" />
+         </padding>
          <children>
               <ToolBar style="-fx-background-color: #ffffff; -fx-padding: 10;">
                <HBox alignment="CENTER">
@@ -38,6 +41,54 @@
                   </children>
                </HBox>
               </ToolBar>
+
+              <!-- Medical Appointment Box -->
+              <VBox spacing="8" style="-fx-border-color: #cccccc; -fx-border-width: 1px; -fx-border-radius: 5; -fx-padding: 15;">
+                  <children>
+                      <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Medical Appointment" />
+                      <HBox spacing="5">
+                          <children>
+                              <Label text="Date:" minWidth="60"/>
+                              <Label fx:id="appointmentDateLabel" text="Not booked" />
+                          </children>
+                      </HBox>
+                      <HBox spacing="5">
+                          <children>
+                              <Label text="Time:" minWidth="60"/>
+                              <Label fx:id="appointmentTimeLabel" text="-" />
+                          </children>
+                      </HBox>
+                      <HBox spacing="5">
+                          <children>
+                              <Label text="Doctor:" minWidth="60"/>
+                              <Label fx:id="appointmentDoctorLabel" text="-" />
+                          </children>
+                      </HBox>
+                      <Button fx:id="changeAppointmentButton" text="Change Appointment" onAction="#handleChangeAppointment" styleClass="standard-button">
+                          <VBox.margin>
+                              <Insets top="10.0" />
+                          </VBox.margin>
+                      </Button>
+                  </children>
+              </VBox>
+
+              <!-- Flight Information Box -->
+              <VBox spacing="8" style="-fx-border-color: #cccccc; -fx-border-width: 1px; -fx-border-radius: 5; -fx-padding: 15;">
+                  <children>
+                      <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Flight Information" />
+                      <HBox spacing="5">
+                          <children>
+                              <Label text="Flight Date:" minWidth="80"/>
+                              <Label fx:id="flightDateLabel" text="-" />
+                          </children>
+                      </HBox>
+                      <Button fx:id="changeFlightDateButton" text="Change Flight Date" styleClass="standard-button" onAction="#handleChangeFlightDate" disable="false">
+                          <VBox.margin>
+                              <Insets top="10.0" />
+                          </VBox.margin>
+                      </Button>
+                  </children>
+              </VBox>
          </children>
       </VBox>
    </center>

@@ -3,6 +3,7 @@ package com.example.flightprep.service;
 import com.example.flightprep.dao.CustomerDAO;
 import com.example.flightprep.dao.MedicalDataDAO;
 import com.example.flightprep.dao.UserDAO;
+import com.example.flightprep.model.Appointment;
 import com.example.flightprep.model.Customer;
 import com.example.flightprep.model.MedicalData;
 import com.example.flightprep.util.RiskClassifierAI;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -180,6 +182,41 @@ public class CustomerService {
     public LocalDate getFlightDate(String userId) throws SQLException {
         synchronized (LOCK) {
             return customerDAO.getFlightDate(userId);
+        }
+    }
+
+    /**
+     * Updates the flight date for a customer after validating business rules.
+     *
+     * @param userId The ID of the customer.
+     * @param newFlightDate The new flight date.
+     * @throws SQLException If a database error occurs.
+     * @throws IllegalArgumentException If the new flight date violates business rules.
+     */
+    public void updateFlightDateWithValidation(String userId, LocalDate newFlightDate) throws SQLException, IllegalArgumentException {
+        if (newFlightDate == null) {
+            throw new IllegalArgumentException("New flight date cannot be null.");
+        }
+        if (newFlightDate.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Flight date cannot be in the past.");
+        }
+
+        // Fetch the customer's current appointment
+        AppointmentService appointmentService = AppointmentService.getInstance(); // Consider injecting or having as member
+        Appointment appointment = appointmentService.getAppointmentByCustomerId(userId);
+
+        if (appointment != null && appointment.getDate() != null && !appointment.getDate().isEmpty()) {
+            DateTimeFormatter appointmentDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy"); // Assuming this format from Appointment model
+            LocalDate appointmentDate = LocalDate.parse(appointment.getDate(), appointmentDateFormatter);
+
+            if (!newFlightDate.isAfter(appointmentDate.plusDays(29))) { // newFlightDate must be at least 30 days AFTER appointmentDate
+                throw new IllegalArgumentException("Flight date must be at least 30 days after your medical appointment date (" + appointment.getDate() + ").");
+            }
+        }
+
+        // All checks passed, update the flight date
+        synchronized (LOCK) {
+            customerDAO.updateFlightDate(userId, newFlightDate);
         }
     }
 }

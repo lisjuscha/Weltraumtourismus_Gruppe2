@@ -3,7 +3,7 @@ package com.example.flightprep.controller.Customer;
 import com.example.flightprep.controller.BasicController.CustomerController;
 import com.example.flightprep.model.MedicalData;
 import com.example.flightprep.service.CustomerService;
-import com.example.flightprep.util.RadioButoonReader;
+import com.example.flightprep.util.RadioButtonReader;
 import com.example.flightprep.util.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,8 +121,8 @@ public class CustomerSurveyController extends CustomerController {
                 weightTextField.getText(),
                 alcoholComboBox.getValue(),
                 smokeComboBox.getValue(),
-                RadioButoonReader.getToggleGroupBoolean(trainingGroup),
-                RadioButoonReader.getToggleGroupBoolean(disabilityGroup),
+                RadioButtonReader.getToggleGroupBoolean(trainingGroup),
+                RadioButtonReader.getToggleGroupBoolean(disabilityGroup),
                 disabilityTextArea.getText(),
                 heartDiseaseCheckBox.isSelected(),
                 bloodPreasureCheckBox.isSelected(),
@@ -132,12 +132,12 @@ public class CustomerSurveyController extends CustomerController {
                 lungDiseaseCheckBox.isSelected(),
                 seizureCheckBox.isSelected(),
                 neurologicalChechBox.isSelected(),
-                RadioButoonReader.getToggleGroupBoolean(cardioGroup),
-                RadioButoonReader.getToggleGroupBoolean(lungGroup),
-                RadioButoonReader.getToggleGroupBoolean(medicationGroup),
-                RadioButoonReader.getToggleGroupBoolean(allergieGroup),
-                RadioButoonReader.getToggleGroupBoolean(surgeryGroup),
-                RadioButoonReader.getToggleGroupBoolean(injuryGroup)
+                RadioButtonReader.getToggleGroupBoolean(cardioGroup),
+                RadioButtonReader.getToggleGroupBoolean(lungGroup),
+                RadioButtonReader.getToggleGroupBoolean(medicationGroup),
+                RadioButtonReader.getToggleGroupBoolean(allergieGroup),
+                RadioButtonReader.getToggleGroupBoolean(surgeryGroup),
+                RadioButtonReader.getToggleGroupBoolean(injuryGroup)
         );
     }
 

@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class CustomerDAO {
     private final DatabaseConnection databaseConnection;
+    private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     /**
      * Constructs a `CustomerDAO` instance and initializes the database connection.
@@ -25,17 +26,17 @@ public class CustomerDAO {
     }
 
     /**
-     * Retrieves a list of customers who have uploaded files, ordered by their flight date.
+     * Retrieves a list of customers who have uploaded files and have no declaration yet, ordered by their flight date.
      *
-     * @return A list of `Customer` objects with uploaded files.
+     * @return A list of `Customer` objects.
      * @throws SQLException If a database access error occurs.
      */
     public List<Customer> findAllWithUploadedFiles() throws SQLException {
         String sql = "SELECT u.user_id, u.password, c.first_name, c.last_name, c.email, " +
                 "c.form_submitted, c.appointment_made, c.file_uploaded, c.flight_date, c.risk_group " +
                 "FROM User u " +
-                "JOIN Customer c ON u.user_id = c.user_id AND c.declaration IS NULL " +
-                "WHERE c.file_uploaded = 1 " +
+                "JOIN Customer c ON u.user_id = c.user_id " +
+                "WHERE c.file_uploaded = 1 AND c.declaration IS NULL " +
                 "ORDER BY c.flight_date ASC";
 
         List<Customer> customers = new ArrayList<>();
@@ -46,7 +47,6 @@ public class CustomerDAO {
             while (rs.next()) {
                 customers.add(mapCustomer(rs));
             }
-            connection.commit();
         }
         return customers;
     }
@@ -57,7 +57,7 @@ public class CustomerDAO {
      * @param userId    The ID of the customer.
      * @param isApproved The approval status of the declaration.
      * @param comment   The comment associated with the declaration.
-     * @throws SQLException If a database access error occurs.
+     * @throws SQLException If a database access error occurs or no data is updated.
      */
     public void saveDeclaration(String userId, boolean isApproved, String comment) throws SQLException {
         String sql = "UPDATE Customer SET declaration = ?, declaration_comment = ? WHERE user_id = ?";
@@ -81,18 +81,17 @@ public class CustomerDAO {
      *
      * @param userId    The ID of the customer.
      * @param riskGroup The risk group to set.
-     * @throws SQLException If a database access error occurs.
+     * @throws SQLException If a database access error occurs or the risk group is not updated.
      */
-
     public void updateCustomerRiskGroup(String userId, int riskGroup) throws SQLException {
-        String sql = "UPDATE customer SET risk_group = ? WHERE user_id = ?";
+        String sql = "UPDATE Customer SET risk_group = ? WHERE user_id = ?"; 
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, riskGroup);
             stmt.setString(2, userId);
             if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Risk group could not be updated");
+                throw new SQLException("Risk group could not be updated.");
             }
             connection.commit();
         }
@@ -102,16 +101,16 @@ public class CustomerDAO {
      * Updates the file upload status of a specific customer to true.
      *
      * @param userId The ID of the customer.
-     * @throws SQLException If a database access error occurs.
+     * @throws SQLException If a database access error occurs or the status is not updated.
      */
     public void updateFileUploadStatus(String userId) throws SQLException {
-        String sql = "UPDATE customer SET file_uploaded = true WHERE user_id = ?";
+        String sql = "UPDATE Customer SET file_uploaded = TRUE WHERE user_id = ?"; 
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, userId);
             if (stmt.executeUpdate() == 0) {
-                throw new SQLException("Customer could not be updated");
+                throw new SQLException("Customer file upload status could not be updated.");
             }
             connection.commit();
         }
@@ -121,10 +120,10 @@ public class CustomerDAO {
      * Updates the appointment status of a specific customer to true.
      *
      * @param userId The ID of the customer.
-     * @throws SQLException If a database access error occurs.
+     * @throws SQLException If a database access error occurs or the status is not updated.
      */
     public void updateAppointmentStatus(String userId) throws SQLException {
-        String sql = "UPDATE customer SET has_appointment = TRUE WHERE user_id = ?";
+        String sql = "UPDATE Customer SET appointment_made = TRUE WHERE user_id = ?"; 
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, userId);
@@ -144,15 +143,13 @@ public class CustomerDAO {
      * @throws SQLException If a database access error occurs.
      */
     public boolean getAppointmentStatus(String userId) throws SQLException {
-        String sql = "SELECT appointment_made FROM customer WHERE user_id = ?";
+        String sql = "SELECT appointment_made FROM Customer WHERE user_id = ?";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
-                boolean status = rs.next() && rs.getBoolean("appointment_made");
-                connection.commit();
-                return status;
+                return rs.next() && rs.getBoolean("appointment_made");
             }
         }
     }
@@ -192,9 +189,7 @@ public class CustomerDAO {
 
             stmt.setString(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
-                boolean status = rs.next() && rs.getBoolean("form_submitted");
-                connection.commit();
-                return status;
+                return rs.next() && rs.getBoolean("form_submitted");
             }
         }
     }
@@ -215,12 +210,16 @@ public class CustomerDAO {
             stmt.setString(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    LocalDate date = LocalDate.parse(
-                            rs.getString("flight_date"),
-                            DateTimeFormatter.ofPattern("dd.MM.yyyy")
-                    );
-                    connection.commit();
-                    return date;
+                    String dateStr = rs.getString("flight_date");
+                    if (dateStr != null && !dateStr.isEmpty()) {
+                        try {
+                            return LocalDate.parse(dateStr, DATE_FORMATTER);
+                        } catch (java.time.format.DateTimeParseException e) {
+                            // Log error or handle invalid date format in DB
+                            System.err.println("Invalid date format in DB for user " + userId + ": " + dateStr);
+                            return null;
+                        }
+                    }
                 }
             }
         }
@@ -228,7 +227,32 @@ public class CustomerDAO {
     }
 
     /**
+     * Updates the flight date for a specific customer.
+     *
+     * @param userId The ID of the customer.
+     * @param newFlightDate The new flight date to set.
+     * @throws SQLException If a database access error occurs.
+     */
+    public void updateFlightDate(String userId, LocalDate newFlightDate) throws SQLException {
+        String sql = "UPDATE Customer SET flight_date = ? WHERE user_id = ?";
+
+        try (Connection connection = databaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, newFlightDate.format(DATE_FORMATTER));
+            stmt.setString(2, userId);
+
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Flight date could not be updated for customer: " + userId);
+            }
+            connection.commit();
+        }
+    }
+
+    /**
      * Maps a `ResultSet` to a `Customer` object.
+     * Expects all necessary columns to be present in the ResultSet.
      *
      * @param rs The `ResultSet` containing customer data.
      * @return A `Customer` object.

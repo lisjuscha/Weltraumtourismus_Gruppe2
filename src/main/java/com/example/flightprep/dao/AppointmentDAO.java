@@ -1,6 +1,5 @@
 package com.example.flightprep.dao;
 
-
 import com.example.flightprep.database.DatabaseConnection;
 import com.example.flightprep.database.DatabaseFactory;
 import com.example.flightprep.model.Appointment;
@@ -21,12 +20,14 @@ import java.util.List;
  */
 public class AppointmentDAO {
     private final DatabaseConnection databaseConnection;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
+    /**
+     * Constructs an `AppointmentDAO` instance and initializes the database connection.
+     */
     public AppointmentDAO() {
         this.databaseConnection = DatabaseFactory.getDatabase();
     }
-
 
     /**
      * Checks if a specific time slot on a given date is already booked.
@@ -41,12 +42,10 @@ public class AppointmentDAO {
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setString(1, date.format(formatter));
+            stmt.setString(1, date.format(DATE_FORMATTER));
             stmt.setString(2, time);
-            try (ResultSet rs = stmt.executeQuery()) {
-                boolean isBooked = rs.next() && rs.getInt(1) > 0;
-                connection.commit();
-                return isBooked;
+            try (ResultSet rs = stmt.executeQuery()) {                   
+                return rs.next() && rs.getInt(1) > 0;
             }
         }
     }
@@ -60,27 +59,42 @@ public class AppointmentDAO {
      * @throws SQLException If a database access error occurs or the appointment cannot be saved.
      */
     public void bookAppointment(String customerId, LocalDate date, String time) throws SQLException {
-        String sql = "INSERT INTO appointments (appointment_id, customer_id, doctor_id, date, time) " +
-                "VALUES ((SELECT COALESCE(MAX(appointment_id), 0) + 1 FROM appointments), ?, ?, ?, ?)";
+        Appointment existingAppointment = getAppointmentByCustomerId(customerId);
+        String sql;
+        if (existingAppointment != null) {
+            // Update existing appointment
+            sql = "UPDATE appointments SET doctor_id = ?, date = ?, time = ? WHERE customer_id = ?";
+        } else {
+            // Insert new appointment
+            sql = "INSERT INTO appointments (customer_id, doctor_id, date, time) VALUES (?, ?, ?, ?)";
+        }
 
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setString(1, customerId);
-            stmt.setString(2, getCurrentDoctorId());
-            stmt.setString(3, date.format(formatter));
-            stmt.setString(4, time);
+            if (existingAppointment != null) {
+                stmt.setString(1, getCurrentDoctorId());
+                stmt.setString(2, date.format(DATE_FORMATTER));
+                stmt.setString(3, time);
+                stmt.setString(4, customerId);
+            } else {
+                stmt.setString(1, customerId);
+                stmt.setString(2, getCurrentDoctorId());
+                stmt.setString(3, date.format(DATE_FORMATTER));
+                stmt.setString(4, time);
+            }
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
-                throw new SQLException("Appointment could not be saved");
+                throw new SQLException("Appointment could not be saved (update or insert failed).");
             }
             connection.commit();
         }
     }
 
     /**
-     * Retrieves a list of appointments for a specific date.
+     * Retrieves a list of appointments for a specific date, including customer details.
+     * Results are ordered by time.
      *
      * @param date The date for which to retrieve appointments.
      * @return A list of `Appointment` objects for the specified date.
@@ -97,21 +111,47 @@ public class AppointmentDAO {
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setString(1, date.format(formatter));
+            stmt.setString(1, date.format(DATE_FORMATTER));
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     appointments.add(createAppointmentFromResultSet(rs));
                 }
             }
-            connection.commit();
             return appointments;
         }
     }
 
     /**
+     * Retrieves the appointment for a specific customer.
+     * Assumes a customer has at most one relevant appointment.
+     *
+     * @param customerId The ID of the customer.
+     * @return An `Appointment` object if found, otherwise `null`.
+     * @throws SQLException If a database access error occurs.
+     */
+    public Appointment getAppointmentByCustomerId(String customerId) throws SQLException {
+        String sql = "SELECT a.*, c.first_name, c.last_name, c.risk_group " +
+                     "FROM appointments a " +
+                     "JOIN Customer c ON a.customer_id = c.user_id " +
+                     "WHERE a.customer_id = ? LIMIT 1"; 
+
+        try (Connection connection = databaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, customerId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return createAppointmentFromResultSet(rs);
+                }
+            }
+        }
+        return null; // No appointment found
+    }
+
+    /**
      * Retrieves the ID of the current doctor from the database.
      *
-     * @return The ID of the current doctor.
+     * @return The ID of a doctor.
      * @throws SQLException If a database access error occurs or no doctor is found.
      */
     private String getCurrentDoctorId() throws SQLException {
@@ -121,11 +161,9 @@ public class AppointmentDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    String doctorId = rs.getString("user_id");
-                    connection.commit();
-                    return doctorId;
+                    return rs.getString("user_id");
                 }
-                throw new SQLException("No doctor found in the database");
+                throw new SQLException("No doctor found in the database. Cannot book appointment.");
             }
         }
     }

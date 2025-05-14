@@ -175,7 +175,9 @@ Dieses Sub-Paket enthält Controller-Klassen, die spezifisch für die Kundenansi
 
 *   **`CustomerSurveyController.java`**: Verwaltet die Logik für den medizinischen Fragebogen, den Kunden ausfüllen müssen. Dies beinhaltet die Validierung der Eingaben und das Speichern der Daten.
 *   **`CustomerPrepController.java`**: Steuert die Hauptansicht für Kunden, die den Fortschritt ihrer Vorbereitungen anzeigt (Fragebogen ausgefüllt, Termin gebucht, Dokumente hochgeladen). Ermöglicht die Navigation zu den entsprechenden Sektionen unter bestimmten Bedingungen.
-*   **`CustomerAppointmentController.java`**: Kümmert sich um die Terminbuchung für Kunden. Zeigt verfügbare Zeitfenster an und ermöglicht es Kunden, einen Termin auszuwählen und zu buchen.
+*   **`CustomerAppointmentController.java`**: Kümmert sich um die Terminbuchung für Kunden. Zeigt verfügbare Zeitfenster an und ermöglicht es Kunden, einen Termin auszuwählen und zu buchen. Nach erfolgreicher Buchung wird zur Kalenderansicht navigiert.
+*   **`CustomerCalendarController.java`**: Steuert die Kalenderansichtfür den Kunden. Zeigt Details zum medizinischen Termin und zum Flugdatum an und ermöglicht dem Kunden, sowohl den Arzttermin als auch das Flugdatum zu ändern, indem zu den entsprechenden Änderungsansichten navigiert wird.
+*   **`CustomerChangeFlightDateController.java`**: Verantwortlich für die Benutzeroberfläche und Logik, die es Kunden ermöglicht, ein neues Flugdatum  auszuwählen. Das System validiert das ausgewählte Datum (darf nicht in der Vergangenheit liegen und muss ggf. einen Mindestabstand zu einem bestehenden Arzttermin einhalten). Änderungen werden gespeichert und der Nutzer wird zurück zur Kalenderansicht geleitet. Fehlermeldungen und Erfolgsbestätigungen werden über zentrale Alert-Dialoge angezeigt.
 *   **`CustomerHomeController.java`**: Ein einfacher Controller, der möglicherweise als Basis oder für eine allgemeine Kunden-Startseite dient. Aktuell enthält er keine spezifische Logik.
 *   **`CustomerUploadController.java`**: Ermöglicht Kunden das Hochladen von erforderlichen Dokumenten. Beinhaltet Funktionen zur Dateiauswahl, Validierung der Dateigröße und zum Speichern der Dateien.
 
@@ -199,9 +201,9 @@ Dieses Sub-Paket ist für den Anmeldevorgang zuständig.
 
 Dieses Paket implementiert die Data Access Object (DAO)-Schicht und enthält Klassen für den direkten Datenbankzugriff. Jede DAO-Klasse ist für die Persistenzoperationen einer spezifischen Entität (z.B. `CustomerDAO` für Kundendaten) zuständig und kapselt die dafür notwendigen SQL-Abfragen und das Datenbank-Handling.
 
-*   **`CustomerDAO.java`**: Verantwortlich für Datenbankoperationen im Zusammenhang mit Kunden. Beinhaltet Methoden zum Abrufen von Kunden mit hochgeladenen Dateien, Speichern von Flugtauglichkeitserklärungen, Aktualisieren der Risikogruppe eines Kunden, Aktualisieren des Datei-Upload-Status, Aktualisieren des Termin-Status, Abrufen des Termin-Status, Aktualisieren und Abrufen des Fragebogen-Status sowie Abrufen des Flugdatums.
+*   **`CustomerDAO.java`**: Verantwortlich für Datenbankoperationen im Zusammenhang mit Kunden. Beinhaltet Methoden zum Abrufen von Kunden mit hochgeladenen Dateien, Speichern von Flugtauglichkeitserklärungen, Aktualisieren der Risikogruppe eines Kunden, Aktualisieren des Datei-Upload-Status, Aktualisieren des Termin-Status, Abrufen des Termin-Status, Aktualisieren und Abrufen des Fragebogen-Status, Abrufen des Flugdatums sowie Aktualisieren des Flugdatums.
 *   **`UserDAO.java`**: Zuständig für Datenbankoperationen im Zusammenhang mit Benutzern (sowohl Kunden als auch Ärzte). Enthält Methoden zum Abrufen eines Benutzers anhand der Benutzer-ID, wobei zwischen Kunden und Ärzten unterschieden wird und die entsprechenden spezifischen Daten geladen werden.
-*   **`AppointmentDAO.java`**: Handhabt Datenbankoperationen für Termine. Bietet Methoden, um zu prüfen, ob ein Zeitfenster bereits gebucht ist, einen neuen Termin zu buchen und Termine für ein bestimmtes Datum abzurufen.
+*   **`AppointmentDAO.java`**: Handhabt Datenbankoperationen für Termine. Bietet Methoden, um zu prüfen, ob ein Zeitfenster bereits gebucht ist, einen neuen Termin zu buchen, Termine für ein bestimmtes Datum abzurufen und Termine anhand der Kunden-ID abzurufen.
 *   **`MedicalDataDAO.java`**: Verantwortlich für das Speichern und Abrufen von medizinischen Daten der Kunden. Enthält Methoden zum Speichern neuer oder zum Ersetzen vorhandener medizinischer Daten und zum Abrufen medizinischer Daten anhand der Benutzer-ID.
 
 ### 4.3 com.example.flightprep.service
@@ -209,8 +211,8 @@ Dieses Paket implementiert die Data Access Object (DAO)-Schicht und enthält Kla
 Dieses Paket bildet die Service-Schicht der Anwendung. Es enthält Klassen, welche die Geschäftslogik kapseln und als Zwischenschicht zwischen Controllern und DAOs dienen, um Geschäftsregeln zu zentralisieren und wiederverwendbar zu machen. Einige Services sind als Singletons implementiert (z.B. `CustomerService`), um die Verwaltung zustandsloser Logik zu vereinfachen.
 
 *   **`UserService.java`**: Stellt Logik für Benutzeroperationen bereit, insbesondere die Authentifizierung von Benutzern. Verwendet `UserDAO`, um Benutzerdaten abzurufen und Passwörter zu überprüfen.
-*   **`CustomerService.java`**: Bietet eine Singleton-Instanz für kundenbezogene Geschäftslogik. Nutzt `CustomerDAO`, `UserDAO` und `MedicalDataDAO` für Operationen wie das Abrufen von Kunden, das Einreichen medizinischer Daten (inklusive Risikoklassifizierung durch `RiskClassifierAI`), das Abrufen medizinischer Daten, das Speichern von Flugtauglichkeitserklärungen, das Auflisten von Patientendokumenten und das Aktualisieren verschiedener Kundenstatus.
-*   **`AppointmentService.java`**: Eine Singleton-Klasse, die für die Geschäftslogik rund um Termine zuständig ist. Verwendet `AppointmentDAO` und `CustomerDAO`. Hauptfunktionen umfassen das Buchen von Terminen (nach Validierung des Zeitfensters), das Überprüfen der Gültigkeit eines Terminslots (unter Berücksichtigung von Vergangenheit, Flugdatum und bereits gebuchten Terminen), das Abrufen verfügbarer Zeitfenster und das Zusammenstellen von Terminen für eine Woche. Bietet auch eine Methode zur farblichen Kennzeichnung von Risikogruppen.
+*   **`CustomerService.java`**: Bietet eine Singleton-Instanz für kundenbezogene Geschäftslogik. Nutzt `CustomerDAO`, `UserDAO` und `MedicalDataDAO` für Operationen wie das Abrufen von Kunden, das Einreichen medizinischer Daten (inklusive Risikoklassifizierung durch `RiskClassifierAI`), das Abrufen medizinischer Daten, das Speichern von Flugtauglichkeitserklärungen, das Auflisten von Patientendokumenten, das Aktualisieren des Flugdatums mit Validierung und das Aktualisieren verschiedener Kundenstatus.
+*   **`AppointmentService.java`**: Eine Singleton-Klasse, die für die Geschäftslogik rund um Termine zuständig ist. Verwendet `AppointmentDAO` und `CustomerDAO`. Hauptfunktionen umfassen das Buchen von Terminen (nach Validierung des Zeitfensters), das Überprüfen der Gültigkeit eines Terminslots (unter Berücksichtigung von Vergangenheit, Flugdatum und bereits gebuchten Terminen), das Abrufen verfügbarer Zeitfenster, das Zusammenstellen von Terminen für eine Woche und das Abrufen von Terminen für einen bestimmten Kunden. Bietet auch eine Methode zur farblichen Kennzeichnung von Risikogruppen.
 *   **`FileUploadService.java`**: Kümmert sich um die Logik des Datei-Uploads. Definiert Upload- und temporäre Verzeichnisse sowie eine maximale Dateigröße. Methoden umfassen das Verschieben von temporären Dateien in das endgültige Upload-Verzeichnis (wobei dem Dateinamen die Benutzer-ID vorangestellt wird), das Speichern einer hochgeladenen Datei in einem temporären Verzeichnis mit Zeitstempel und die Validierung der Dateigröße. Stellt auch sicher, dass die notwendigen Verzeichnisse existieren.
 
 ### 4.4 com.example.flightprep.util
@@ -220,7 +222,7 @@ Dieses Paket enthält Utility-Klassen, die allgemeine Hilfsfunktionen für versc
 *   **`RiskClassifierAI.java`**: Eine einfache "KI" zur Klassifizierung des Risikos von Patienten basierend auf ihrem BMI (Body Mass Index). Berechnet den BMI aus Größe und Gewicht und gibt eine Risikogruppe (1, 2 oder 3) zurück. Enthält eine Hilfsmethode zum Parsen von String-Werten zu Double.
 *   **`SceneSwitcher.java`**: Stellt statische Methoden zum Wechseln von Szenen in der JavaFX-Anwendung bereit. Ermöglicht das Laden neuer FXML-Dateien und das Setzen als Wurzel der aktuellen Szene oder das Erstellen einer neuen Szene in einem neuen Stage. Wendet auch ein Standard-CSS-Stylesheet an.
 *   **`SessionManager.java`**: Verwaltet die aktuelle Benutzersitzung. Speichert den angemeldeten Benutzer (`currentUser`) und die ID eines ausgewählten Patienten (`selectedPatientId`). Bietet statische Methoden zum Setzen und Abrufen dieser Informationen sowie zum Löschen der Sitzung.
-*   **`RadioButoonReader.java`**: Eine Hilfsklasse mit einer statischen Methode `getToggleGroupBoolean`, die den ausgewählten RadioButton in einer `ToggleGroup` liest und `true` zurückgibt, wenn der Text des Buttons "Yes" ist, andernfalls `false`.
+*   **`RadioButtonReader.java`**:  Eine Hilfsklasse mit einer statischen Methode `getToggleGroupBoolean`, die den ausgewählten RadioButton in einer `ToggleGroup` liest und `true` zurückgibt, wenn der Text des Buttons "Yes" ist, andernfalls `false`.
 
 ### 4.5 com.example.flightprep.database
 
@@ -317,7 +319,7 @@ Die Anwendung bietet separate Oberflächen für Kunden und Ärzte.
 1.  **Login:** Kunde meldet sich mit Benutzer-ID und Passwort an.
 2.  **Home-Bildschirm:** Übersicht über den aktuellen Status der Flugvorbereitung.
 3.  **Medizinischer Fragebogen:** Ausfüllen und Absenden des Fragebogens.
-4.  **Terminbuchung:** Auswahl eines verfügbaren Termins beim Arzt.
+4.  **Terminbuchung/Kalenderansicht:** Anzeige des Flugdatums und des medizinischen Termins. Möglichkeit zur Buchung oder Änderung des medizinischen Termins und zur Änderung des Flugdatums.
 5.  **Dokumenten-Upload:** Hochladen erforderlicher medizinischer Dokumente.
 6.  **Mein Flug:** (Potenzielle Ansicht mit Flugdetails – aktuell nicht detailliert implementiert).
 
@@ -357,8 +359,11 @@ Die Benutzeroberfläche der Anwendung ist durch FXML-Dateien definiert, die sich
     *   **Beschreibung:** Ermöglicht Kunden die Ansicht und Buchung von verfügbaren Arztterminen.
     *   **Controller:** `com.example.flightprep.controller.Customer.CustomerAppointmentController`
 *   **`CustomerCalendar.fxml`**
-    *   **Beschreibung:** Zeigt dem Kunden seine gebuchten Termine in einer Listenansicht.
+    *   **Beschreibung:** Zeigt dem Kunden medizinische Termindetails und Fluginformationen in einer Kalenderansicht. Ermöglicht das Ändern des Arzttermins und des Flugdatums.
     *   **Controller:** `com.example.flightprep.controller.Customer.CustomerCalendarController`
+*   **`CustomerChangeFlightDate.fxml`**
+    *   **Beschreibung:** Stellt ein Formular mit `DatePicker` zur Änderung des Flugdatums bereit. Interagiert mit `CustomerChangeFlightDateController` für Validierung und Speicherung.
+    *   **Controller:** `com.example.flightprep.controller.Customer.CustomerChangeFlightDateController`
 *   **`CustomerUpload.fxml`**
     *   **Beschreibung:** Ermöglicht Kunden das Hochladen von erforderlichen Dokumenten.
     *   **Controller:** `com.example.flightprep.controller.Customer.CustomerUploadController`

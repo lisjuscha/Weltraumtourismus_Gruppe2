@@ -177,6 +177,21 @@ public class AppointmentService {
             return weekAppointments;
         }
     }
+
+    /**
+     * Retrieves the latest appointment for a specific customer.
+     * If multiple appointments exist for the customer, the one with the most recent date and time is returned.
+     *
+     * @param customerId The ID of the customer.
+     * @return An `Appointment` object if found, otherwise `null`.
+     * @throws SQLException If a database access error occurs.
+     */
+    public Appointment getAppointmentByCustomerId(String customerId) throws SQLException {
+        synchronized (LOCK) { 
+            return appointmentDAO.getAppointmentByCustomerId(customerId);
+        }
+    }
+
     /**
      * Retrieves the color associated with a specific risk group.
      *
@@ -195,5 +210,4 @@ public class AppointmentService {
                 return "white";
         }
     }
-
 }

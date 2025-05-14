@@ -30,10 +30,12 @@ Table Doctor {
 Table appointments {
   appointment_id INTEGER [pk, increment]
   doctor_id TEXT [not null, ref: > Doctor.user_id]
-   customer_id TEXT [not null, ref: > Customer.user_id]
+  customer_id TEXT [not null, ref: > Customer.user_id, unique]
   date TEXT [not null]
   time TEXT [not null]
-  Note: "UNIQUE(date, time)"
+  indexes {
+    (date, time) [unique]
+  }
 }
 
 Table medical_data {

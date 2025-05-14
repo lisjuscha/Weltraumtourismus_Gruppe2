@@ -13,6 +13,10 @@ import java.sql.SQLException;
 public class DocPatientDataController extends PatientDataDisplayController {
     private final CustomerService customerService;
 
+    /**
+     * Constructs a new `DocPatientDataController` instance.
+     * Initializes the `CustomerService` to be used for accessing customer and medical data.
+     */
     public DocPatientDataController() {
         this.customerService = CustomerService.getInstance();
     }
