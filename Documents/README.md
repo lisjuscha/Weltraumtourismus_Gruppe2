@@ -5,6 +5,7 @@ Alle zum Projekt gehörigen Dokumente sind hier und in den folgenden Unterordner
 - **UI**
 - **Personas**
 - **Prozessdiagramme**
+- **Presentation**
 
 Bitte navigieren Sie in die jeweiligen Ordner, um die zugehörigen Dateien mit jeweiligen Beschreibungen einzusehen.
 
