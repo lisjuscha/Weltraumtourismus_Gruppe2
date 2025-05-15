@@ -17,7 +17,7 @@ Gustav Vitruvius ist 18 Jahre alt, besucht ein Elite-Gymnasium und ist Sohn eine
    
 Dr. Lorena Wallyweis ist 82 Jahre alt, pensionierte plastische Chirurgin und lebt allein zu Hause. Sie erfüllt sich mit dem geplanten Weltraumausflug einen Lebenstraum. Auch sie muss sich auf die Reise vorbereiten, indem sie persönliche Gesundheitsdaten angibt und digitale Checklisten durchläuft. Dabei arbeitet sie in ihrer gewohnten Umgebung – meist in Küche oder Wohnzimmer mit ausreichend Licht. Sie wird ebenfalls von Trainern und Designern unterstützt. Lorena ist stark motiviert: Sie will zeigen, dass auch im hohen Alter große Träume möglich sind. Gleichzeitig steht sie vor einigen Hürden: zu viel Technik, unübersichtliche Inhalte, kleine Schrift und die fehlende Möglichkeit, sich Inhalte vorlesen zu lassen oder per Spracheingabe zu bedienen, erschweren ihr die Nutzung digitaler Angebote.   
     
-# Arzt Persona 
+# Mitarbeiter Persona 
 
 ### Dr. Jürgen Jürgens
   
