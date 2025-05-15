@@ -56,7 +56,7 @@ Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie
 
 *2.2 Projektumfang*   
    
-Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftige Weltraumtourist*innen implementiert - dieser beginnt nach dem ersten Login mit einem Pop-up zur Eingabe medizinischer Daten. D## Projekt-Scope: Medizin-Check
+Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftige Weltraumtourist*innen implementiert - dieser beginnt nach dem ersten Login mit einem Pop-up zur Eingabe medizinischer Daten.  
 
 Die folgende Tabelle zeigt, welche Teile des Projekts implementiert wurden (**In Scope**) und welche lediglich gemockt wurden (**Out of Scope**):
 
