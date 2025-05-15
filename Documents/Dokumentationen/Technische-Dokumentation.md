@@ -317,22 +317,23 @@ Die Benutzeroberfläche der Anwendung ist durch FXML-Dateien definiert, die sich
 
 ## 7. Abhängigkeiten und externe Bibliotheken
 
-Die Anwendung nutzt Maven für das Dependency Management. Die wichtigsten Abhängigkeiten sind in der `pom.xml` definiert:
+Die Anwendung "FlightPrep" nutzt Maven für das Dependency Management. Die zentralen Abhängigkeiten, wie in der `pom.xml` definiert, umfassen:
 
-*   **JavaFX (`org.openjfx`):**
-    *   `javafx-controls` (Version 17.0.15): Für die UI-Steuerelemente.
-    *   `javafx-fxml` (Version 17.0.15): Für das Laden von FXML-Dateien zur Definition der UI-Struktur.
-*   **SQLite JDBC Driver (`org.xerial`):**
-    *   `sqlite-jdbc` (Version 3.49.1.0): Treiber für die Kommunikation mit der SQLite-Datenbank.
-*   **JUnit (`org.junit.jupiter`):** (Für Tests)
-    *   `junit-jupiter-api` (Version 5.10.2)
-    *   `junit-jupiter-engine` (Version 5.10.2)
-    *   `junit-jupiter` (Version 5.10.0)
-*   **Mockito (`org.mockito`):** (Für Tests)
-    *   `mockito-core` (Version 5.11.0)
-    *   `mockito-junit-jupiter` (Version 5.11.0)
+*   **JavaFX (`org.openjfx`):** Version `${javafx.version}` (aktuell 17.0.15)
+    *   `javafx-controls`: Stellt die UI-Steuerelemente bereit.
+    *   `javafx-fxml`: Ermöglicht das Laden von FXML-Dateien zur Definition der UI-Struktur.
+*   **SQLite JDBC Driver (`org.xerial`):** Version `3.49.1.0`
+    *   `sqlite-jdbc`: Wird für die Kommunikation mit der SQLite-Datenbank benötigt.
+*   **JUnit Jupiter (`org.junit.jupiter`):** Version `${junit.version}` (aktuell 5.10.2)
+    *   `junit-jupiter-api` und `junit-jupiter-engine`: Standard-Framework für die Durchführung von Unit-Tests in Java.
+*   **Mockito (`org.mockito`):** Versionen um `5.5.0`
+    *   `mockito-core`, `mockito-junit-jupiter`, `mockito-inline`: Dienen zur Erstellung von Mock-Objekten und zur Integration mit JUnit, um Abhängigkeiten in Tests zu isolieren.
+*   **TestFX (`org.testfx`):** Version `4.0.17`
+    *   `testfx-core` und `testfx-junit5`: Frameworks zur Durchführung von UI-Tests für JavaFX-Anwendungen.
 
-Die Wahl von JavaFX erfolgte aufgrund der Anforderungen an eine Desktop-Anwendung mit grafischer Benutzeroberfläche. SQLite wurde als leichtgewichtige, dateibasierte Datenbank gewählt, die keine separate Serverinstallation erfordert.
+Zusätzlich wird das **JaCoCo Maven Plugin (`org.jacoco`)** Version `${jacoco.version}` (aktuell 0.8.12) im Build-Prozess verwendet, um die Code-Testabdeckung zu analysieren.
+
+Die Wahl von JavaFX erfolgte aufgrund der Anforderungen an eine Desktop-Anwendung mit grafischer Benutzeroberfläche. SQLite wurde als leichtgewichtige, dateibasierte Datenbank gewählt, die keine separate Serverinstallation erfordert und gut für Prototypen und kleinere Anwendungen geeignet ist. Die Testbibliotheken ermöglichen eine strukturierte Überprüfung der Anwendungslogik und der Benutzeroberfläche.
 
 ## 8. Build- und Deployment-Prozess
 
@@ -360,7 +361,15 @@ Die Anwendung wird mit Apache Maven gebaut. Der Build-Prozess wird durch die `po
 
 ## 10. Teststrategie
 
-*(Dieser Abschnitt ist vorerst leer und kann später mit Details zur Testabdeckung, verwendeten Testarten und Testwerkzeugen gefüllt werden.)*
+Die Teststrategie der Anwendung zielt darauf ab, die korrekte Funktionalität auf verschiedenen Ebenen sicherzustellen. Hierfür werden folgende Ansätze und Werkzeuge genutzt:
+
+*   **Unit-Tests:** Mit JUnit Jupiter (Version `${junit.version}`) werden einzelne Komponenten und Methoden isoliert getestet. Mockito (Versionen um `5.5.0`) wird eingesetzt, um Abhängigkeiten zu simulieren und so fokussierte Tests der Geschäftslogik in Service-Klassen und die Datenzugriffslogik in DAOs zu ermöglichen.
+*   **UI-Tests:** TestFX (Version `4.0.17`) wird verwendet, um die Interaktion mit der JavaFX-Benutzeroberfläche zu automatisieren und das Verhalten der Controller-Klassen im Zusammenspiel mit den FXML-Views zu überprüfen.
+*   **Code Coverage:** Das JaCoCo-Maven-Plugin (Version `${jacoco.version}`) wird eingesetzt, um die Testabdeckung des Codes zu messen. Die generierten Berichte (siehe Abbildung) helfen dabei, nicht getestete Bereiche der Anwendung zu identifizieren und die Testqualität kontinuierlich zu verbessern.
+
+Die Tests befinden sich im Verzeichnis `src/test/java`. Ziel ist es, eine hohe Testabdeckung zu erreichen, um die Stabilität und Zuverlässigkeit der Anwendung zu gewährleisten.
+
+![image](https://github.com/user-attachments/assets/8701f271-b5f9-49ec-841f-79409e15e554)
 
 ## 11. Konfiguration
 
