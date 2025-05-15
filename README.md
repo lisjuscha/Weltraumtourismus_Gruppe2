@@ -36,7 +36,7 @@ Eine bebilderte Erläuterung der Benutzeroberfläche des Kunden finden Sie in [
    
 *1.1.3 Personas*  
   
-Die verschiedenen Personas, welche wir erstellt haben um besser die Kundenbedürfnisse zu erkennen,sind in diesem Ordner zu finden: [Documents/Personas](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Personas)
+Die verschiedenen Personas, welche wir erstellt haben um besser die Kundenbedürfnisse zu erkennen, sind in diesem Ordner zu finden: [Documents/Personas](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Personas) 
 Eine detaillierte Beschreibung zu jeder einzelnen Persona ist außerdem in diesem Dokument zu finden: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Personas/README.md)
 
     
