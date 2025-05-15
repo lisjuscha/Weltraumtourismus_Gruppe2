@@ -15,7 +15,13 @@ Gruppen Mitglieder: Daniel Justo Blazquez Perez, Luc Alex Hampele, Philipp Lenna
 *1.1 Allgemeine Einführung in die Modellierungsdateien*
     
 Alle genannten Dateien und Modelle bilden die konzeptionelle Grundlage für unseren Entwicklungsprozess im Rahmen der Flugvorbereitung.
-Wir möchten Ihnen ein Verzeichnis der Dateien zur Verfügung stellen, die die Grundlage für unsere Implementierung bilden.    
+Wir möchten Ihnen ein Verzeichnis der Dateien zur Verfügung stellen, die die Grundlage für unsere Implementierung bilden. 
+
+Dabei gehen wir davon aus, dass wir die genannten Informationen bereits übermittelt bekommen:
+- Vor-/Nachname
+- Geburtsdatum
+- Flugdatum
+- E-Mail-Adresse
      
 *1.1.1 Prozesse*   
   
@@ -49,6 +55,8 @@ In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendu
    
 Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftige Weltraumtourist*innen implementiert - dieser beginnt nach dem ersten Login mit einem Pop-up zur Eingabe medizinischer Daten. Der Server sowie dessen HTTP-Antworten wurden mit Mock-Ups simuliert. Der eigentliche Login-Prozess selbst war nicht Teil unseres Projektumfangs.
 Die Implementierung umfasst ausschließlich die Client-seitige Logik, einschließlich der Benutzeroberfläche, der Controller und der Verarbeitung von ein- und ausgehenden API-Aufrufen. Die serverseitige Logik wie z. B. das Session-Handling oder die Validierung der Anfragen wird im Projekt lediglich vorgetäuscht.
+
+Es ist zu beachten, dass im aktuellen Prototyp die Funktionalitäten der Datei-Uploads vereinfacht implementiert sind. Hochgeladene Dateien werden zwar mit einer Benutzerkennung im Dateinamen versehen und in einem zentralen Verzeichnis gespeichert, die Anzeige dieser Dokumente für den Arzt erfolgt jedoch durch Auflistung aller Dateien in diesem Verzeichnis.
 
 *2.3 Programmausführung*
 
