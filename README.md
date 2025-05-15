@@ -43,7 +43,7 @@ Personas: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumt
 *2.1 Codeübersicht und Dateistruktur*   
    
 Der Quellcode unseres Projekts befindet sich im Verzeichnis Code/“placeholder“.  
-In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die README.md-Datei im Hauptverzeichnis des Dokumente-Ordners zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
+In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die [Datenmodell-Datei](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/d20578cdbef661eefda9ef90848e0cdd6ea8a8b8/Documents/Dokumentationen/Datenmodell) zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
 
 *2.2 Projektumfang*   
    
