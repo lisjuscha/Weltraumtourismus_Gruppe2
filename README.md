@@ -60,14 +60,13 @@ Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftig
 
 Die folgende Tabelle zeigt, welche Teile des Projekts implementiert wurden (**In Scope**) und welche lediglich gemockt wurden (**Out of Scope**):
 
-| Bereich              | In Scope (implementiert)                                                                                                       | Out of Scope (gemockt / nicht implementiert)                                              |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| **Kunde (User)**     | - Kompletter medizinischer Check inkl. Fragebögen, Angaben und Dokumenten                                                    | - Startseite (Homepage nach Login)                                                        |
-| **Arzt**             | - Vollständiger Prozess zur Bewertung der Flugtauglichkeit<br>- Einsicht und Verwaltung von Kundendaten<br>- Dokumentenmanagement | - Startseite (Homepage nach Login) 
-- Fitting-Checkliste und den dazugehörenden Prozess
-- Training-Checkliste und den dazugehörenden Prozess|
-| **Trainer**          | nicht implementiert                                                                                                                       | - Gesamter Trainerbereich, inkl. Trainingsverwaltung, Meetingseite und Ausstellung von Flight Permits   |
-| **Designer (Anzug)** | nicht implementiert                                                                                                                      | - Gesamter Designerbereich, inkl. Maßverarbeitung und Anzugsanpassung                     |   
+| Bereich              | In Scope (implementiert)                                                                                                       | Out of Scope (gemockt / nicht implementiert)                                                                                       |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| **Kunde (User)**     | - Kompletter medizinischer Check inkl. Fragebögen, Angaben und Dokumenten                                                    | - Startseite (Homepage nach Login)                                                                                                 |
+| **Arzt**             | - Vollständiger Prozess zur Bewertung der Flugtauglichkeit<br>- Einsicht und Verwaltung von Kundendaten<br>- Dokumentenmanagement | - Startseite (Homepage nach Login)<br>- Fitting-Checkliste und zugehöriger Prozess<br>- Training-Checkliste und zugehöriger Prozess |
+| **Trainer**          | *nicht implementiert*                                                                                                          | - Gesamter Trainerbereich, inkl. Trainingsverwaltung, Meetingseite und Ausstellung von Flight Permits                              |
+| **Designer (Anzug)** | *nicht implementiert*                                                                                                          | - Gesamter Designerbereich, inkl. Maßverarbeitung und Anzugsanpassung                                                              |
+
 
 Es ist zu beachten, dass im aktuellen Prototyp die Funktionalitäten der Datei-Uploads vereinfacht implementiert sind. Hochgeladene Dateien werden zwar mit einer Benutzerkennung im Dateinamen versehen und in einem zentralen Verzeichnis gespeichert, die Anzeige dieser Dokumente für den Arzt erfolgt jedoch durch Auflistung aller Dateien in diesem Verzeichnis.
 
