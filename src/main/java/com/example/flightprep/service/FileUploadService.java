@@ -15,7 +15,9 @@ import java.util.List;
  * and creating necessary directories.
  */
 public class FileUploadService {
+    // Path relative to the application's execution directory for final customer file uploads.
     private static final String UPLOAD_DIR = "data/uploads";
+    // Path relative to the application's execution directory for temporary file storage during upload.
     private static final String TEMP_DIR = "data/temp";
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
@@ -31,6 +33,7 @@ public class FileUploadService {
         for (File tempFile : tempFiles) {
             String fileName = userId + "_" + tempFile.getName();
             Path targetPath = Paths.get(UPLOAD_DIR, fileName);
+            // Replace the file if it already exists in the target directory.
             Files.move(tempFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
         }
     }
@@ -47,6 +50,7 @@ public class FileUploadService {
         String fileName = timestamp + "_" + originalFile.getName();
         Path tempPath = Paths.get(TEMP_DIR, fileName);
 
+        // Replace the file if it already exists in the temporary directory.
         Files.copy(originalFile.toPath(), tempPath, StandardCopyOption.REPLACE_EXISTING);
         return tempPath.toFile();
     }

@@ -83,6 +83,7 @@ public class CustomerAppointmentController extends CustomerController {
      * Loads the available and unavailable appointment slots for the current week into the grid.
      */
     private void loadAppointments() {
+        // Clear previous week's appointment slots before repopulating
         weekGrid.getChildren().removeIf(node -> node instanceof Button);
         for (int row = 1; row <= 4; row++) {
             for (int col = 1; col <= 5; col++) {

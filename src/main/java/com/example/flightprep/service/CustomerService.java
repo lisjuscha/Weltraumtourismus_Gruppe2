@@ -27,6 +27,7 @@ import java.util.List;
 public class CustomerService {
     private static CustomerService instance;
     private static final Object LOCK = new Object();
+    // Path relative to the application's execution directory for customer file uploads.
     private static final String UPLOAD_DIR = "Data/uploads";
 
     private final CustomerDAO customerDAO;
@@ -82,6 +83,7 @@ public class CustomerService {
      */
     public Customer getCustomerStatus(String userId) throws SQLException {
         synchronized (LOCK) {
+            // Password not required for fetching status, only userId.
             Customer customer = userDAO.getCustomerByUserId(userId, null);
             if (customer == null) {
                 throw new SQLException("Customer not found");
@@ -143,6 +145,7 @@ public class CustomerService {
         try {
             fileUploadService.createDirectories();
             File uploadsDir = new File(UPLOAD_DIR);
+            // List only files, not subdirectories.
             File[] files = uploadsDir.listFiles(file -> !file.isDirectory());
 
             if (files == null) {
@@ -156,6 +159,7 @@ public class CustomerService {
             Collections.sort(fileNames);
             return fileNames;
         } catch (IOException e) {
+            // Convert to RuntimeException as document access is considered critical here.
             throw new RuntimeException("Error accessing documents", e);
         }
     }

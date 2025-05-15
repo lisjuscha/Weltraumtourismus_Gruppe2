@@ -288,4 +288,4 @@ public class CustomerDAO {
                 rs.getInt("risk_group")
         );
     }
-} // End of class
+}

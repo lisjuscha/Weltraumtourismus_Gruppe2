@@ -150,7 +150,6 @@ public class CustomerSurveyController extends CustomerController {
     private boolean validateForm() {
         StringBuilder errors = new StringBuilder();
 
-        // Height validation
         if (heightTextField.getText().isEmpty()) {
             errors.append("Basic information: Height is required.\n");
         } else {
@@ -160,7 +159,6 @@ public class CustomerSurveyController extends CustomerController {
                 errors.append("Invalid height format.\nPlease enter a number with optional decimal places (e.g. 175.5)\n");
             }
         }
-        // Weight validation
         if (weightTextField.getText().isEmpty()) {
             errors.append("Basic information: Weight is required.\n");
         } else {

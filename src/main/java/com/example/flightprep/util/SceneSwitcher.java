@@ -25,15 +25,12 @@ public class SceneSwitcher {
      * @throws IOException If an error occurs while loading the FXML file.
      */
     public static void switchScene(String fxmlFile, ActionEvent event) throws IOException {
-        try {
-            Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(newRoot);
-            String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
-            scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
-        } catch (Exception e) {
-            throw e;
-        }
+        Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
+        Scene scene = ((Node) event.getSource()).getScene();
+        scene.setRoot(newRoot);
+        // Apply a default stylesheet to the new scene.
+        String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
+        scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
     }
 
     /**
@@ -44,14 +41,11 @@ public class SceneSwitcher {
      * @throws IOException If an error occurs while loading the FXML file.
      */
     public static void switchScene(String fxmlFile, Scene scene) throws IOException {
-        try {
-            Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
-            scene.setRoot(newRoot);
-            String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
-            scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
-        } catch (Exception e) {
-            throw e;
-        }
+        Parent newRoot = FXMLLoader.load(Main.class.getResource(fxmlFile));
+        scene.setRoot(newRoot);
+        // Apply a default stylesheet to the new scene.
+        String cssPath = "/com/example/flightprep/Stylesheets/Prep.css";
+        scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
     }
 
     /**
@@ -63,13 +57,10 @@ public class SceneSwitcher {
      * @throws IOException If an error occurs while loading the FXML file.
      */
     public static void switchScene(String fxmlFile, Parent root, ActionEvent event) throws IOException {
-        try {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(Main.class.getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
-            stage.setScene(scene);
-        } catch (Exception e) {
-            throw e;
-        }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        // Apply a default stylesheet to the new scene.
+        scene.getStylesheets().add(Main.class.getResource("/com/example/flightprep/Stylesheets/Prep.css").toExternalForm());
+        stage.setScene(scene);
     }
 }

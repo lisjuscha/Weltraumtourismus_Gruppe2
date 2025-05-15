@@ -43,7 +43,9 @@ public class SessionManager {
      *
      * @param patientId A `String` representing the selected patient's ID.
      */
-    public static void setSelectedPatientId(String patientId) {SessionManager.selectedPatientId = patientId;}
+    public static void setSelectedPatientId(String patientId) {
+        SessionManager.selectedPatientId = patientId;
+    }
 
     /**
      * Retrieves the ID of the selected patient.
@@ -57,5 +59,6 @@ public class SessionManager {
      */
     public static void clear() {
         currentUser = null;
+        selectedPatientId = null; // Also clear the selected patient ID
     }
 }

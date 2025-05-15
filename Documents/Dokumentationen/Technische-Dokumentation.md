@@ -18,14 +18,7 @@
     *   [com.example.flightprep.service](#43-comexampleflightprepservice)
     *   [com.example.flightprep.util](#44-comexampleflightpreputil)
     *   [com.example.flightprep.database](#45-comexampleflightprepdatabase)
-5.  [Datenmodell (Detaillierter)](#5-datenmodell-detaillierter)
-    *   [Entity-Relationship-Diagramm (ERD)](#51-entity-relationship-diagramm-erd)
-    *   [Tabellendetails (aus DBML)](#52-tabellendetails-aus-dbml)
-        *   [Tabelle: User](#521-tabelle-user)
-        *   [Tabelle: Customer](#522-tabelle-customer)
-        *   [Tabelle: Doctor](#523-tabelle-doctor)
-        *   [Tabelle: appointments](#524-tabelle-appointments)
-        *   [Tabelle: medical_data](#525-tabelle-medical_data)
+5.  [Datenmodell](#5-datenmodell)
 6.  [User Interface (UI) und User Experience (UX) Fluss](#6-user-interface-ui-und-user-experience-ux-fluss)
     *   [6.1 FXML-Dateien und zugehörige Controller](#61-fxml-dateien-und-zugehörige-controller)
         *   [6.1.1 Login-Ansicht](#611-login-ansicht)
@@ -33,10 +26,12 @@
         *   [6.1.3 Arzt-Ansichten (`DocScreens`)](#613-arzt-ansichten-docscreens)
 7.  [Abhängigkeiten und externe Bibliotheken](#7-abhängigkeiten-und-externe-bibliotheken)
 8.  [Build- und Deployment-Prozess](#8-build--und-deployment-prozess)
-9.  [Fehlerbehandlung und Logging](#9-fehlerbehandlung-und-logging)
-10. [Sicherheitsaspekte](#10-sicherheitsaspekte)
+9.  [Fehlerbehandlung](#9-fehlerbehandlung)
+10. [Teststrategie](#10-teststrategie)
 11. [Konfiguration](#11-konfiguration)
-12. [Teststrategie](#12-teststrategie)
+12. [Ausblick](#12-ausblick)
+    *   [12.1 Architekturelle Verbesserungen](#121-architekturelle-verbesserungen)
+    *   [12.2 Funktionale und Sicherheitsrelevante Erweiterungen](#122-funktionale-und-sicherheitsrelevante-erweiterungen)
 13. [Glossar](#13-glossar)
 
 ## 1. Einleitung und Ziele des Projekts
@@ -50,6 +45,10 @@ Die Anwendung "FlightPrep" dient der Verwaltung und Vorbereitung von Passagieren
 *   Hochladen und Verwalten relevanter Dokumente.
 *   Unterstützung der Ärzte bei der Bewertung der Flugtauglichkeit von Kunden.
 *   Feststellung und Dokumentation der Flugtauglichkeit von Kunden für weiterführende Prozesse.
+
+**Hinweis**
+
+Es ist zu beachten, dass im aktuellen Prototyp die Funktionalitäten der Datei-Uploads vereinfacht implementiert sind. Hochgeladene Dateien werden zwar mit einer Benutzerkennung im Dateinamen versehen und in einem zentralen Verzeichnis gespeichert, die Anzeige dieser Dokumente für den Arzt erfolgt jedoch durch Auflistung aller Dateien in diesem Verzeichnis.
 
 **Zielgruppe:**
 
@@ -232,83 +231,10 @@ Dieses Paket ist für die Einrichtung und Verwaltung der Datenbankverbindung zus
 *   **`SQLiteConnection.java`**: Implementiert das `DatabaseConnection`-Interface und stellt eine Verbindung zu einer SQLite-Datenbank her (`FlightPreperation.db` im `data`-Verzeichnis). Lädt den SQLite JDBC-Treiber, deaktiviert Auto-Commit für Transaktionsmanagement und bietet eine Methode zum Schließen der Verbindung (inklusive Rollback bei nicht-committeten Änderungen).
 *   **`DatabaseFactory.java`**: Eine Factory-Klasse, die eine Singleton-Instanz von `DatabaseConnection` (spezifisch `SQLiteConnection`) bereitstellt. Dies zentralisiert die Erzeugung des Datenbankverbindungsobjekts.
 
-## 5. Datenmodell 
+## 5. Datenmodell
 
-Das Datenmodell der Anwendung "FlightPrep" ist in einer SQLite-Datenbank namens `FlightPreperation.db` implementiert. Dieses Kapitel beschreibt die Struktur der Datenbank, einschließlich des Entity-Relationship-Diagramms und detaillierter Tabellenbeschreibungen.
-
-### 5.1 Entity-Relationship-Diagramm (ERD)
-
-Das folgende Diagramm visualisiert die Entitäten und ihre Beziehungen innerhalb der Datenbank `FlightPreperation.db`.
-
-![ERD Diagramm](ERD.png)
-
-### 5.2 Tabellendetails (aus DBML)
-
-Die Struktur der Datenbanktabellen, wie in `ERR.dbml` definiert:
-
-#### 5.2.1 Tabelle: User
-
-*   `user_id` (TEXT, PRIMARY KEY, UNIQUE): Eindeutiger Identifikator des Benutzers.
-*   `password` (TEXT, NOT NULL): Das Passwort des Benutzers.
-*   `role` (TEXT, NOT NULL): Die Rolle des Benutzers im System (z.B. "Customer" oder "Doctor"), die seine Berechtigungen steuert.
-
-#### 5.2.2 Tabelle: Customer
-
-*   `user_id` (TEXT, PRIMARY KEY, FOREIGN KEY references `User.user_id`): Fremdschlüssel, der auf die `User`-Tabelle verweist und den Kunden eindeutig identifiziert.
-*   `first_name` (TEXT, NOT NULL): Vorname des Kunden.
-*   `last_name` (TEXT, NOT NULL): Nachname des Kunden.
-*   `email` (TEXT, NOT NULL): E-Mail-Adresse des Kunden.
-*   `form_submitted` (INTEGER, NOT NULL, DEFAULT: 0): Status, ob der medizinische Fragebogen vom Kunden ausgefüllt und eingereicht wurde (0 = nein, 1 = ja).
-*   `appointment_made` (INTEGER, NOT NULL, DEFAULT: 0): Status, ob ein Arzttermin vereinbart wurde (0 = nein, 1 = ja).
-*   `file_uploaded` (INTEGER, NOT NULL, DEFAULT: 0): Status, ob die vom Arzt angeforderten Dokumente/Bescheinigungen hochgeladen wurden (0 = nein, 1 = ja).
-*   `flight_date` (TEXT, NOT NULL): Geplantes Flugdatum des Kunden.
-*   `risk_group` (INTEGER): Vom System oder Arzt zugewiesene Risikogruppe des Kunden.
-*   `birth_date` (TEXT, NOT NULL): Geburtsdatum des Kunden.
-*   `declaration` (INTEGER): Status der Flugtauglichkeitserklärung durch den Arzt (0 = nicht tauglich/ausstehend, 1 = tauglich).
-*   `declaration_comment` (TEXT): Optionaler Kommentar des Arztes zur Flugtauglichkeitserklärung.
-*   *Hinweis: UNIQUE(user_id, birth_date)*
-
-#### 5.2.3 Tabelle: Doctor
-
-*   `user_id` (TEXT, PRIMARY KEY, FOREIGN KEY references `User.user_id`): Fremdschlüssel, der auf die `User`-Tabelle verweist und den Arzt eindeutig identifiziert.
-*   `first_name` (TEXT, NOT NULL): Vorname des Arztes.
-*   `last_name` (TEXT, NOT NULL): Nachname des Arztes.
-*   `email` (TEXT, NOT NULL): E-Mail-Adresse des Arztes.
-
-#### 5.2.4 Tabelle: appointments
-
-*   `appointment_id` (INTEGER, PRIMARY KEY, AUTOINCREMENT): Eindeutiger, automatisch generierter Primärschlüssel für den Termin.
-*   `doctor_id` (TEXT, NOT NULL, FOREIGN KEY references `Doctor.user_id`): Fremdschlüssel, der auf den Arzt (`Doctor.user_id`) verweist, bei dem der Termin stattfindet.
-*   `customer_id` (TEXT, NOT NULL, FOREIGN KEY references `Customer.user_id`): Fremdschlüssel, der auf den Kunden (`Customer.user_id`) verweist, der den Termin hat.
-*   `date` (TEXT, NOT NULL): Datum des Termins.
-*   `time` (TEXT, NOT NULL): Uhrzeit des Termins.
-*   *Hinweis: UNIQUE(date, time)*
-
-#### 5.2.5 Tabelle: medical_data
-
-*   `user_id` (TEXT, PRIMARY KEY, FOREIGN KEY references `Customer.user_id`): Fremdschlüssel, der auf den Kunden (`Customer.user_id`) verweist, zu dem diese medizinischen Daten gehören.
-*   `height` (TEXT, NOT NULL): Körpergröße des Kunden.
-*   `weight` (TEXT, NOT NULL): Körpergewicht des Kunden.
-*   `alcohol_consumption` (TEXT, NOT NULL): Angaben zum Alkoholkonsum des Kunden (Nein, Gelegentlich, Regelmäßig, Häufig)
-*   `smoking_status` (TEXT, NOT NULL): Angaben zum Rauchstatus des Kunden. (Ja, Nein, gelegentlich)
-*   `training_status` (INTEGER, NOT NULL): Angabe, ob der Kunde bereits an Trainingsprogrammen teilgenommen hat, die mit der Vorbereitung von Astronauten vergleichbar sind (0 = nein, 1 = ja).
-*   `disability_status` (INTEGER, NOT NULL): Status, ob eine Behinderung vorliegt (0 = nein, 1 = ja).
-*   `disability_details` (TEXT): Details zur Behinderung, falls vorhanden.
-*   `heart_disease` (INTEGER, NOT NULL): Angabe, ob eine Herzerkrankung vorliegt (0 = nein, 1 = ja).
-*   `high_blood_pressure` (INTEGER, NOT NULL): Angabe, ob Bluthochdruck vorliegt (0 = nein, 1 = ja).
-*   `irregular_heartbeat` (INTEGER, NOT NULL): Angabe, ob ein unregelmäßiger Herzschlag vorliegt (0 = nein, 1 = ja).
-*   `stroke_history` (INTEGER, NOT NULL): Angabe, ob in der Vergangenheit ein Schlaganfall aufgetreten ist (0 = nein, 1 = ja).
-*   `asthma` (INTEGER, NOT NULL): Angabe, ob Asthma vorliegt (0 = nein, 1 = ja).
-*   `lung_disease` (INTEGER, NOT NULL): Angabe, ob eine andere Lungenerkrankung vorliegt (0 = nein, 1 = ja).
-*   `seizure_history` (INTEGER, NOT NULL): Angabe, ob in der Vergangenheit Krampfanfälle aufgetreten sind (0 = nein, 1 = ja).
-*   `neurological_disorder` (INTEGER, NOT NULL): Angabe, ob eine neurologische Störung vorliegt (0 = nein, 1 = ja).
-*   `hsp_respiratory_cardio` (INTEGER, NOT NULL): Angabe, ob Krankenhausaufenthalte aufgrund von Atemwegs- oder Herz-Kreislauf-Erkrankungen vorlagen (0 = nein, 1 = ja).
-*   `hsp_heart_lung` (INTEGER, NOT NULL): Angabe, ob Krankenhausaufenthalte aufgrund von Herz- oder Lungenerkrankungen vorlagen (0 = nein, 1 = ja).
-*   `persc_med` (INTEGER, NOT NULL): Angabe, ob verschreibungspflichtige Medikamente eingenommen werden (0 = nein, 1 = ja).
-*   `allergies` (INTEGER, NOT NULL): Angabe, ob Allergien vorliegen (0 = nein, 1 = ja).
-*   `surgery` (INTEGER, NOT NULL): Angabe, ob Operationen durchgeführt wurden (0 = nein, 1 = ja).
-*   `ser_injury` (TEXT, NOT NULL): Beschreibung schwerwiegender Verletzungen.
-*   `risk_group` (INTEGER): Risikoeinstufung des Kunden durch die interne KI (1 = niedriges Risiko, 2 = mittleres Risiko, 3 = hohes Risiko).
+Das Datenmodell der Anwendung "FlightPrep" ist in einer lokalen SQLite-Datenbank (`FlightPreperation.db`) realisiert und umfasst Tabellen für Benutzer (User), Kunden (Customer), Ärzte (Doctor), Termine (appointments) und medizinische Daten (medical_data). Diese Struktur ermöglicht die Verwaltung der Benutzerrollen, die Erfassung von Kundendetails und medizinischen Informationen sowie die Organisation von Arztterminen.
+Eine detaillierte Beschreibung des Datenmodells, inklusive eines Entity-Relationship-Diagramms und genauer Tabellendefinitionen, finden Sie im separaten Dokument: [Datenmodell](./Datenmodell/Datenmodell.md).
 
 ## 6. User Interface (UI) und User Experience (UX) Fluss
 
@@ -423,7 +349,7 @@ Die Anwendung wird mit Apache Maven gebaut. Der Build-Prozess wird durch die `po
 *   **Start:** Die Anwendung kann direkt über die IDE gestartet werden (Main-Klasse: `com.example.flightprep.Main`) oder via Maven mit dem Befehl `mvn clean javafx:run`.
 *   Für ein eigenständiges Deployment könnte ein JLink-Image oder ein nativer Installer mit dem `javafx-maven-plugin` erstellt werden.
 
-## 9. Fehlerbehandlung und Logging
+## 9. Fehlerbehandlung
 
 **Fehlerbehandlung:**
 
@@ -432,28 +358,39 @@ Die Anwendung wird mit Apache Maven gebaut. Der Build-Prozess wird durch die `po
 *   Datenbankoperationen in den DAOs werfen `SQLException`s, die von den Service-Klassen gefangen und behandelt oder an die Controller weitergegeben werden, um dem Benutzer eine entsprechende Meldung anzuzeigen.
 *   Bei kritischen Fehlern (z.B. Laden von FXML-Dateien) werden StackTraces auf der Konsole ausgegeben (`e.printStackTrace()`).
 
-**Logging:**
+## 10. Teststrategie
 
-*   Ein dediziertes Logging-Framework (wie Log4j oder SLF4j) scheint derzeit nicht explizit verwendet zu werden. Fehler- und Statusmeldungen werden primär über `System.err.println()` (siehe `SQLiteConnection`) oder `e.printStackTrace()` ausgegeben, was für die Entwicklungsphase nützlich ist, aber für eine Produktionsumgebung durch ein strukturiertes Logging ersetzt werden sollte.
-
-## 10. Sicherheitsaspekte
-
-*   **Authentifizierung:** Die Benutzerauthentifizierung erfolgt in `UserService` durch Vergleich der eingegebenen Benutzer-ID und des Passworts mit den in der Datenbank gespeicherten Werten. **Wichtiger Hinweis:** Das Speichern und Vergleichen von Klartext-Passwörtern (`password.equals(user.getPassword())`) stellt ein erhebliches Sicherheitsrisiko dar. Passwörter sollten immer gehasht (z.B. mit bcrypt oder Argon2) und gesalzen gespeichert werden.
-*   **Datenzugriff:** Der Zugriff auf Patientendaten ist auf authentifizierte Ärzte beschränkt. Die Rollenprüfung (`user.getRole()`) im `LoginController` steuert den Zugriff auf verschiedene Anwendungsbereiche.
-*   **Datenspeicherung:** Medizinische Daten sind sensible Informationen. Die SQLite-Datenbankdatei (`FlightPreperation.db`) wird lokal gespeichert. Bei einem Deployment in einer produktiven Umgebung müssten Maßnahmen zum Schutz dieser Datei vor unbefugtem Zugriff erwogen werden (z.B. Verschlüsselung des Dateisystems oder der Datenbank selbst, falls unterstützt).
-*   **Datei-Uploads:** Der `FileUploadService` prüft die Dateigröße (`isValidFileSize`). Es könnten weitere Validierungen (z.B. Dateityp-Überprüfung anhand des Inhalts statt nur der Erweiterung) implementiert werden, um das Hochladen schädlicher Dateien zu verhindern. Die Dateinamen werden beim Speichern um die `userId` ergänzt, um Kollisionen zu vermeiden.
-*   **Dateipfade:** Pfade für Datenbank und Datei-Uploads sind teilweise hartcodiert (`SQLiteConnection.java`, `FileUploadService.java`), was bei Deployment in anderen Umgebungen Anpassungen erfordert.
+*(Dieser Abschnitt ist vorerst leer und kann später mit Details zur Testabdeckung, verwendeten Testarten und Testwerkzeugen gefüllt werden.)*
 
 ## 11. Konfiguration
 
-*   **Datenbankpfad:** Der Pfad zur SQLite-Datenbank (`jdbc:sqlite:data/FlightPreperation.db`) ist derzeit fest im Code (`SQLiteConnection.java`) hinterlegt. Für mehr Flexibilität könnte dieser Pfad in eine externe Konfigurationsdatei ausgelagert werden.
-*   **Upload-/Temp-Verzeichnisse:** Pfade für Datei-Uploads (`data/uploads`) und temporäre Dateien (`data/temp`) sind in `FileUploadService.java` ebenfalls fest kodiert und könnten konfigurierbar gemacht werden.
+*   **Datenbankpfad:** Der Pfad zur SQLite-Datenbank (`jdbc:sqlite:data/FlightPreperation.db`) ist derzeit fest im Code (`SQLiteConnection.java`) hinterlegt.
+*   **Upload-/Temp-Verzeichnisse:** Pfade für Datei-Uploads (`data/uploads`) und temporäre Dateien (`data/temp`) sind in `FileUploadService.java` ebenfalls fest kodiert.
 *   **Maximale Dateigröße:** Die maximale Dateigröße für Uploads (`MAX_FILE_SIZE`) ist in `FileUploadService.java` definiert.
-*   **Dateipfade:** Upload-Verzeichnisse (`UPLOAD_DIR`, `TEMP_DIR`) und der Pfad zur Datenbankdatei (`FlightPreperation.db`) sind in den Klassen `FileUploadService` bzw. `SQLiteConnection` definiert. Eine Auslagerung in eine Konfigurationsdatei wäre für mehr Flexibilität sinnvoll.
 
-## 12. Teststrategie
+## 12. Ausblick
 
-*(Dieser Abschnitt ist vorerst leer und kann später mit Details zur Testabdeckung, verwendeten Testarten und Testwerkzeugen gefüllt werden.)*
+Obwohl der aktuelle Prototyp die Kernanforderungen für die medizinische Vorbereitung von Passagieren erfolgreich abbildet, eröffnet der Entwicklungsprozess stets Möglichkeiten für zukünftige Erweiterungen und Verfeinerungen. Die folgende Aufstellung identifiziert potenzielle Bereiche, in denen die Anwendung hinsichtlich Architektur, Funktionalität und Sicherheit weiterentwickelt werden könnte, um sie für einen umfassenderen oder produktiven Einsatz noch robuster, wartbarer und benutzerfreundlicher zu gestalten:
+
+### 12.1 Architekturelle Verbesserungen
+
+*   **Logging-Framework:**
+    *   Einführung eines dedizierten Logging-Frameworks (z.B. Log4j, SLF4j). Dies ermöglicht eine strukturierte, konfigurierbare und flexiblere Protokollierung von Anwendungsereignissen, Warnungen und Fehlern, was die Diagnose und Wartung erheblich verbessert.
+*   **DAO-Abstraktion und Generics:**
+    *   Obwohl die DAO-Schicht bereits existiert, könnte eine weitere Abstraktionsebene durch ein generisches DAO-Interface und eine Basisimplementierung eingeführt werden. Dies würde redundanten Code in den spezifischen DAOs reduzieren und die Wartbarkeit erhöhen.
+*   **Konfigurationsmanagement:**
+    *   Auslagerung von Konfigurationsparametern wie Datenbankpfaden, Upload-Verzeichnissen und maximalen Dateigrößen in externe Konfigurationsdateien (z.B. `.properties` oder `.yaml`-Dateien). Dies erhöht die Flexibilität beim Deployment und der Anpassung an verschiedene Umgebungen.
+
+### 12.2 Funktionale und Sicherheitsrelevante Erweiterungen
+
+*   **Passwortsicherheit:**
+    *   Implementierung von Passwort-Hashing (z.B. mit bcrypt oder Argon2) anstelle der Speicherung von Klartext-Passwörtern. Dies ist ein kritischer Schritt zur Absicherung von Benutzerkonten.
+*   **Datenbanksicherheit:**
+    *   Für sensible medizinische Daten könnte eine Verschlüsselung der Datenbankdatei selbst oder der Datenbankinhalte in Betracht gezogen werden, falls dies von der gewählten Datenbanktechnologie unterstützt wird und die Performance-Auswirkungen akzeptabel sind.
+*   **Datei-Uploads:**
+    *   **Speicherort:** Erwägung, hochgeladene Dateien direkt in der Datenbank (z.B. als BLOBs) zu speichern, anstatt im Dateisystem. Um so weitere Funtionalität zu gewähren, die Uploads kundenspezifisch anzuzeigen.
+
+Diese potenziellen Verbesserungen würden die Funkrionalität, Sicherheit, Wartbarkeit, Robustheit und Konfigurierbarkeit der Anwendung steigern.
 
 ## 13. Glossar
 

@@ -20,8 +20,10 @@ public class SQLiteConnection implements DatabaseConnection {
     @Override
     public Connection getConnection() throws SQLException {
         try {
+            // Explicitly load the SQLite JDBC driver.
             Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection(DB_URL);
+            // Disable auto-commit for manual transaction control.
             connection.setAutoCommit(false);
             return connection;
         } catch (ClassNotFoundException e) {
@@ -41,11 +43,13 @@ public class SQLiteConnection implements DatabaseConnection {
             try {
                 if (!connection.getAutoCommit()) {
                     try {
+                        // Rollback any pending transactions if auto-commit was off.
                         connection.rollback();
                     } catch (SQLException e) {
                         System.err.println("Error rolling back transaction: " + e.getMessage());
                     }
                 }
+                // Re-enable auto-commit before closing (good practice, though connection is being closed).
                 connection.setAutoCommit(true);
                 connection.close();
             } catch (SQLException e) {

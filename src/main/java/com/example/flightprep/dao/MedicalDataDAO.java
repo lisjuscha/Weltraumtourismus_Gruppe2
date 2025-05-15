@@ -30,6 +30,7 @@ public class MedicalDataDAO {
      * @throws SQLException If a database access error occurs or the data cannot be saved.
      */
     public void save(MedicalData data) throws SQLException {
+        // Uses INSERT OR REPLACE to either insert a new record or replace an existing one if the user_id matches.
         String sql = "INSERT or REPLACE INTO medical_data (user_id, height, weight, alcohol_consumption, " +
                 "smoking_status, training_status, disability_status, disability_details, heart_disease, " +
                 "high_blood_pressure, irregular_heartbeat, stroke_history, asthma, lung_disease, " +

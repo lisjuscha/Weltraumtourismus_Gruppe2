@@ -46,6 +46,7 @@ public class UserDAO {
                     String role = rs.getString("role");
                     String password = rs.getString("password");
 
+                    // Based on the role, fetch the specific user type (Doctor or Customer).
                     if (role.equals("doctor")) {
                         return getDoctorByUserId(userId, password);
                     }

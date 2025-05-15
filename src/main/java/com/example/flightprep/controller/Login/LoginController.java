@@ -39,7 +39,7 @@ public class LoginController extends GeneralController {
         Image loginImage = new Image(getClass().getResource("/images/LoginScreen.png").toExternalForm());
         loginImageView.setImage(loginImage);
         loginImageView.fitHeightProperty().bind(borderPane.heightProperty());
-        loginImageView.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.8)); // 80% der Breite
+        loginImageView.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.8));
     }
 
     /**
@@ -59,7 +59,7 @@ public class LoginController extends GeneralController {
         UserService userService = new UserService();
         User user = userService.authenticateUser(userId, password);
 
-        // Factory oder Startegy
+        // Determine the role of the user and switch to the appropriate home screen
         if (user != null) {
             SessionManager.setCurrentUser(user);
             if ("doctor".equals(user.getRole())) {

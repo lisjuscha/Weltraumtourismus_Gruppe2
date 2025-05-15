@@ -18,11 +18,7 @@ public class RadioButtonReader {
      * @return `true` if the selected `RadioButton`'s text is "Yes", otherwise `false`.
      */
     public static boolean getToggleGroupBoolean(ToggleGroup group) {
-        if (((RadioButton) group.getSelectedToggle()).getText().equals("Yes")) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        // Assumes selected toggle is a RadioButton and "Yes" indicates true.
+        return ((RadioButton) group.getSelectedToggle()).getText().equals("Yes");
     }
 } 

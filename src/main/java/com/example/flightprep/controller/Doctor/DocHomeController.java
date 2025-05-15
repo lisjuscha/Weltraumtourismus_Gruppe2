@@ -13,10 +13,5 @@ import javafx.stage.Stage;
  * doctor-specific features.
  */
 public class DocHomeController extends DocController {
-    @FXML
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
 
 }

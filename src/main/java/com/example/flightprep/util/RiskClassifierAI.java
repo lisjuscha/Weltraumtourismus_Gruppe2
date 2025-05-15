@@ -21,10 +21,8 @@ public class RiskClassifierAI {
      */
     public static int classifyRisk(MedicalData data) {
 
-        // Get height and weight from the data
         double height = parseDouble(data.getHeight()) / 100; // cm zu m
         double weight = parseDouble(data.getWeight());
-        // BMI calculation
         double bmi = weight / (height * height);
 
         // Return risk group
@@ -43,6 +41,7 @@ public class RiskClassifierAI {
         if (value == null || value.isEmpty()) {
             return 0.0;
         }
+        // Replace comma with dot for locales that use comma as decimal separator.
         return Double.parseDouble(value.replace(",", "."));
     }
 }

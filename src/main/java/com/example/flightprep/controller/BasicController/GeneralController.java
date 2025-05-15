@@ -20,10 +20,9 @@ public abstract class GeneralController {
      */
     public Alert createAlert(String title, String header, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
-        alert.setTitle(title);              // Title of the alert box
-        alert.setHeaderText(header);          // Remove the header (optional)
-        alert.setContentText(message);     // The content of the alert (the error message)
-        // Show the alert and wait for the user to close it
+        alert.setTitle(title);          
+        alert.setHeaderText(header);          
+        alert.setContentText(message);     
         return alert;
     }
     /**

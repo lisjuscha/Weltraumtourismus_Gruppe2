@@ -29,7 +29,6 @@ public class Doctor extends User {
         this.email = email;
     }
 
-    // Getter-Methoden
     /**
      * Gets the first name of the doctor.
      *

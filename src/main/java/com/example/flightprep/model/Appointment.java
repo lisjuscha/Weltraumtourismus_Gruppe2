@@ -38,8 +38,6 @@ public class Appointment {
         this.riskGroup = riskGroup;
     }
 
-    // Getter
-
     /**
      * Gets the unique ID of the appointment.
      *
@@ -81,7 +79,6 @@ public class Appointment {
      *
      * @return The appointment time.
      */
-
     public String getTime() {
         return time;
     }
@@ -113,9 +110,6 @@ public class Appointment {
         return riskGroup;
     }
 
-
-    // Setter
-
     /**
      * Sets the unique ID of the appointment.
      *
@@ -142,7 +136,6 @@ public class Appointment {
     public void setDoctorId(String doctorId) {
         this.doctorId = doctorId;
     }
-
 
     /**
      * Sets the date of the appointment.

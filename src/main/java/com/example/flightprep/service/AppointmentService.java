@@ -91,11 +91,13 @@ public class AppointmentService {
         LocalDate flightDate = customerDAO.getFlightDate(userId);
 
         if (flightDate == null) {
+            // Cannot validate slot if flight date is unknown
             return false;
         }
 
         boolean isPastDateTime = date.isBefore(today) ||
                 (date.isEqual(today) && slotTime.isBefore(currentTime));
+        // Appointment must be at least 30 days before the flight date.
         boolean isAfterMaxDate = date.isAfter(flightDate.minusDays(30));
         boolean isBooked = appointmentDAO.isSlotBooked(date, time);
 
@@ -175,6 +177,7 @@ public class AppointmentService {
             List<Appointment> weekAppointments = new ArrayList<>();
             LocalDate weekEnd = weekStart.plusDays(6);
 
+            // Iterate through each day of the week to collect appointments.
             for (LocalDate date = weekStart; !date.isAfter(weekEnd); date = date.plusDays(1)) {
                 weekAppointments.addAll(appointmentDAO.getAppointmentsByDate(date));
             }

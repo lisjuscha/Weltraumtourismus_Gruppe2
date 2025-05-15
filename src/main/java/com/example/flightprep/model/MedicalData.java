@@ -29,8 +29,6 @@ public class MedicalData {
     private boolean surgery;
     private boolean ser_injury;
 
-    // Constructor
-
     /**
      * Constructs a `MedicalData` object with the specified details.
      *

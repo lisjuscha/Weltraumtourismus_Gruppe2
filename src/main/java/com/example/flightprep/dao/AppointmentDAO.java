@@ -57,7 +57,8 @@ public class AppointmentDAO {
 
             stmt.setString(1, date.format(DATE_FORMATTER));
             stmt.setString(2, time);
-            try (ResultSet rs = stmt.executeQuery()) {                   
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Check if a record exists (rs.next()) and if the count (rs.getInt(1)) is greater than 0.
                 return rs.next() && rs.getInt(1) > 0;
             }
         }
@@ -74,6 +75,7 @@ public class AppointmentDAO {
     public void bookAppointment(String customerId, LocalDate date, String time) throws SQLException {
         Appointment existingAppointment = getAppointmentByCustomerId(customerId);
         String sql;
+        // Determine if it's an update or a new booking.
         if (existingAppointment != null) {
             // Update existing appointment
             sql = "UPDATE appointments SET doctor_id = ?, date = ?, time = ? WHERE customer_id = ?";
@@ -143,6 +145,7 @@ public class AppointmentDAO {
      * @throws SQLException If a database access error occurs.
      */
     public Appointment getAppointmentByCustomerId(String customerId) throws SQLException {
+        // Assumes a customer has at most one relevant appointment, so limit to 1.
         String sql = "SELECT a.*, c.first_name, c.last_name, c.risk_group " +
                      "FROM appointments a " +
                      "JOIN Customer c ON a.customer_id = c.user_id " +
@@ -168,6 +171,7 @@ public class AppointmentDAO {
      * @throws SQLException If a database access error occurs or no doctor is found.
      */
     private String getCurrentDoctorId() throws SQLException {
+        // Fetches the first doctor found; assumes single doctor context or gets a default.
         String sql = "SELECT user_id FROM Doctor LIMIT 1";
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
