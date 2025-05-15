@@ -74,6 +74,11 @@ Programm starten
 4. Launcher-Klasse manuell finden: Code → Weltraumtourismus_Gruppe2 → src → main → java → com → example → flightprep → Main.java
 5. Anwendung starten – Drücken Sie oben rechts auf das grüne Dreieck.
 
+*2.4 Testen*  
+   
+Durch unsere Unit-Test haben wir eine Statement-Coverage von 70% sowie eine Branch-Coverage von 63%.
+![image](https://github.com/user-attachments/assets/8701f271-b5f9-49ec-841f-79409e15e554)
+
 # 3. Dokumentation    
 
 *3.1 User-Dokumentation*
