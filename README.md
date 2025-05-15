@@ -81,15 +81,16 @@ Durch unsere Unit-Test haben wir eine Statement-Coverage von 70% sowie eine Bran
 
 # 3. Dokumentation    
 
-*3.1 User-Dokumentation*
+*3.1 User-Dokumentation*   
+    
 Um das Programm ohne Probleme nutzen zu können, haben wir eine ausführliche Dokumentation mit sowohl Bildern als auch Texten erstellt, die Sie durch den ganzen Prozess leitet. Dabei haben wir zwischen der des Arztes und der des Kunden der ins All fliegt unterschieden. Die jeweiligen Dokumentationen finden Sie hier:  
     
 User-Dokumentation Arzt: [Documents/Dokumentationen/User-Dokumentation-Arzt.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Arzt.md)      
 User-Dokumentation Kunde: [Documents/Dokumentationen/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/5ebf489040f3eb8b78b943787bd10658bcba87d9/Documents/Dokumentationen/User-Dokumentation-Kunde.md)  
   
-*3.2 Technische Dokumentation*
-
-Die technische Dokumentation für das reibungslose Verständnis des Quellcodes befindet sich hier: [Documents/User-Dokumentation-Kunde.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/2937e8e9dc9e7f77daa6a37f8f4e3e52484dd701/TechnischeDoku/TechnischeDoku.md)
+*3.2 Technische Dokumentation*   
+   
+Die technische Dokumentation für das reibungslose Verständnis des Quellcodes befindet sich hier: [Documentation/Dokumentationen/Technische-Dokumentation.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fa1c00927b0ebf41f523dc31d9babbf52bb09ba4/Documents/Dokumentationen/Technische-Dokumentation.md)
 
 # 4. Mehrwert unserer Anwendung
 
