@@ -27,12 +27,12 @@ Dabei gehen wir davon aus, dass wir die genannten Informationen bereits übermit
   
 Um eine Software zur Flugvorbereitung in den Weltraumn effektiv zu entwickeln, müssen wir zunächst die wichtigsten Prozesse und Softwareelemente modellieren.
 Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner [Documents/Prozessdiagramme](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Prozessdiagramme).      
-Eine ausführliche Erläuterung dazu finden Sie in der Datei [Documents/Prozessdiagramme/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/f5677d9eefaf08bb6447bcca0dc48176935dbb87/Documents/UI/Customer)).
+Eine ausführliche Erläuterung dazu finden Sie in der Datei [Documents/Prozessdiagramme/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/f5677d9eefaf08bb6447bcca0dc48176935dbb87/Documents/UI/Customer)
      
 *1.1.2 UI-Modelle*   
   
 Die verschiedenen UI-Modelle sind im Ordner [Documents/UI](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI) abgelegt. Dieser ist nochmal in jeweils vier Unterordner für die verschiedenen Perspektiven der Nutzer unterteilt.    
-- Eine bebilderte Erläuterung der Benutzeroberfläche des Kunden finden Sie in [Documents/UI/Customer/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI/README.md).   
+- Eine bebilderte Erläuterung der Benutzeroberfläche des Kunden finden Sie in [Documents/UI/Customer/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI/README.md)   
 - Eine bebilderte Erläuterung der Benutzeroberfläche des Arztes finden Sie in [Documents/UI/Doctor/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/ba0ce62f2fbd961f6f652225bf09cf86e283b75b/Documents/UI/Doctor/README.md)   
 - Eine bebilderte Erläuterung der Benutzeroberfläche des Anzugsspezialisten finden Sie in [Documents/UI/Specialist/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/ba0ce62f2fbd961f6f652225bf09cf86e283b75b/Documents/UI/Specialist/README.md)   
 - Eine bebilderte Erläuterung der Benutzeroberfläche des Trainers finden Sie in [Documents/UI/Trainer/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/ba0ce62f2fbd961f6f652225bf09cf86e283b75b/Documents/UI/Trainer/README.md)    
@@ -52,7 +52,7 @@ Personas: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumt
 *2.1 Codeübersicht und Dateistruktur*   
 
 Der Quellcode unseres Projektes befindet sich in diesem Git-Repository. Hier liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden.
-Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg in den Code empfehlen wir, zunächst die [Datenmodell-Datei](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/d20578cdbef661eefda9ef90848e0cdd6ea8a8b8/Documents/Dokumentationen/Datenmodell) zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
+Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg in den Code empfehlen wir, zunächst die [Datenmodell-README](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/d99d08d8aa9907b215128221fc9b4c66932858b9/Documents/Dokumentationen/Datenmodell) in diesem Ordner zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
 
 *2.2 Projektumfang*   
    
