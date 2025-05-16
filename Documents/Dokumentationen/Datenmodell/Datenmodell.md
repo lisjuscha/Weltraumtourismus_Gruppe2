@@ -74,4 +74,3 @@ Die Struktur der Datenbanktabellen, wie in `datenbank-schema.dbml` definiert:
 *   `allergies` (INTEGER, NOT NULL): Angabe, ob Allergien vorliegen (0 = nein, 1 = ja).
 *   `surgery` (INTEGER, NOT NULL): Angabe, ob Operationen durchgeführt wurden (0 = nein, 1 = ja).
 *   `ser_injury` (TEXT, NOT NULL): Beschreibung schwerwiegender Verletzungen.
-*   `risk_group` (INTEGER): Risikoeinstufung des Kunden durch die interne KI (1 = niedriges Risiko, 2 = mittleres Risiko, 3 = hohes Risiko).
