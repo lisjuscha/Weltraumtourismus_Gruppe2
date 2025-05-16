@@ -4,7 +4,7 @@ Das Datenmodell der Anwendung "FlightPrep" ist in einer SQLite-Datenbank namens 
 
 ## Entity-Relationship-Diagramm (ERD)
 
-Das folgende Diagramm visualisiert die Entitäten und ihre Beziehungen innerhalb der Datenbank `FlightPreperation.db`.
+Das folgende Diagramm visualisiert die Entitäten und ihre Beziehungen innerhalb der Datenbank `FlightPreperation.db`. 
 
 ![ERD Diagramm](datenbank-schema.png)
 
