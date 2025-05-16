@@ -11,6 +11,26 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, Ihre medizinischen Infor
 - Klicken Sie auf „Login“.
 - Sie werden zur Startseite (Home) weitergeleitet.
 
+**Wichtiger Hinweis zur aktuellen Implementierung:**
+
+Da die "FlightPrep"-Anwendung auf einen vorgelagerten Buchungsprozess aufbaut, müssen für jeden Kunden, der den Vorbereitungsprozess durchlaufen soll, bestimmte Basisdaten in der Datenbank vorhanden sein.
+
+Zu Testzwecken wurden folgende Benutzerkonten in der Datenbank hinterlegt.
+
+| Benutzername   | Vorname   | Nachname   | Flugdatum    | Geburtsdatum  |
+|----------------|-----------|------------|--------------|----------------|
+| Heck1          | Andreas   | Heck       | 18.07.2025   | 01.01.2000     |
+| Heck2          | Andreas   | Heck       | 19.10.2025   | 01.01.2000     |
+| Heck3          | Andreas   | Heck       | 15.08.2025   | 01.01.2000     |
+| Heck4          | Andreas   | Heck       | 19.09.2025   | 01.01.2000     |
+| Heck5          | Andreas   | Heck       | 19.09.2025   | 01.01.2000     |
+| Gutgesell1     | Patrik    | Gutgesell  | 18.07.2025   | 01.01.2000     |
+| Gutgesell2     | Patrik    | Gutgesell  | 19.10.2025   | 01.01.2000     |
+| Gutgesell3     | Patrik    | Gutgesell  | 15.08.2025   | 01.01.2000     |
+| Gutgesell4     | Patrik    | Gutgesell  | 19.09.2025   | 01.01.2000     |
+| Gutgesell5     | Patrik    | Gutgesell  | 19.09.2025   | 01.01.2000     |
+
+
 ## 2. Vorbereitung starten („Preparation“)
 
 <img width="650" alt="Bildschirmfoto 2025-05-13 um 16 30 47" src="https://github.com/user-attachments/assets/54d46410-64ff-4d08-aa8f-c217d0e23986" />   

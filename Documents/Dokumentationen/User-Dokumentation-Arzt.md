@@ -11,6 +11,11 @@ Diese Anleitung hilft Ihnen Schritt für Schritt dabei, die medizinischen Inform
 - Klicken Sie auf **„Login“**.
 - Sie werden zur **Startseite (Home)** weitergeleitet.
 
+**Wichtiger Hinweis zur aktuellen Implementierung:**
+Die Anwendung ist derzeit für die Nutzung durch einen Arzt ausgelegt. Für Test- und Demonstrationszwecke ist folgender Arzt fest im System hinterlegt:
+*   **User-ID:** `Juergen1`
+*   **Passwort:** `123`
+
 ## 2. Kalenderansicht („Calendar“) öffnen  
 
 <img width="650" alt="Bildschirmfoto 2025-05-13 um 17 13 45" src="https://github.com/user-attachments/assets/9c55ab80-4cef-4210-869c-59d6480331cc" />  
