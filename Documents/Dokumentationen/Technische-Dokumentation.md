@@ -28,11 +28,10 @@
 8.  [Build- und Deployment-Prozess](#8-build--und-deployment-prozess)
 9.  [Fehlerbehandlung](#9-fehlerbehandlung)
 10. [Teststrategie](#10-teststrategie)
-11. [Konfiguration](#11-konfiguration)
-12. [Ausblick](#12-ausblick)
-    *   [12.1 Architekturelle Verbesserungen](#121-architekturelle-verbesserungen)
-    *   [12.2 Funktionale und Sicherheitsrelevante Erweiterungen](#122-funktionale-und-sicherheitsrelevante-erweiterungen)
-13. [Glossar](#13-glossar)
+11. [Ausblick](#12-ausblick)
+    *   [11.1 Architekturelle Verbesserungen](#121-architekturelle-verbesserungen)
+    *   [11.2 Funktionale und Sicherheitsrelevante Erweiterungen](#122-funktionale-und-sicherheitsrelevante-erweiterungen)
+12. [Glossar](#13-glossar)
 
 ## 1. Einleitung und Ziele des Projekts
 
@@ -243,7 +242,7 @@ Die Anwendung bietet separate Oberflächen für Kunden und Ärzte.
 **Kunden-Fluss (Beispielhaft):**
 
 1.  **Login:** Kunde meldet sich mit Benutzer-ID und Passwort an.
-2.  **Home-Bildschirm:** Übersicht über den aktuellen Status der Flugvorbereitung.
+2.  **Home-Bildschirm:** Übersicht über den aktuellen Status der Flugvorbereitung - nicht implementiert
 3.  **Medizinischer Fragebogen:** Ausfüllen und Absenden des Fragebogens.
 4.  **Terminbuchung/Kalenderansicht:** Anzeige des Flugdatums und des medizinischen Termins. Möglichkeit zur Buchung oder Änderung des medizinischen Termins und zur Änderung des Flugdatums.
 5.  **Dokumenten-Upload:** Hochladen erforderlicher medizinischer Dokumente.
@@ -252,11 +251,12 @@ Die Anwendung bietet separate Oberflächen für Kunden und Ärzte.
 **Arzt-Fluss (Beispielhaft):**
 
 1.  **Login:** Arzt meldet sich mit Benutzer-ID und Passwort an.
-2.  **Home-Bildschirm:** Dashboard mit relevanten Informationen.
-3.  **Patientenübersicht:** Liste der Patienten mit eingereichten Unterlagen.
-4.  **Patienten-Detailansicht/Akte:** Einsicht in medizinische Daten und hochgeladene Dokumente eines Patienten.
-5.  **Flugtauglichkeitserklärung:** Abgabe der Bewertung (tauglich/nicht tauglich) mit Kommentar.
-6.  **Kalenderansicht:** Übersicht über gebuchte Termine.
+2.  **Home-Bildschirm:** Dashboard mit relevanten Informationen - nicht implementiert
+3.  **Kalenderansicht:** Übersicht über gebuchte Termine. 
+4.  **Patientenübersicht:** Liste der Patienten mit eingereichten Unterlagen.
+5. **Patienten-Detailansicht/Akte:** Einsicht in medizinische Daten und hochgeladene Dokumente eines Patienten.
+6. **Flugtauglichkeitserklärung:** Abgabe der Bewertung (tauglich/nicht tauglich) mit Kommentar.
+
 
 Die Navigation erfolgt über Menüs und Schaltflächen, die den Benutzer durch die notwendigen Schritte leiten. `SceneSwitcher.java` ist die zentrale Utility-Klasse für den Wechsel zwischen verschiedenen Ansichten (FXML-Dateien).
 
@@ -371,17 +371,11 @@ Die Tests befinden sich im Verzeichnis `src/test/java`. Ziel ist es, eine hohe T
 
 ![image](https://github.com/user-attachments/assets/8701f271-b5f9-49ec-841f-79409e15e554)
 
-## 11. Konfiguration
-
-*   **Datenbankpfad:** Der Pfad zur SQLite-Datenbank (`jdbc:sqlite:data/FlightPreperation.db`) ist derzeit fest im Code (`SQLiteConnection.java`) hinterlegt.
-*   **Upload-/Temp-Verzeichnisse:** Pfade für Datei-Uploads (`data/uploads`) und temporäre Dateien (`data/temp`) sind in `FileUploadService.java` ebenfalls fest kodiert.
-*   **Maximale Dateigröße:** Die maximale Dateigröße für Uploads (`MAX_FILE_SIZE`) ist in `FileUploadService.java` definiert.
-
-## 12. Ausblick
+## 11. Ausblick
 
 Obwohl der aktuelle Prototyp die Kernanforderungen für die medizinische Vorbereitung von Passagieren erfolgreich abbildet, eröffnet der Entwicklungsprozess stets Möglichkeiten für zukünftige Erweiterungen und Verfeinerungen. Die folgende Aufstellung identifiziert potenzielle Bereiche, in denen die Anwendung hinsichtlich Architektur, Funktionalität und Sicherheit weiterentwickelt werden könnte, um sie für einen umfassenderen oder produktiven Einsatz noch robuster, wartbarer und benutzerfreundlicher zu gestalten:
 
-### 12.1 Architekturelle Verbesserungen
+### 11.1 Architekturelle Verbesserungen
 
 *   **Logging-Framework:**
     *   Einführung eines dedizierten Logging-Frameworks (z.B. Log4j, SLF4j). Dies ermöglicht eine strukturierte, konfigurierbare und flexiblere Protokollierung von Anwendungsereignissen, Warnungen und Fehlern, was die Diagnose und Wartung erheblich verbessert.
@@ -390,7 +384,7 @@ Obwohl der aktuelle Prototyp die Kernanforderungen für die medizinische Vorbere
 *   **Konfigurationsmanagement:**
     *   Auslagerung von Konfigurationsparametern wie Datenbankpfaden, Upload-Verzeichnissen und maximalen Dateigrößen in externe Konfigurationsdateien (z.B. `.properties` oder `.yaml`-Dateien). Dies erhöht die Flexibilität beim Deployment und der Anpassung an verschiedene Umgebungen.
 
-### 12.2 Funktionale und Sicherheitsrelevante Erweiterungen
+### 11.2 Funktionale und Sicherheitsrelevante Erweiterungen
 
 *   **Passwortsicherheit:**
     *   Implementierung von Passwort-Hashing (z.B. mit bcrypt oder Argon2) anstelle der Speicherung von Klartext-Passwörtern. Dies ist ein kritischer Schritt zur Absicherung von Benutzerkonten.
@@ -401,7 +395,7 @@ Obwohl der aktuelle Prototyp die Kernanforderungen für die medizinische Vorbere
 
 Diese potenziellen Verbesserungen würden die Funkrionalität, Sicherheit, Wartbarkeit, Robustheit und Konfigurierbarkeit der Anwendung steigern.
 
-## 13. Glossar
+## 12. Glossar
 
 *   **DAO (Data Access Object):** Ein Entwurfsmuster, das eine abstrakte Schnittstelle zu einer Datenbank oder einem anderen persistenten Speichermechanismus bereitstellt.
 *   **DBML (Database Markup Language):** Eine einfache, menschenlesbare Sprache zur Definition von Datenbankschemata.
