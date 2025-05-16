@@ -61,5 +61,4 @@ Table medical_data {
   allergies INTEGER [not null]
   surgery INTEGER [not null]
   ser_injury TEXT [not null]
-  risk_group INTEGER
 }

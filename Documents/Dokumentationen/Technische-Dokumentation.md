@@ -85,14 +85,14 @@ Da die "FlightPrep"-Anwendung auf einen vorgelagerten Buchungsprozess aufbaut, m
 2.  **Kundendetails in `Customer`-Tabelle:**
     *   Ein korrespondierender Eintrag in der `Customer`-Tabelle, verknüpft über die `user_id`, ist notwendig.
     *   Folgende Felder müssen in diesem Eintrag ausgefüllt sein (entsprechend den `NOT NULL`-Anforderungen der Datenbank):
-        *   `user_id` (muss mit dem Eintrag in der `User`-Tabelle übereinstimmen)
+        *   `user_id` (Fremdschlüssel user_id der `User`-Tabelle)
         *   `first_name` (Vorname des Kunden)
         *   `last_name` (Nachname des Kunden)
         *   `email` (E-Mail-Adresse des Kunden)
         *   `flight_date` (Geplantes Flugdatum des Kunden)
         *   `birth_date` (Geburtsdatum des Kunden)
 
-Diese Daten werden typischerweise durch ein externes System (z.B. die Buchungsplattform) vor der Nutzung von "FlightPrep" bereitgestellt. Ohne diese initialen Daten kann sich ein Kunde nicht anmelden oder den medizinischen Vorbereitungsprozess starten.
+Diese Daten sollten durch ein externes System (z.B. die Buchungsplattform) vor der Nutzung von "FlightPrep" bereitgestellt. Ohne diese initialen Daten kann sich ein Kunde nicht anmelden oder den medizinischen Vorbereitungsprozess starten.
 
 ### 2.3 Daten-Voraussetzungen für Ärzte
 
@@ -107,13 +107,13 @@ Diese Daten werden typischerweise durch ein externes System (z.B. die Buchungspl
 2.  **Arztdetails in `Doctor`-Tabelle:**
     *   Ein korrespondierender Eintrag in der `Doctor`-Tabelle, verknüpft über die `user_id`, ist notwendig.
     *   Folgende Felder müssen in diesem Eintrag ausgefüllt sein (entsprechend den `NOT NULL`-Anforderungen der Datenbank):
-        *   `user_id` (muss mit dem Eintrag in der `User`-Tabelle übereinstimmen)
+        *   `user_id` (Fremdschlüssel user_id der `User`-Tabelle)
         *   `first_name` (Vorname des Arztes)
         *   `last_name` (Nachname des Arztes)
         *   `email` (E-Mail-Adresse des Arztes)
 
 **Wichtiger Hinweis zur aktuellen Implementierung:**
-Die Anwendung ist derzeit für die Nutzung durch einen Arzt ausgelegt. Für Test- und Demonstrationszwecke ist folgender Arzt fest im System hinterlegt (oder muss initial so angelegt werden):
+Die Anwendung ist derzeit für die Nutzung durch einen Arzt ausgelegt. Für Test- und Demonstrationszwecke ist folgender Arzt fest im System hinterlegt:
 *   **Benutzer-ID (`user_id`):** `Juergen1`
 *   **Passwort:** `123`
 

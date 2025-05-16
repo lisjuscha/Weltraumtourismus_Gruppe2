@@ -15,18 +15,27 @@ Gruppen Mitglieder: Daniel Justo Blazquez Perez, Luc Alex Hampele, Philipp Lenna
 *1.1 Allgemeine Einführung in die Modellierungsdateien*
     
 Alle genannten Dateien und Modelle bilden die konzeptionelle Grundlage für unseren Entwicklungsprozess im Rahmen der Flugvorbereitung.
-Wir möchten Ihnen ein Verzeichnis der Dateien zur Verfügung stellen, die die Grundlage für unsere Implementierung bilden.    
+Wir möchten Ihnen ein Verzeichnis der Dateien zur Verfügung stellen, die die Grundlage für unsere Implementierung bilden. 
+
+Dabei gehen wir davon aus, dass wir die genannten Informationen bereits übermittelt bekommen:
+- Vor-/Nachname
+- Geburtsdatum
+- Flugdatum
+- E-Mail-Adresse
      
 *1.1.1 Prozesse*   
   
 Um eine Software zur Flugvorbereitung in den Weltraumn effektiv zu entwickeln, müssen wir zunächst die wichtigsten Prozesse und Softwareelemente modellieren.
-Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner [Documents/Prozessdiagramme](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Prozessdiagramme).   
+Die BPMN-Modelle zur Veranschaulichung unserer Prozesse befinden sich im Ordner [Documents/Prozessdiagramme](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/Prozessdiagramme).      
 Eine ausführliche Erläuterung dazu finden Sie in der Datei [Documents/Prozessdiagramme/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/f5677d9eefaf08bb6447bcca0dc48176935dbb87/Documents/UI/Customer)).
      
 *1.1.2 UI-Modelle*   
   
-Die verschiedenen UI-Modelle sind im Ordner [Documents/UI](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI) abgelegt. Dieser ist nochmal in die zwei Unterordner für die verschiedenen Perspektiven der Nutzer unterteilt, den Tourist und den Arzt .
-Eine bebilderte Erläuterung der Benutzeroberfläche des Kunden finden Sie in [Documents/UI/Customer/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI/README.md).        
+Die verschiedenen UI-Modelle sind im Ordner [Documents/UI](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI) abgelegt. Dieser ist nochmal in jeweils vier Unterordner für die verschiedenen Perspektiven der Nutzer unterteilt.    
+- Eine bebilderte Erläuterung der Benutzeroberfläche des Kunden finden Sie in [Documents/UI/Customer/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/fc13d99ae925e3c2fffa1bcf49efef8cf49fc79e/Documents/UI/README.md).   
+- Eine bebilderte Erläuterung der Benutzeroberfläche des Arztes finden Sie in [Documents/UI/Doctor/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/ba0ce62f2fbd961f6f652225bf09cf86e283b75b/Documents/UI/Doctor/README.md)   
+- Eine bebilderte Erläuterung der Benutzeroberfläche des Anzugsspezialisten finden Sie in [Documents/UI/Specialist/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/ba0ce62f2fbd961f6f652225bf09cf86e283b75b/Documents/UI/Specialist/README.md)   
+- Eine bebilderte Erläuterung der Benutzeroberfläche des Trainers finden Sie in [Documents/UI/Trainer/README.md](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/blob/ba0ce62f2fbd961f6f652225bf09cf86e283b75b/Documents/UI/Trainer/README.md)    
    
 *1.1.3 Personas*  
   
@@ -41,14 +50,25 @@ Personas: [Documents/Personas/README.md](https://github.com/lisjuscha/Weltraumt
 
 # 2. Programmierung
 *2.1 Codeübersicht und Dateistruktur*   
-   
-Der Quellcode unseres Projekts befindet sich im Verzeichnis Code/“placeholder“.  
-In diesem Ordner liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden. Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg empfehlen wir, zunächst die [Datenmodell-Datei](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/d20578cdbef661eefda9ef90848e0cdd6ea8a8b8/Documents/Dokumentationen/Datenmodell) zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
+
+Der Quellcode unseres Projektes befindet sich in diesem Git-Repository. Hier liegen alle relevanten Dateien, die zur Ausführung der Anwendung benötigt werden.
+Eine ausführliche Anleitung zur Nutzung und zum Starten des Projekts finden Sie weiter unten. Für einen reibungslosen Einstieg in den Code empfehlen wir, zunächst die [Datenmodell-Datei](https://github.com/lisjuscha/Weltraumtourismus_Gruppe2/tree/d20578cdbef661eefda9ef90848e0cdd6ea8a8b8/Documents/Dokumentationen/Datenmodell) zu lesen. Dort finden Sie alle notwendigen Informationen zur Architektur, zu Abhängigkeiten und zum Aufbau der Anwendung.
 
 *2.2 Projektumfang*   
    
-Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftige Weltraumtourist*innen implementiert - dieser beginnt nach dem ersten Login mit einem Pop-up zur Eingabe medizinischer Daten. Der Server sowie dessen HTTP-Antworten wurden mit Mock-Ups simuliert. Der eigentliche Login-Prozess selbst war nicht Teil unseres Projektumfangs.
-Die Implementierung umfasst ausschließlich die Client-seitige Logik, einschließlich der Benutzeroberfläche, der Controller und der Verarbeitung von ein- und ausgehenden API-Aufrufen. Die serverseitige Logik wie z. B. das Session-Handling oder die Validierung der Anfragen wird im Projekt lediglich vorgetäuscht.
+Im Rahmen unseres Projekts haben wir den Medical-Check-Prozess für zukünftige Weltraumtourist*innen implementiert - dieser beginnt nach dem ersten Login mit einem Pop-up zur Eingabe medizinischer Daten.  
+
+Die folgende Tabelle zeigt, welche Teile des Projekts implementiert wurden (**In Scope**) und welche lediglich gemockt wurden (**Out of Scope**):
+
+| Bereich              | In Scope (implementiert)                                                                                                       | Out of Scope (gemockt / nicht implementiert)                                                                                       |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| **Kunde (User)**     | - Kompletter medizinischer Check inkl. Fragebögen, Angaben und Dokumenten                                                    | - Startseite (Homepage nach Login)                                                                                                 |
+| **Arzt**             | - Vollständiger Prozess zur Bewertung der Flugtauglichkeit<br>- Einsicht und Verwaltung von Kundendaten<br>- Dokumentenmanagement | - Startseite (Homepage nach Login)<br>- Fitting-Checkliste und zugehöriger Prozess<br>- Training-Checkliste und zugehöriger Prozess |
+| **Trainer**          | *nicht implementiert*                                                                                                          | - Gesamter Trainerbereich, inkl. Trainingsverwaltung, Meetingseite und Ausstellung von Flight Permits                              |
+| **Designer (Anzug)** | *nicht implementiert*                                                                                                          | - Gesamter Designerbereich, inkl. Maßverarbeitung und Anzugsanpassung                                                              |
+
+
+Es ist zu beachten, dass im aktuellen Prototyp die Funktionalitäten der Datei-Uploads vereinfacht implementiert sind. Hochgeladene Dateien werden zwar mit einer Benutzerkennung im Dateinamen versehen und in einem zentralen Verzeichnis gespeichert, die Anzeige dieser Dokumente für den Arzt erfolgt jedoch durch Auflistung aller Dateien in diesem Verzeichnis.
 
 *2.3 Programmausführung*
 
@@ -113,6 +133,7 @@ LucAlex.Hampele@studmail.hwg-lu.de
 PhilippLennard.Rohr@studmail.hwg-lu.de  
 Lisa.Schmidt@studmail.hwg-lu.de  
 Joline.Zeidler@studmail.hwg-lu.de   
+ 
  
 
 
